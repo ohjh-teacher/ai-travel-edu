@@ -72,6 +72,10 @@ main {
   margin: 0 auto;
 }
 
+#adminScreen {
+  width: min(100%, 1080px);
+}
+
 .screen {
   display: none;
 }
@@ -655,6 +659,73 @@ input[type="radio"] {
   color: var(--muted);
 }
 
+body[data-screen="admin"] main {
+  padding-top: 28px;
+}
+
+body[data-screen="admin"] .top-bar {
+  padding: 10px 18px;
+}
+
+body[data-screen="admin"] .plain-button {
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 14px;
+  font-size: 20px;
+}
+
+#adminScreen .admin-head {
+  margin-top: 18px;
+  padding: 30px 36px;
+  border-width: 3px;
+  border-radius: 26px;
+}
+
+#adminScreen .eyebrow {
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+#adminScreen h1 {
+  font-size: 48px;
+  line-height: 1.16;
+}
+
+#adminScreen .admin-list {
+  gap: 18px;
+  margin-top: 24px;
+}
+
+#adminScreen .admin-card,
+#adminScreen .empty-text {
+  padding: 24px 30px;
+  border-width: 3px;
+  border-radius: 22px;
+}
+
+#adminScreen .empty-text {
+  font-size: 22px;
+}
+
+#adminScreen .admin-card dl {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  column-gap: 22px;
+  row-gap: 10px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+#adminScreen .admin-card dt {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+#adminScreen .admin-card dd {
+  margin: 0;
+  font-size: 18px;
+}
+
 .toast {
   position: fixed;
   left: 50%;
@@ -760,6 +831,29 @@ input[type="radio"] {
 
   .button-row {
     display: grid;
+  }
+
+  body[data-screen="admin"] .plain-button {
+    width: auto;
+    min-height: 50px;
+    font-size: 18px;
+  }
+
+  #adminScreen .admin-head {
+    padding: 22px;
+  }
+
+  #adminScreen h1 {
+    font-size: 36px;
+  }
+
+  #adminScreen .admin-card dl {
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+  }
+
+  #adminScreen .admin-card dd {
+    margin-bottom: 12px;
   }
 }
 

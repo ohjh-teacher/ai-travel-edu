@@ -51,6 +51,8 @@ const adminList = document.getElementById("adminList");
 let firebaseServicesPromise = null;
 
 function showScreen(name) {
+  document.body.dataset.screen = name;
+
   Object.values(screens).forEach((screen) => {
     if (screen) {
       screen.classList.remove("is-active");
