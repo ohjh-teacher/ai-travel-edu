@@ -1,6 +1,12 @@
 const STORAGE_KEY = "smartTravelClassSubmissions";
-const FIREBASE_CONFIG = null;
-// Firebase 콘솔의 웹 앱 설정값을 받으면 위 null을 설정 객체로 바꾸면 됩니다.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDbto7vFUwkaPZc7l0kyGX2qi4HjZQvvOg",
+  authDomain: "aitraveledu.firebaseapp.com",
+  projectId: "aitraveledu",
+  storageBucket: "aitraveledu.firebasestorage.app",
+  messagingSenderId: "19262129760",
+  appId: "1:19262129760:web:bfb1777ee404368294e505"
+};
 const FIREBASE_COLLECTION = "week1Submissions";
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdm9D1SE5WYQsr1DfZalDU3hDOCrGzmLehACksovrxyUki4AQ/formResponse";
 const GOOGLE_FORM_ENTRIES = {
