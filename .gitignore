@@ -1,6 +1,5 @@
 .netlify/
 node_modules/
 .firebase/
-.firebaserc
 firebase-debug.log
 *.local
