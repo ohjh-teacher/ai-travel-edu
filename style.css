@@ -73,7 +73,7 @@ main {
 }
 
 #adminScreen {
-  width: min(100%, 1080px);
+  width: min(100%, 860px);
 }
 
 .screen {
@@ -660,70 +660,70 @@ input[type="radio"] {
 }
 
 body[data-screen="admin"] main {
-  padding-top: 28px;
+  padding-top: 24px;
 }
 
 body[data-screen="admin"] .top-bar {
-  padding: 10px 18px;
+  padding: 8px 18px;
 }
 
 body[data-screen="admin"] .plain-button {
-  min-height: 52px;
-  padding: 0 22px;
-  border-radius: 14px;
-  font-size: 20px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-size: 17px;
 }
 
 #adminScreen .admin-head {
-  margin-top: 18px;
-  padding: 30px 36px;
-  border-width: 3px;
-  border-radius: 26px;
+  margin-top: 10px;
+  padding: 22px 28px;
+  border-width: 2px;
+  border-radius: 20px;
 }
 
 #adminScreen .eyebrow {
-  margin-bottom: 8px;
-  font-size: 24px;
+  margin-bottom: 6px;
+  font-size: 18px;
 }
 
 #adminScreen h1 {
-  font-size: 48px;
-  line-height: 1.16;
+  font-size: 34px;
+  line-height: 1.18;
 }
 
 #adminScreen .admin-list {
-  gap: 18px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 #adminScreen .admin-card,
 #adminScreen .empty-text {
-  padding: 24px 30px;
-  border-width: 3px;
-  border-radius: 22px;
+  padding: 18px 22px;
+  border-width: 2px;
+  border-radius: 16px;
 }
 
 #adminScreen .empty-text {
-  font-size: 22px;
+  font-size: 17px;
 }
 
 #adminScreen .admin-card dl {
   display: grid;
-  grid-template-columns: 150px 1fr;
-  column-gap: 22px;
-  row-gap: 10px;
-  font-size: 18px;
-  line-height: 1.45;
+  grid-template-columns: 120px 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  font-size: 15px;
+  line-height: 1.42;
 }
 
 #adminScreen .admin-card dt {
   margin-top: 0;
-  font-size: 17px;
+  font-size: 14px;
 }
 
 #adminScreen .admin-card dd {
   margin: 0;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .toast {
@@ -835,16 +835,16 @@ body[data-screen="admin"] .plain-button {
 
   body[data-screen="admin"] .plain-button {
     width: auto;
-    min-height: 50px;
-    font-size: 18px;
+    min-height: 44px;
+    font-size: 16px;
   }
 
   #adminScreen .admin-head {
-    padding: 22px;
+    padding: 20px;
   }
 
   #adminScreen h1 {
-    font-size: 36px;
+    font-size: 30px;
   }
 
   #adminScreen .admin-card dl {
