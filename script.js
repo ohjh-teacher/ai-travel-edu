@@ -272,7 +272,18 @@ function mergeInstitutions(institutions) {
     .map(normalizeInstitution)
     .filter((institution) => institution.name)
     .forEach((institution) => {
-      map.set(institution.key, institution);
+      const existing = map.get(institution.key);
+      if (!existing) {
+        map.set(institution.key, institution);
+        return;
+      }
+
+      map.set(institution.key, {
+        ...existing,
+        ...institution,
+        startDate: institution.startDate || existing.startDate,
+        hidden: Boolean(institution.hidden)
+      });
     });
 
   return Array.from(map.values()).sort((a, b) => (
