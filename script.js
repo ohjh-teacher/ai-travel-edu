@@ -61,11 +61,14 @@ const submitAbsenceBox = document.getElementById("submitAbsenceBox");
 const studentSaveMessage = document.getElementById("studentSaveMessage");
 const closeSubmitButton = document.getElementById("closeSubmitButton");
 const privacyConsent = document.getElementById("privacyConsent");
+const submitFilesInput = document.getElementById("submitFiles");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
 let activeSubmitWeek = 1;
 
 const currentYear = new Date().getFullYear();
+const MAX_UPLOAD_FILES = 3;
+const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
 const defaultInstitutions = [
   { name: "서울시민대학", year: currentYear, startWeek: 1 },
   { name: "장미 경로당", year: currentYear, startWeek: 1 },
@@ -178,12 +181,15 @@ async function getFirebaseServices() {
   if (!firebaseServicesPromise) {
     firebaseServicesPromise = Promise.all([
       import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"),
-      import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js")
-    ]).then(([appModule, firestoreModule]) => {
+      import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js")
+    ]).then(([appModule, firestoreModule, storageModule]) => {
       const app = appModule.initializeApp(FIREBASE_CONFIG);
       const db = firestoreModule.getFirestore(app);
+      const storage = storageModule.getStorage(app);
       return {
         db,
+        storage,
         addDoc: firestoreModule.addDoc,
         collection: firestoreModule.collection,
         deleteDoc: firestoreModule.deleteDoc,
@@ -192,7 +198,11 @@ async function getFirebaseServices() {
         orderBy: firestoreModule.orderBy,
         query: firestoreModule.query,
         serverTimestamp: firestoreModule.serverTimestamp,
-        setDoc: firestoreModule.setDoc
+        setDoc: firestoreModule.setDoc,
+        deleteObject: storageModule.deleteObject,
+        getDownloadURL: storageModule.getDownloadURL,
+        ref: storageModule.ref,
+        uploadBytes: storageModule.uploadBytes
       };
     });
   }
@@ -552,6 +562,28 @@ function getSubmitNextAttendance() {
   return selected ? selected.value : "";
 }
 
+function getSubmitFiles() {
+  return Array.from(submitFilesInput?.files || []);
+}
+
+function validateUploadFiles(files) {
+  if (files.length > MAX_UPLOAD_FILES) {
+    return `사진은 최대 ${MAX_UPLOAD_FILES}장까지 올릴 수 있습니다.`;
+  }
+
+  const invalidType = files.find((file) => !file.type.startsWith("image/"));
+  if (invalidType) {
+    return "사진 또는 이미지 파일만 올릴 수 있습니다.";
+  }
+
+  const oversized = files.find((file) => file.size > MAX_UPLOAD_SIZE);
+  if (oversized) {
+    return "사진 한 장의 크기는 5MB 이하여야 합니다.";
+  }
+
+  return "";
+}
+
 function validateSubmission(data, options = {}) {
   if (!data.name) {
     return "이름을 입력해 주세요.";
@@ -600,6 +632,59 @@ function saveSubmissionLocally(data) {
   saveSubmissions(submissions);
 }
 
+function sanitizeStorageSegment(value) {
+  return String(value || "unknown")
+    .trim()
+    .replace(/[\\/#?%*:|"<>]/g, "-")
+    .replace(/\s+/g, "-")
+    .slice(0, 80) || "unknown";
+}
+
+async function uploadSubmissionFiles(files, data) {
+  if (!files.length) {
+    return [];
+  }
+
+  const services = await getFirebaseServices();
+  if (!services) {
+    throw new Error("Firebase Storage is not ready.");
+  }
+
+  const basePath = [
+    "submissions",
+    String(data.classYear || currentYear),
+    sanitizeStorageSegment(data.institutionName),
+    `week-${data.weekNumber || 1}`,
+    sanitizeStorageSegment(data.submissionId)
+  ].join("/");
+
+  const uploads = files.map(async (file, index) => {
+    const fileName = `${index + 1}-${Date.now()}-${sanitizeStorageSegment(file.name)}`;
+    const path = `${basePath}/${fileName}`;
+    const fileRef = services.ref(services.storage, path);
+    await services.uploadBytes(fileRef, file, {
+      contentType: file.type,
+      customMetadata: {
+        studentName: data.name,
+        phoneLast4: data.phoneLast4,
+        institutionName: data.institutionName,
+        weekNumber: String(data.weekNumber || "")
+      }
+    });
+    const url = await services.getDownloadURL(fileRef);
+
+    return {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      path,
+      url
+    };
+  });
+
+  return Promise.all(uploads);
+}
+
 async function submitStudentReview() {
   const selectedInstitution = getSelectedInstitution(submitInstitutionSelect);
   const phoneLast4 = document.getElementById("submitPhoneLast4")?.value.trim() || "";
@@ -622,6 +707,7 @@ async function submitStudentReview() {
     submittedAt,
     submissionId: `${Date.now()}-${activeSubmitWeek}-${phoneLast4}`
   };
+  const files = getSubmitFiles();
 
   const errorMessage = validateSubmission(data, { requirePrivacyConsent: true });
   if (errorMessage) {
@@ -632,9 +718,25 @@ async function submitStudentReview() {
     return;
   }
 
-  saveSubmissionLocally(data);
+  const fileErrorMessage = validateUploadFiles(files);
+  if (fileErrorMessage) {
+    studentSaveMessage.textContent = fileErrorMessage;
+    if (closeSubmitButton) {
+      closeSubmitButton.hidden = true;
+    }
+    return;
+  }
+
+  const submitButton = document.getElementById("studentSubmitButton");
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+  studentSaveMessage.textContent = files.length ? "사진을 올리고 있습니다. 잠시만 기다려 주세요." : "제출하고 있습니다.";
 
   try {
+    const attachments = await uploadSubmissionFiles(files, data);
+    data.attachments = attachments;
+    saveSubmissionLocally(data);
     await submitToFirebase(data);
     studentSaveMessage.textContent = "제출했습니다. 오늘 수업 기록이 저장되었습니다.";
     if (closeSubmitButton) {
@@ -642,11 +744,15 @@ async function submitStudentReview() {
     }
     showToast("제출했습니다.");
   } catch (error) {
-    studentSaveMessage.textContent = "기기에는 저장했습니다. 인터넷 연결 후 다시 제출해 주세요.";
+    studentSaveMessage.textContent = "제출하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 눌러주세요.";
     if (closeSubmitButton) {
       closeSubmitButton.hidden = true;
     }
-    showToast("기기에 저장했습니다.");
+    showToast("제출하지 못했습니다.");
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+    }
   }
 }
 
@@ -765,6 +871,8 @@ async function renderAdminList() {
         <dd>${item.completedItems?.length ? escapeHtml(item.completedItems.join(" / ")) : "체크 없음"}</dd>
         <dt>후기</dt>
         <dd>${item.review ? escapeHtml(item.review) : "후기 없음"}</dd>
+        <dt>첨부 사진</dt>
+        <dd>${renderAttachments(item.attachments)}</dd>
         <dt>다음 수업 참여 여부</dt>
         <dd>${escapeHtml(item.nextAttendance)}${item.absenceReason ? `<br>사유: ${escapeHtml(item.absenceReason)}` : ""}</dd>
         <dt>개인정보 동의</dt>
@@ -773,7 +881,7 @@ async function renderAdminList() {
         <dd>${escapeHtml(item.submittedAt)}</dd>
       </dl>
       <div class="admin-card-actions">
-        <button class="secondary-button" type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}">
+        <button class="secondary-button" type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(item.attachments || []))}">
           삭제
         </button>
       </div>
@@ -794,6 +902,30 @@ async function deleteFirebaseSubmission(firebaseId) {
   }
 
   await services.deleteDoc(services.doc(services.db, FIREBASE_COLLECTION, firebaseId));
+}
+
+async function deleteSubmissionFiles(attachments = []) {
+  if (!attachments.length) {
+    return;
+  }
+
+  const services = await getFirebaseServices();
+  if (!services) {
+    return;
+  }
+
+  await Promise.allSettled(
+    attachments
+      .filter((attachment) => attachment.path)
+      .map((attachment) => services.deleteObject(services.ref(services.storage, attachment.path)))
+  );
+}
+
+function getLocalSubmissionByKey(deleteKey) {
+  return getSubmissions().find((item) => {
+    const itemKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
+    return itemKey === deleteKey;
+  });
 }
 
 function deleteLocalSubmission(deleteKey) {
@@ -818,8 +950,11 @@ async function deleteSubmission(event) {
 
   const deleteKey = button.dataset.deleteKey;
   const firebaseId = button.dataset.firebaseId;
+  const attachments = button.dataset.attachments ? JSON.parse(button.dataset.attachments) : [];
+  const localSubmission = getLocalSubmissionByKey(deleteKey);
 
   try {
+    await deleteSubmissionFiles(attachments.length ? attachments : localSubmission?.attachments);
     await deleteFirebaseSubmission(firebaseId);
     deleteLocalSubmission(deleteKey);
     showToast("제출 내역을 삭제했습니다.");
@@ -844,6 +979,39 @@ function groupSubmissionsByInstitution(submissions) {
     institutionName,
     items
   }));
+}
+
+function formatFileSize(size) {
+  if (!size) {
+    return "";
+  }
+
+  if (size < 1024 * 1024) {
+    return `${Math.round(size / 1024)}KB`;
+  }
+
+  return `${(size / (1024 * 1024)).toFixed(1)}MB`;
+}
+
+function renderAttachments(attachments = []) {
+  if (!attachments.length) {
+    return "첨부 없음";
+  }
+
+  return `
+    <div class="attachment-list">
+      ${attachments.map((attachment) => `
+        <figure class="attachment-item">
+          <img src="${escapeHtml(attachment.url)}" alt="${escapeHtml(attachment.name || "첨부 사진")}">
+          <figcaption>
+            <span>${escapeHtml(attachment.name || "사진")}</span>
+            <small>${escapeHtml(formatFileSize(attachment.size))}</small>
+            <a href="${escapeHtml(attachment.url)}" download>다운로드</a>
+          </figcaption>
+        </figure>
+      `).join("")}
+    </div>
+  `;
 }
 
 function renderInstitutionList() {

@@ -541,6 +541,7 @@ pre {
 
 input[type="text"],
 input[type="tel"],
+input[type="file"],
 select,
 textarea {
   width: 100%;
@@ -556,6 +557,21 @@ textarea {
 textarea {
   min-height: 190px;
   resize: vertical;
+}
+
+input[type="file"] {
+  padding: 22px;
+}
+
+button:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+.field-help {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: clamp(20px, 1.35vw, 24px);
 }
 
 .check-list,
@@ -953,6 +969,50 @@ body[data-screen="admin"] .plain-button {
   padding: 0 12px;
   border-radius: 9px;
   font-size: 14px;
+}
+
+#adminScreen .attachment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+#adminScreen .attachment-item {
+  margin: 0;
+  padding: 8px;
+  background: rgba(255, 248, 238, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#adminScreen .attachment-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#adminScreen .attachment-item figcaption {
+  display: grid;
+  gap: 3px;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+#adminScreen .attachment-item span {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+#adminScreen .attachment-item small {
+  color: var(--muted);
+}
+
+#adminScreen .attachment-item a {
+  color: var(--blue-dark);
+  font-weight: 900;
 }
 
 .toast {
