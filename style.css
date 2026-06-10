@@ -785,6 +785,71 @@ body[data-screen="admin"] .plain-button {
   font-size: 13px;
 }
 
+#adminScreen .institution-list {
+  display: grid;
+  gap: 10px;
+}
+
+#adminScreen .institution-item {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 2fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 248, 238, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#adminScreen .institution-item.is-hidden {
+  opacity: 0.62;
+}
+
+#adminScreen .institution-view strong,
+#adminScreen .institution-view span {
+  display: block;
+}
+
+#adminScreen .institution-view strong {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+#adminScreen .institution-view span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#adminScreen .institution-edit-form {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 110px auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+#adminScreen .institution-edit-form input,
+#adminScreen .institution-edit-form select {
+  min-height: 36px;
+  padding: 6px 9px;
+  border-width: 2px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+#adminScreen .institution-edit-form .secondary-button {
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+#adminScreen .compact-empty {
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
 #adminScreen .admin-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -985,7 +1050,9 @@ body[data-screen="admin"] .plain-button {
 
   #adminScreen .admin-filter-row,
   #adminScreen .admin-add-form,
-  #adminScreen .admin-summary {
+  #adminScreen .admin-summary,
+  #adminScreen .institution-item,
+  #adminScreen .institution-edit-form {
     grid-template-columns: 1fr;
   }
 }

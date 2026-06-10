@@ -59,6 +59,7 @@ const institutionYearSelect = document.getElementById("institutionYear");
 const institutionStartWeekSelect = document.getElementById("institutionStartWeek");
 const newInstitutionNameInput = document.getElementById("newInstitutionName");
 const institutionToggleButton = document.getElementById("institutionToggleButton");
+const institutionList = document.getElementById("institutionList");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
 
@@ -181,7 +182,8 @@ function normalizeInstitution(institution) {
     key: institution.key || `${year}-${encodeURIComponent(name)}`,
     name,
     year,
-    startWeek
+    startWeek,
+    hidden: Boolean(institution.hidden)
   };
 }
 
@@ -237,6 +239,7 @@ async function saveInstitutionToFirebase(institution) {
       name: institution.name,
       year: institution.year,
       startWeek: institution.startWeek,
+      hidden: institution.hidden,
       updatedAt: services.serverTimestamp()
     }
   );
@@ -269,7 +272,7 @@ function renderInstitutionOptions() {
 
   if (institutionSelect) {
     institutionSelect.innerHTML = '<option value="">기관을 선택하세요</option>';
-    studentInstitutions.forEach((institution) => {
+    studentInstitutions.filter((institution) => !institution.hidden).forEach((institution) => {
       const option = document.createElement("option");
       option.value = institution.key;
       option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
@@ -281,7 +284,9 @@ function renderInstitutionOptions() {
     const selectedFilter = adminInstitutionFilter.value;
     adminInstitutionFilter.innerHTML = '<option value="">전체 기관</option>';
     institutionsCache
-      .filter((institution) => String(institution.year) === String(adminYearFilter?.value || currentYear))
+      .filter((institution) => (
+        String(institution.year) === String(adminYearFilter?.value || currentYear) && !institution.hidden
+      ))
       .forEach((institution) => {
         const option = document.createElement("option");
         option.value = institution.name;
@@ -290,6 +295,8 @@ function renderInstitutionOptions() {
       });
     adminInstitutionFilter.value = selectedFilter;
   }
+
+  renderInstitutionList();
 }
 
 function populateYearSelects() {
@@ -574,6 +581,111 @@ function groupSubmissionsByInstitution(submissions) {
   }));
 }
 
+function renderInstitutionList() {
+  if (!institutionList) {
+    return;
+  }
+
+  const selectedYear = String(adminYearFilter?.value || currentYear);
+  const institutions = institutionsCache.filter((institution) => String(institution.year) === selectedYear);
+
+  if (institutions.length === 0) {
+    institutionList.innerHTML = '<p class="empty-text compact-empty">등록된 기관이 없습니다.</p>';
+    return;
+  }
+
+  institutionList.innerHTML = "";
+  institutions.forEach((institution) => {
+    const card = document.createElement("article");
+    card.className = `institution-item ${institution.hidden ? "is-hidden" : ""}`;
+    const weekOptions = Array.from({ length: 13 }, (_, index) => {
+      const week = index + 1;
+      return `<option value="${week}" ${week === institution.startWeek ? "selected" : ""}>${week}주차</option>`;
+    }).join("");
+
+    card.innerHTML = `
+      <div class="institution-view">
+        <strong>${escapeHtml(institution.name)}</strong>
+        <span>${escapeHtml(institution.year)}년 · ${escapeHtml(institution.startWeek)}주차 시작${institution.hidden ? " · 숨김" : ""}</span>
+      </div>
+      <form class="institution-edit-form" data-key="${escapeHtml(institution.key)}">
+        <input name="name" type="text" value="${escapeHtml(institution.name)}" aria-label="기관명">
+        <select name="startWeek" aria-label="시작 주차">${weekOptions}</select>
+        <button class="secondary-button" type="submit">수정</button>
+        <button class="secondary-button" type="button" data-action="toggle-hidden" data-key="${escapeHtml(institution.key)}">
+          ${institution.hidden ? "다시 보이기" : "숨김"}
+        </button>
+      </form>
+    `;
+    institutionList.appendChild(card);
+  });
+}
+
+function getInstitutionByKey(key) {
+  return institutionsCache.find((institution) => institution.key === key);
+}
+
+async function persistInstitutionChange(institution, successMessage) {
+  institutionsCache = mergeInstitutions(institutionsCache.map((item) => (
+    item.key === institution.key ? institution : item
+  )));
+  saveLocalInstitutions(institutionsCache);
+  renderInstitutionOptions();
+  renderAdminList();
+
+  try {
+    await saveInstitutionToFirebase(institution);
+    showToast(successMessage);
+  } catch (error) {
+    showToast("기기에 먼저 저장했습니다.");
+  }
+}
+
+async function updateInstitution(event) {
+  const form = event.target.closest(".institution-edit-form");
+  if (!form) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const institution = getInstitutionByKey(form.dataset.key);
+  if (!institution) {
+    showToast("기관을 찾지 못했습니다.");
+    return;
+  }
+
+  const name = form.elements.name.value.trim();
+  if (!name) {
+    showToast("기관명을 입력해 주세요.");
+    return;
+  }
+
+  await persistInstitutionChange({
+    ...institution,
+    name,
+    startWeek: Number(form.elements.startWeek.value) || 1
+  }, "기관 정보를 수정했습니다.");
+}
+
+async function toggleInstitutionHidden(event) {
+  const button = event.target.closest('[data-action="toggle-hidden"]');
+  if (!button) {
+    return;
+  }
+
+  const institution = getInstitutionByKey(button.dataset.key);
+  if (!institution) {
+    showToast("기관을 찾지 못했습니다.");
+    return;
+  }
+
+  await persistInstitutionChange({
+    ...institution,
+    hidden: !institution.hidden
+  }, institution.hidden ? "기관을 다시 보이게 했습니다." : "기관을 숨겼습니다.");
+}
+
 async function addInstitution(event) {
   event.preventDefault();
 
@@ -628,6 +740,8 @@ function bindEvents() {
   });
   adminInstitutionFilter?.addEventListener("change", renderAdminList);
   institutionForm?.addEventListener("submit", addInstitution);
+  institutionList?.addEventListener("submit", updateInstitution);
+  institutionList?.addEventListener("click", toggleInstitutionHidden);
   institutionToggleButton?.addEventListener("click", () => {
     const isOpen = institutionForm?.classList.toggle("is-visible");
     institutionToggleButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
