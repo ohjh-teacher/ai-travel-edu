@@ -67,6 +67,7 @@ main {
 
 #weekOneScreen,
 #weekTwoScreen,
+#weekThreeScreen,
 #submitScreen,
 #adminScreen {
   width: min(100%, 1480px);
@@ -416,6 +417,10 @@ p {
 
 .week-two .lesson-cover::after {
   content: "2 WEEK";
+}
+
+.week-three .lesson-cover::after {
+  content: "3 WEEK";
 }
 
 .lesson-cover p:last-child {

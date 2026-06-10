@@ -16,7 +16,7 @@ const FIREBASE_INSTITUTIONS_COLLECTION = "institutions";
 const weeks = [
   ["1주차", "AI와 여행지·여행 계획", "AI와 함께 여행지를 찾고 나만의 여행 일정을 만들어봅니다.", "weekOne", true],
   ["2주차", "카메라로 여행 사진 찍기", "스마트폰 카메라로 여행 사진을 촬영하고 확인해 봅니다.", "weekTwo", true],
-  ["3주차", "갤러리앱으로 사진 정리", "갤러리 앱에서 사진을 찾고 고르며 여행 기록을 준비해 봅니다.", "", false],
+  ["3주차", "카메라 설정과 인생사진", "카메라 설정 속 기능을 알아보고 인생사진 찍는 방법을 연습해 봅니다.", "weekThree", true],
   ["4주차", "지도와 길찾기", "지도 앱으로 길찾기와 여행 동선을 연습해 봅니다.", "", false],
   ["5주차", "기차·버스 이용", "스마트폰으로 교통편을 확인하고 예매 연습을 해봅니다.", "", false],
   ["6주차", "숙소와 맛집 찾기", "숙소와 맛집 정보를 검색하고 후기도 알아봅니다.", "", false],
@@ -33,6 +33,7 @@ const screens = {
   home: document.getElementById("homeScreen"),
   weekOne: document.getElementById("weekOneScreen"),
   weekTwo: document.getElementById("weekTwoScreen"),
+  weekThree: document.getElementById("weekThreeScreen"),
   submit: document.getElementById("submitScreen"),
   admin: document.getElementById("adminScreen")
 };
@@ -92,11 +93,11 @@ const lessonChecklists = {
     "찍은 사진을 확인했습니다."
   ],
   3: [
-    "갤러리 앱을 열었습니다.",
-    "사진을 찾았습니다.",
-    "마음에 드는 사진을 골랐습니다.",
-    "사진을 정리했습니다.",
-    "다음 수업에 쓸 사진을 준비했습니다."
+    "카메라 설정 화면을 열어봤습니다.",
+    "플래시와 타이머 기능을 확인했습니다.",
+    "격자선을 켜고 구도를 맞춰봤습니다.",
+    "인물사진 또는 음식사진을 보기 좋게 찍었습니다.",
+    "마음에 드는 사진을 골라 제출했습니다."
   ]
 };
 
