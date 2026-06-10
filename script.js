@@ -1,5 +1,7 @@
 const STORAGE_KEY = "smartTravelClassSubmissions";
 const INSTITUTIONS_KEY = "smartTravelClassInstitutions";
+const ADMIN_UNLOCK_KEY = "smartTravelAdminUnlocked";
+const ADMIN_PASSCODE = "2026";
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDbto7vFUwkaPZc7l0kyGX2qi4HjZQvvOg",
   authDomain: "aitraveledu.firebaseapp.com",
@@ -10,17 +12,6 @@ const FIREBASE_CONFIG = {
 };
 const FIREBASE_COLLECTION = "week1Submissions";
 const FIREBASE_INSTITUTIONS_COLLECTION = "institutions";
-const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdm9D1SE5WYQsr1DfZalDU3hDOCrGzmLehACksovrxyUki4AQ/formResponse";
-const GOOGLE_FORM_ENTRIES = {
-  name: "entry.1884265043",
-  phoneLast4: "entry.1357804415",
-  institutionName: "entry.108140407",
-  completedItems: "entry.870245195",
-  review: "entry.909756905",
-  nextAttendance: "entry.1824725883",
-  absenceReason: "entry.529825113",
-  comment: "entry.513669972"
-};
 
 const weeks = [
   ["1주차", "AI와 여행지·여행 계획", "AI와 함께 여행지를 찾고 나만의 여행 일정을 만들어봅니다.", "weekOne", true],
@@ -42,6 +33,7 @@ const screens = {
   home: document.getElementById("homeScreen"),
   weekOne: document.getElementById("weekOneScreen"),
   weekTwo: document.getElementById("weekTwoScreen"),
+  submit: document.getElementById("submitScreen"),
   admin: document.getElementById("adminScreen")
 };
 
@@ -61,8 +53,16 @@ const institutionStartDateInput = document.getElementById("institutionStartDate"
 const newInstitutionNameInput = document.getElementById("newInstitutionName");
 const institutionToggleButton = document.getElementById("institutionToggleButton");
 const institutionList = document.getElementById("institutionList");
+const submitWeekLabel = document.getElementById("submitWeekLabel");
+const submitClassYearSelect = document.getElementById("submitClassYear");
+const submitInstitutionSelect = document.getElementById("submitInstitutionName");
+const submitChecklist = document.getElementById("submitChecklist");
+const submitAbsenceBox = document.getElementById("submitAbsenceBox");
+const studentSaveMessage = document.getElementById("studentSaveMessage");
+const privacyConsent = document.getElementById("privacyConsent");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
+let activeSubmitWeek = 1;
 
 const currentYear = new Date().getFullYear();
 const defaultInstitutions = [
@@ -71,6 +71,30 @@ const defaultInstitutions = [
   { name: "용답도서관", year: currentYear, startWeek: 1 },
   { name: "문정2동주민센터", year: currentYear, startWeek: 1 }
 ].map(normalizeInstitution);
+
+const lessonChecklists = {
+  1: [
+    "AI 프롬프트를 입력했습니다.",
+    "AI 질문을 읽고 내가 원하는 여행 스타일을 말했습니다.",
+    "내가 원하는 여행 계획을 만들었습니다.",
+    "여행계획을 인포그래픽 이미지로 만들었습니다.",
+    "단체 톡방에 공유했습니다."
+  ],
+  2: [
+    "카메라 앱을 열었습니다.",
+    "사진을 촬영했습니다.",
+    "초점 맞추기를 해봤습니다.",
+    "밝기 조절을 해봤습니다.",
+    "찍은 사진을 확인했습니다."
+  ],
+  3: [
+    "갤러리 앱을 열었습니다.",
+    "사진을 찾았습니다.",
+    "마음에 드는 사진을 골랐습니다.",
+    "사진을 정리했습니다.",
+    "다음 수업에 쓸 사진을 준비했습니다."
+  ]
+};
 
 function showScreen(name) {
   document.body.dataset.screen = name;
@@ -90,6 +114,10 @@ function showScreen(name) {
   if (name === "admin") {
     renderAdminList();
   }
+
+  if (name === "submit") {
+    renderSubmitScreen(activeSubmitWeek);
+  }
 }
 
 function showToast(message) {
@@ -102,6 +130,30 @@ function showToast(message) {
   window.setTimeout(() => {
     toast.classList.remove("is-visible");
   }, 1800);
+}
+
+function ensureAdminAccess() {
+  if (sessionStorage.getItem(ADMIN_UNLOCK_KEY) === "true") {
+    return true;
+  }
+
+  const passcode = window.prompt("관리자 비밀번호를 입력해 주세요.");
+  if (passcode === ADMIN_PASSCODE) {
+    sessionStorage.setItem(ADMIN_UNLOCK_KEY, "true");
+    return true;
+  }
+
+  if (passcode !== null) {
+    showToast("관리자 비밀번호가 맞지 않습니다.");
+  }
+
+  return false;
+}
+
+function openAdminScreen() {
+  if (ensureAdminAccess()) {
+    showScreen("admin");
+  }
 }
 
 function getSubmissions() {
@@ -133,6 +185,7 @@ async function getFirebaseServices() {
         db,
         addDoc: firestoreModule.addDoc,
         collection: firestoreModule.collection,
+        deleteDoc: firestoreModule.deleteDoc,
         doc: firestoreModule.doc,
         getDocs: firestoreModule.getDocs,
         orderBy: firestoreModule.orderBy,
@@ -171,7 +224,10 @@ async function getFirebaseSubmissions() {
     )
   );
 
-  return snapshot.docs.map((doc) => doc.data());
+  return snapshot.docs.map((doc) => ({
+    firebaseId: doc.id,
+    ...doc.data()
+  }));
 }
 
 function normalizeInstitution(institution) {
@@ -265,13 +321,15 @@ async function loadInstitutions() {
   renderInstitutionOptions();
 }
 
-function getSelectedInstitution() {
-  return institutionsCache.find((institution) => institution.key === institutionSelect?.value);
+function getSelectedInstitution(select = institutionSelect) {
+  return institutionsCache.find((institution) => institution.key === select?.value);
 }
 
 function renderInstitutionOptions() {
   const selectedYear = Number(classYearSelect?.value) || currentYear;
   const studentInstitutions = institutionsCache.filter((institution) => institution.year === selectedYear);
+  const submitSelectedYear = Number(submitClassYearSelect?.value) || currentYear;
+  const submitInstitutions = institutionsCache.filter((institution) => institution.year === submitSelectedYear);
 
   if (institutionSelect) {
     institutionSelect.innerHTML = '<option value="">기관을 선택하세요</option>';
@@ -281,6 +339,18 @@ function renderInstitutionOptions() {
       option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
       institutionSelect.appendChild(option);
     });
+  }
+
+  if (submitInstitutionSelect) {
+    const selectedSubmitInstitution = submitInstitutionSelect.value;
+    submitInstitutionSelect.innerHTML = '<option value="">기관을 선택하세요</option>';
+    submitInstitutions.filter((institution) => !institution.hidden).forEach((institution) => {
+      const option = document.createElement("option");
+      option.value = institution.key;
+      option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
+      submitInstitutionSelect.appendChild(option);
+    });
+    submitInstitutionSelect.value = selectedSubmitInstitution;
   }
 
   if (adminInstitutionFilter) {
@@ -304,7 +374,7 @@ function renderInstitutionOptions() {
 
 function populateYearSelects() {
   const years = [currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
-  [classYearSelect, adminYearFilter, institutionYearSelect].forEach((select) => {
+  [classYearSelect, adminYearFilter, institutionYearSelect, submitClassYearSelect].forEach((select) => {
     if (!select) {
       return;
     }
@@ -318,6 +388,88 @@ function populateYearSelects() {
     });
     select.value = String(currentYear);
   });
+}
+
+function getWeekInfo(weekNumber) {
+  const index = Math.max(Number(weekNumber) - 1, 0);
+  const week = weeks[index];
+
+  if (!week) {
+    return {
+      number: `${weekNumber}주차`,
+      title: `${weekNumber}주차 수업`,
+      description: ""
+    };
+  }
+
+  return {
+    number: week[0],
+    title: week[1],
+    description: week[2]
+  };
+}
+
+function buildSubmitUrl(weekNumber) {
+  const url = new URL(window.location.href);
+  url.hash = "";
+  url.search = "";
+  url.searchParams.set("view", "submit");
+  url.searchParams.set("week", String(weekNumber));
+  return url.toString();
+}
+
+function setupSubmitQrLinks() {
+  document.querySelectorAll(".submit-qr").forEach((container) => {
+    const weekNumber = Number(container.dataset.week) || 1;
+    const submitUrl = buildSubmitUrl(weekNumber);
+    const image = container.querySelector("img");
+    const link = container.querySelector("a");
+
+    if (image) {
+      image.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(submitUrl)}`;
+    }
+
+    if (link) {
+      link.href = submitUrl;
+    }
+  });
+}
+
+function renderSubmitChecklist(weekNumber) {
+  if (!submitChecklist) {
+    return;
+  }
+
+  const items = lessonChecklists[weekNumber] || [
+    "오늘 수업 내용을 따라 해봤습니다.",
+    "새로운 기능을 연습했습니다.",
+    "결과물을 확인했습니다.",
+    "다음 수업 준비를 했습니다."
+  ];
+
+  submitChecklist.innerHTML = "";
+  items.forEach((item) => {
+    const label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" value="${escapeHtml(item)}"> ${escapeHtml(item)}`;
+    submitChecklist.appendChild(label);
+  });
+}
+
+function renderSubmitScreen(weekNumber) {
+  activeSubmitWeek = Math.min(Math.max(Number(weekNumber) || 1, 1), 13);
+  const weekInfo = getWeekInfo(activeSubmitWeek);
+
+  if (submitWeekLabel) {
+    submitWeekLabel.textContent = `${weekInfo.number} 후기 제출`;
+  }
+
+  const submitTitle = document.getElementById("submitTitle");
+  if (submitTitle) {
+    submitTitle.textContent = `${weekInfo.number} | ${weekInfo.title}`;
+  }
+
+  renderSubmitChecklist(activeSubmitWeek);
+  renderInstitutionOptions();
 }
 
 function populateStartWeekSelect() {
@@ -385,8 +537,8 @@ async function copyPrompt(targetId) {
   }
 }
 
-function getSelectedCheckboxes() {
-  return Array.from(document.querySelectorAll(".check-list input:checked")).map((item) => item.value);
+function getSelectedCheckboxes(container = document) {
+  return Array.from(container.querySelectorAll(".check-list input:checked")).map((item) => item.value);
 }
 
 function getNextAttendance() {
@@ -394,7 +546,12 @@ function getNextAttendance() {
   return selected ? selected.value : "";
 }
 
-function validateSubmission(data) {
+function getSubmitNextAttendance() {
+  const selected = document.querySelector('input[name="submitNextAttendance"]:checked');
+  return selected ? selected.value : "";
+}
+
+function validateSubmission(data, options = {}) {
   if (!data.name) {
     return "이름을 입력해 주세요.";
   }
@@ -415,6 +572,10 @@ function validateSubmission(data) {
     return "다음 수업 참여 여부를 선택해 주세요.";
   }
 
+  if (options.requirePrivacyConsent && !data.privacyConsent) {
+    return "개인정보 저장 동의에 체크해 주세요.";
+  }
+
   if (data.nextAttendance === "참여할 수 없습니다." && !data.absenceReason) {
     return "참여할 수 없는 사유를 입력해 주세요.";
   }
@@ -422,31 +583,70 @@ function validateSubmission(data) {
   return "";
 }
 
-async function submitToGoogleForm(data) {
-  const formData = new FormData();
-  formData.append(GOOGLE_FORM_ENTRIES.name, data.name);
-  formData.append(GOOGLE_FORM_ENTRIES.phoneLast4, data.phoneLast4);
-  formData.append(GOOGLE_FORM_ENTRIES.institutionName, data.institutionName);
-  data.completedItems.forEach((item) => {
-    formData.append(GOOGLE_FORM_ENTRIES.completedItems, item);
-  });
-  formData.append(GOOGLE_FORM_ENTRIES.review, data.review);
-  formData.append(GOOGLE_FORM_ENTRIES.nextAttendance, data.nextAttendance);
-  formData.append(GOOGLE_FORM_ENTRIES.absenceReason, data.absenceReason);
-  formData.append(GOOGLE_FORM_ENTRIES.comment, "");
+function saveSubmissionLocally(data) {
+  const submissions = getSubmissions();
+  const existingIndex = submissions.findIndex((item) => (
+    item.submissionId === data.submissionId ||
+    (item.name === data.name && item.phoneLast4 === data.phoneLast4 && item.weekNumber === data.weekNumber)
+  ));
 
-  await fetch(GOOGLE_FORM_ACTION, {
-    method: "POST",
-    body: formData,
-    mode: "no-cors"
-  });
+  if (existingIndex >= 0) {
+    submissions[existingIndex] = data;
+  } else {
+    submissions.push(data);
+  }
+
+  saveSubmissions(submissions);
+}
+
+async function submitStudentReview() {
+  const selectedInstitution = getSelectedInstitution(submitInstitutionSelect);
+  const phoneLast4 = document.getElementById("submitPhoneLast4")?.value.trim() || "";
+  const submittedAt = new Date().toLocaleString("ko-KR");
+  const data = {
+    name: document.getElementById("submitStudentName")?.value.trim() || "",
+    phoneLast4,
+    classYear: Number(submitClassYearSelect?.value) || currentYear,
+    institutionKey: selectedInstitution?.key || "",
+    institutionName: selectedInstitution?.name || "",
+    institutionStartWeek: selectedInstitution?.startWeek || 1,
+    institutionStartDate: selectedInstitution?.startDate || "",
+    weekNumber: activeSubmitWeek,
+    attendanceStatus: "출석",
+    completedItems: getSelectedCheckboxes(document.getElementById("submitScreen")),
+    review: document.getElementById("submitReviewText")?.value.trim() || "",
+    nextAttendance: getSubmitNextAttendance(),
+    absenceReason: document.getElementById("submitAbsenceReason")?.value.trim() || "",
+    privacyConsent: Boolean(privacyConsent?.checked),
+    submittedAt,
+    submissionId: `${Date.now()}-${activeSubmitWeek}-${phoneLast4}`
+  };
+
+  const errorMessage = validateSubmission(data, { requirePrivacyConsent: true });
+  if (errorMessage) {
+    studentSaveMessage.textContent = errorMessage;
+    return;
+  }
+
+  saveSubmissionLocally(data);
+
+  try {
+    await submitToFirebase(data);
+    studentSaveMessage.textContent = "제출했습니다. 오늘 수업 기록이 저장되었습니다.";
+    showToast("제출했습니다.");
+  } catch (error) {
+    studentSaveMessage.textContent = "기기에는 저장했습니다. 인터넷 연결 후 다시 제출해 주세요.";
+    showToast("기기에 저장했습니다.");
+  }
 }
 
 async function submitReview() {
   const selectedInstitution = getSelectedInstitution();
+  const phoneLast4 = document.getElementById("phoneLast4").value.trim();
+  const submittedAt = new Date().toLocaleString("ko-KR");
   const data = {
     name: document.getElementById("studentName").value.trim(),
-    phoneLast4: document.getElementById("phoneLast4").value.trim(),
+    phoneLast4,
     classYear: Number(classYearSelect?.value) || currentYear,
     institutionKey: selectedInstitution?.key || "",
     institutionName: selectedInstitution?.name || "",
@@ -457,7 +657,8 @@ async function submitReview() {
     review: document.getElementById("reviewText").value.trim(),
     nextAttendance: getNextAttendance(),
     absenceReason: document.getElementById("absenceReason").value.trim(),
-    submittedAt: new Date().toLocaleString("ko-KR")
+    submittedAt,
+    submissionId: `${Date.now()}-${phoneLast4}`
   };
 
   const errorMessage = validateSubmission(data);
@@ -466,24 +667,10 @@ async function submitReview() {
     return;
   }
 
-  const submissions = getSubmissions();
-  const existingIndex = submissions.findIndex((item) => (
-    item.name === data.name && item.phoneLast4 === data.phoneLast4
-  ));
-
-  if (existingIndex >= 0) {
-    submissions[existingIndex] = data;
-  } else {
-    submissions.push(data);
-  }
-
-  saveSubmissions(submissions);
+  saveSubmissionLocally(data);
 
   try {
-    await Promise.all([
-      submitToGoogleForm(data),
-      submitToFirebase(data)
-    ]);
+    await submitToFirebase(data);
     saveMessage.textContent = "제출했습니다. 오늘 수업 기록이 저장되었습니다.";
     showToast("제출했습니다.");
   } catch (error) {
@@ -539,6 +726,7 @@ async function renderAdminList() {
     items.forEach((item) => {
     const card = document.createElement("article");
     card.className = "admin-card";
+    const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
     card.innerHTML = `
       <dl>
         <dt>연도</dt>
@@ -559,13 +747,67 @@ async function renderAdminList() {
         <dd>${item.review ? escapeHtml(item.review) : "후기 없음"}</dd>
         <dt>다음 수업 참여 여부</dt>
         <dd>${escapeHtml(item.nextAttendance)}${item.absenceReason ? `<br>사유: ${escapeHtml(item.absenceReason)}` : ""}</dd>
+        <dt>개인정보 동의</dt>
+        <dd>${item.privacyConsent ? "동의" : "미기록"}</dd>
         <dt>제출 시간</dt>
         <dd>${escapeHtml(item.submittedAt)}</dd>
       </dl>
+      <div class="admin-card-actions">
+        <button class="secondary-button" type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}">
+          삭제
+        </button>
+      </div>
     `;
     adminList.appendChild(card);
   });
   });
+}
+
+async function deleteFirebaseSubmission(firebaseId) {
+  if (!firebaseId) {
+    return;
+  }
+
+  const services = await getFirebaseServices();
+  if (!services) {
+    return;
+  }
+
+  await services.deleteDoc(services.doc(services.db, FIREBASE_COLLECTION, firebaseId));
+}
+
+function deleteLocalSubmission(deleteKey) {
+  const submissions = getSubmissions();
+  const nextSubmissions = submissions.filter((item) => {
+    const itemKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
+    return itemKey !== deleteKey;
+  });
+  saveSubmissions(nextSubmissions);
+}
+
+async function deleteSubmission(event) {
+  const button = event.target.closest('[data-action="delete-submission"]');
+  if (!button) {
+    return;
+  }
+
+  const confirmed = window.confirm("이 제출 내역을 삭제할까요?");
+  if (!confirmed) {
+    return;
+  }
+
+  const deleteKey = button.dataset.deleteKey;
+  const firebaseId = button.dataset.firebaseId;
+
+  try {
+    await deleteFirebaseSubmission(firebaseId);
+    deleteLocalSubmission(deleteKey);
+    showToast("제출 내역을 삭제했습니다.");
+  } catch (error) {
+    showToast("삭제하지 못했습니다.");
+  }
+
+  renderAdminList();
 }
 
 function groupSubmissionsByInstitution(submissions) {
@@ -748,15 +990,18 @@ function escapeHtml(value) {
 
 function bindEvents() {
   document.getElementById("homeButton")?.addEventListener("click", () => showScreen("home"));
-  document.getElementById("adminButton")?.addEventListener("click", () => showScreen("admin"));
+  document.getElementById("adminButton")?.addEventListener("click", openAdminScreen);
   document.getElementById("submitButton")?.addEventListener("click", submitReview);
+  document.getElementById("studentSubmitButton")?.addEventListener("click", submitStudentReview);
   document.getElementById("printButton")?.addEventListener("click", () => window.print());
   classYearSelect?.addEventListener("change", renderInstitutionOptions);
+  submitClassYearSelect?.addEventListener("change", renderInstitutionOptions);
   adminYearFilter?.addEventListener("change", () => {
     renderInstitutionOptions();
     renderAdminList();
   });
   adminInstitutionFilter?.addEventListener("change", renderAdminList);
+  adminList?.addEventListener("click", deleteSubmission);
   institutionForm?.addEventListener("submit", addInstitution);
   institutionList?.addEventListener("submit", updateInstitution);
   institutionList?.addEventListener("click", toggleInstitutionHidden);
@@ -777,10 +1022,31 @@ function bindEvents() {
       }
     });
   });
+
+  document.querySelectorAll('input[name="submitNextAttendance"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (submitAbsenceBox) {
+        submitAbsenceBox.classList.toggle("is-visible", radio.value === "참여할 수 없습니다." && radio.checked);
+      }
+    });
+  });
+}
+
+function openInitialScreen() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("view") === "submit") {
+    activeSubmitWeek = Math.min(Math.max(Number(params.get("week")) || 1, 1), 13);
+    showScreen("submit");
+    return;
+  }
+
+  showScreen("home");
 }
 
 populateYearSelects();
 populateStartWeekSelect();
 buildWeekCards();
+setupSubmitQrLinks();
 bindEvents();
 loadInstitutions();
+openInitialScreen();

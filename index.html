@@ -256,6 +256,15 @@
         </div>
         <p class="save-message" id="saveMessage" role="status"></p>
       </section>
+
+      <section class="lesson-block submit-qr-block">
+        <h2>수강생 후기 제출</h2>
+        <p>수업 마지막에 아래 QR코드를 찍고 후기를 남겨주세요.</p>
+        <div class="submit-qr" data-week="1">
+          <img alt="1주차 후기 제출 QR코드">
+          <a class="secondary-button" href="#">제출 화면 열기</a>
+        </div>
+      </section>
     </section>
 
     <section class="screen week-two" id="weekTwoScreen" aria-labelledby="weekTwoTitle">
@@ -287,6 +296,67 @@
           <li><strong>다시 찍어보기</strong><span>마음에 들지 않는 사진은 같은 장면을 다시 찍어봅니다.</span></li>
           <li><strong>다음 수업 준비</strong><span>다음 시간에는 갤러리앱에서 사진을 찾고 정리합니다.</span></li>
         </ol>
+      </section>
+
+      <section class="lesson-block submit-qr-block">
+        <h2>수강생 후기 제출</h2>
+        <p>수업 마지막에 아래 QR코드를 찍고 후기를 남겨주세요.</p>
+        <div class="submit-qr" data-week="2">
+          <img alt="2주차 후기 제출 QR코드">
+          <a class="secondary-button" href="#">제출 화면 열기</a>
+        </div>
+      </section>
+    </section>
+
+    <section class="screen student-submit-screen" id="submitScreen" aria-labelledby="submitTitle">
+      <article class="lesson-cover">
+        <p class="stamp-label" id="submitWeekLabel">후기 제출</p>
+        <h1 id="submitTitle">오늘 수업 후기</h1>
+        <p>아래 내용을 입력하고 제출 버튼을 눌러주세요.</p>
+      </article>
+
+      <section class="lesson-block form-block student-submit-form">
+        <label class="field-label" for="submitStudentName">이름</label>
+        <input id="submitStudentName" type="text" placeholder="이름을 입력하세요">
+
+        <label class="field-label" for="submitPhoneLast4">연락처 뒷번호</label>
+        <input id="submitPhoneLast4" type="tel" maxlength="4" inputmode="numeric" placeholder="예: 1234">
+
+        <div class="privacy-consent">
+          <label>
+            <input id="privacyConsent" type="checkbox">
+            <span>수업 기록 확인을 위해 이름, 연락처 뒷번호, 기관명, 후기 내용을 저장하는 것에 동의합니다.</span>
+          </label>
+          <p>저장된 내용은 수업 운영과 결과 정리에만 사용합니다.</p>
+        </div>
+
+        <label class="field-label" for="submitClassYear">수업 연도</label>
+        <select id="submitClassYear"></select>
+
+        <label class="field-label" for="submitInstitutionName">기관명</label>
+        <select id="submitInstitutionName">
+          <option value="">기관을 불러오는 중입니다</option>
+        </select>
+
+        <h3>오늘 해낸 것</h3>
+        <div class="check-list" id="submitChecklist"></div>
+
+        <label class="field-label" for="submitReviewText">오늘 가장 기억에 남는 것은?</label>
+        <textarea id="submitReviewText" rows="5" placeholder="오늘 느낀 점을 적어보세요"></textarea>
+
+        <h3>다음 수업 참여 여부</h3>
+        <div class="radio-list">
+          <label><input type="radio" name="submitNextAttendance" value="참여하겠습니다."> 참여하겠습니다.</label>
+          <label><input type="radio" name="submitNextAttendance" value="참여할 수 없습니다."> 참여할 수 없습니다.</label>
+        </div>
+
+        <div class="absence-box" id="submitAbsenceBox">
+          <label class="field-label" for="submitAbsenceReason">참여할 수 없는 사유</label>
+          <textarea id="submitAbsenceReason" rows="3" placeholder="사유를 적어주세요"></textarea>
+        </div>
+
+        <button class="primary-button" id="studentSubmitButton" type="button">제출하기</button>
+        <p class="save-message" id="studentSaveMessage" role="status"></p>
       </section>
     </section>
 

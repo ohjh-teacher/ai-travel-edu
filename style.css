@@ -67,9 +67,14 @@ main {
 
 #weekOneScreen,
 #weekTwoScreen,
+#submitScreen,
 #adminScreen {
   width: min(100%, 1480px);
   margin: 0 auto;
+}
+
+#submitScreen {
+  width: min(100%, 780px);
 }
 
 #adminScreen {
@@ -663,6 +668,14 @@ body[data-screen="admin"] main {
   padding-top: 24px;
 }
 
+body[data-screen="submit"] .top-bar {
+  display: none;
+}
+
+body[data-screen="submit"] main {
+  padding-top: 22px;
+}
+
 body[data-screen="admin"] .top-bar {
   padding: 8px 18px;
 }
@@ -929,6 +942,19 @@ body[data-screen="admin"] .plain-button {
   font-size: 15px;
 }
 
+#adminScreen .admin-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+#adminScreen .admin-card-actions .secondary-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
 .toast {
   position: fixed;
   left: 50%;
@@ -952,6 +978,54 @@ body[data-screen="admin"] .plain-button {
 .toast.is-visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+.submit-qr-block {
+  text-align: center;
+}
+
+.submit-qr {
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+}
+
+.submit-qr img {
+  width: min(62vw, 220px);
+  height: auto;
+  padding: 12px;
+  background: var(--white);
+  border: 3px solid var(--line);
+  border-radius: 20px;
+}
+
+.privacy-consent {
+  margin: 28px 0 18px;
+  padding: 24px;
+  background: rgba(255, 241, 220, 0.72);
+  border: 3px solid var(--line);
+  border-radius: 24px;
+}
+
+.privacy-consent label {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  color: var(--ink);
+  font-size: clamp(24px, 1.65vw, 30px);
+  line-height: 1.45;
+  font-weight: 900;
+}
+
+.privacy-consent p {
+  margin: 14px 0 0 58px;
+  color: var(--muted);
+  font-size: clamp(20px, 1.35vw, 24px);
+}
+
+.student-submit-form .primary-button {
+  width: 100%;
+  margin-top: 34px;
 }
 
 .print-sheet {
