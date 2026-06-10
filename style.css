@@ -705,6 +705,13 @@ body[data-screen="admin"] .plain-button {
   box-shadow: var(--shadow);
 }
 
+#adminScreen .admin-panel h2 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
 #adminScreen .admin-filter-row,
 #adminScreen .admin-add-form {
   display: grid;
@@ -716,6 +723,34 @@ body[data-screen="admin"] .plain-button {
 #adminScreen .admin-filter-row {
   grid-template-columns: 150px 1fr;
   margin-bottom: 12px;
+}
+
+#adminScreen .admin-create-panel {
+  display: grid;
+  gap: 12px;
+}
+
+#adminScreen .admin-toggle-button {
+  justify-self: start;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#adminScreen .admin-add-form {
+  display: none;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+#adminScreen .admin-add-form.is-visible {
+  display: grid;
+}
+
+#adminScreen .admin-add-form h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
 #adminScreen .admin-panel label {

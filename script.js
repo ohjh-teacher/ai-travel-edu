@@ -58,6 +58,7 @@ const institutionForm = document.getElementById("institutionForm");
 const institutionYearSelect = document.getElementById("institutionYear");
 const institutionStartWeekSelect = document.getElementById("institutionStartWeek");
 const newInstitutionNameInput = document.getElementById("newInstitutionName");
+const institutionToggleButton = document.getElementById("institutionToggleButton");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
 
@@ -598,6 +599,11 @@ async function addInstitution(event) {
   }
 
   newInstitutionNameInput.value = "";
+  institutionForm?.classList.remove("is-visible");
+  institutionToggleButton?.setAttribute("aria-expanded", "false");
+  if (institutionToggleButton) {
+    institutionToggleButton.textContent = "새 기관 등록";
+  }
   renderAdminList();
 }
 
@@ -622,6 +628,11 @@ function bindEvents() {
   });
   adminInstitutionFilter?.addEventListener("change", renderAdminList);
   institutionForm?.addEventListener("submit", addInstitution);
+  institutionToggleButton?.addEventListener("click", () => {
+    const isOpen = institutionForm?.classList.toggle("is-visible");
+    institutionToggleButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    institutionToggleButton.textContent = isOpen ? "기관 등록 닫기" : "새 기관 등록";
+  });
 
   document.querySelectorAll(".copy-button").forEach((button) => {
     button.addEventListener("click", () => copyPrompt(button.dataset.copyTarget));

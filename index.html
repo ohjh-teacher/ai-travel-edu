@@ -278,6 +278,7 @@
         </div>
       </div>
       <div class="admin-panel">
+        <h2>조회 기준</h2>
         <div class="admin-filter-row">
           <label>
             <span>연도</span>
@@ -290,8 +291,14 @@
             </select>
           </label>
         </div>
+      </div>
 
+      <div class="admin-panel admin-create-panel">
+        <button class="secondary-button admin-toggle-button" id="institutionToggleButton" type="button" aria-expanded="false">
+          새 기관 등록
+        </button>
         <form class="admin-add-form" id="institutionForm">
+          <h2>새 기관 등록</h2>
           <label>
             <span>수업 연도</span>
             <select id="institutionYear"></select>
