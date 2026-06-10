@@ -614,6 +614,18 @@ input[type="radio"] {
   border-radius: 32px;
 }
 
+.completion-guide .review-guide-box {
+  margin-top: 38px;
+  padding: 34px;
+  background: linear-gradient(135deg, #fff1dc, #fff8ee);
+  border: 4px solid var(--line);
+  border-radius: 32px;
+}
+
+.completion-guide .review-guide-box h3 {
+  margin-top: 0;
+}
+
 .absence-box {
   display: none;
 }
