@@ -53,21 +53,18 @@
             <div class="inline-prompt">
               <h3>상세 인터뷰 프롬프트</h3>
               <p>아래 문장을 복사한 뒤 AI에게 붙여넣으세요.</p>
-              <pre id="interviewPrompt">당신은 시니어가 직접 여행지를 찾고 여행 일정을 만들 수 있도록 도와주는 친절한 여행 준비 진행자입니다.
+              <pre id="interviewPrompt">당신은 시니어가 직접 여행을 계획하고 준비할 수 있도록 도와주는 친절한 여행 준비 진행자입니다.
 
-저와 인터뷰를 하면서 여행지 추천과 여행 일정을 함께 만들어주세요.
+저와 인터뷰를 하면서 여행 계획을 만들어주세요.
 
 진행 방법:
 1. 한 번에 질문은 하나만 해주세요.
 2. 질문은 짧고 쉽게 해주세요.
 3. 제가 번호로 답할 수 있게 선택지를 주세요.
 4. 제가 답하면 다음 질문으로 넘어가 주세요.
-5. 먼저 나이대, 건강 상태, 걷기 부담을 물어봐 주세요.
-6. 여행지는 국내와 해외 모두 고려해 주세요.
-7. 예산, 계절, 동행 여부, 출발 시간, 이동 방법을 꼭 물어봐 주세요.
-8. 나이와 건강 상태를 고려해서 무리 없는 코스를 추천해 주세요.
-9. 마지막에는 여행지 추천 이유와 하루 여행 일정을 표로 정리해 주세요.
-10. 식사 시간, 쉬는 시간, 준비물, 주의사항도 짧게 알려주세요.
+5. 여행지는 국내와 해외 모두 고려해 주세요.
+6. 걷기 부담, 예산, 계절, 동행 여부를 꼭 물어봐 주세요.
+7. 마지막에는 여행지 추천 이유와 1일 여행 계획을 표로 정리해 주세요.
 
 먼저 제가 어떤 여행을 원하는지 질문해 주세요.</pre>
               <button class="primary-button copy-button" type="button" data-copy-target="interviewPrompt">프롬프트 복사</button>
@@ -101,6 +98,108 @@
               <p>수업이 끝난 뒤 집에서 다시 해볼 때는 아래 한 문장만 입력해 보세요.</p>
               <pre id="miniPrompt">나와 인터뷰를 하면서 여행 계획을 만들어줘.</pre>
               <button class="primary-button copy-button" type="button" data-copy-target="miniPrompt">미니 프롬프트 복사</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block">
+        <h2>2교시 | 여행 계획 만들기</h2>
+        <ul class="simple-list">
+          <li>1교시에서 만든 여행지를 다시 확인합니다.</li>
+          <li>AI에게 여행 코스와 준비물을 추천받습니다.</li>
+          <li>하루 여행 일정을 표로 정리합니다.</li>
+          <li>내 일정에 맞게 다시 수정합니다.</li>
+        </ul>
+        <ol class="step-list">
+          <li><strong>지난 시간 돌아보기</strong><span>1교시에서 만든 여행지를 다시 확인합니다.</span></li>
+          <li><strong>여행 조건 정하기</strong><span>날짜, 시간, 이동 방법, 예산을 정합니다.</span></li>
+          <li class="step-with-prompt">
+            <strong>여행 계획 프롬프트 복사</strong>
+            <span>아래 프롬프트를 복사해서 AI에게 붙여넣습니다.</span>
+            <div class="inline-prompt">
+              <h3>여행 계획 생성 프롬프트</h3>
+              <p>아래 문장을 복사한 뒤 AI에게 붙여넣으세요.</p>
+              <pre id="week2PlanPrompt">당신은 시니어를 위한 친절한 여행 일정 상담사입니다.
+
+아래 조건을 바탕으로 보기 쉬운 여행 일정을 만들어주세요.
+
+진행 방법:
+1. 먼저 나이대, 여행지, 날짜, 출발 시간, 이동 방법, 예산을 물어봐 주세요.
+2. 질문은 한 번에 하나씩 해주세요.
+3. 제가 번호로 답할 수 있게 선택지를 주세요.
+4. 나이와 건강 상태를 고려해서 무리 없는 코스를 추천해 주세요.
+5. 걷기 부담이 적은 코스를 우선 추천해 주세요.
+6. 계단, 긴 이동, 오래 걷는 일정은 피하거나 대안을 알려주세요.
+7. 식사 시간과 쉬는 시간을 꼭 넣어 주세요.
+8. 마지막에는 시간표 형식으로 정리해 주세요.
+9. 준비물과 주의사항도 짧게 알려주세요.
+
+먼저 나이대를 물어봐 주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="week2PlanPrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li><strong>시간표 확인</strong><span>AI가 만든 일정을 아침, 점심, 오후 순서로 확인합니다.</span></li>
+          <li class="step-with-prompt">
+            <strong>불편한 부분 수정</strong>
+            <span>너무 멀거나 힘든 코스는 AI에게 다시 바꿔 달라고 말합니다.</span>
+            <div class="inline-prompt">
+              <h3>수정 요청 프롬프트 예시</h3>
+              <p>일정이 힘들어 보일 때 아래 문장을 따라 입력해 보세요.</p>
+              <pre id="week2RevisePrompt">이 일정에서 너무 멀거나 많이 걷는 코스를 줄여줘.
+
+시니어가 편하게 다닐 수 있도록
+이동 거리를 짧게 하고,
+중간에 쉬는 시간을 더 넣어서
+다시 여행 일정을 만들어줘.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="week2RevisePrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>준비물 확인</strong>
+            <span>날씨, 신발, 약, 충전기 등 필요한 준비물을 정리합니다.</span>
+            <div class="inline-prompt">
+              <h3>준비물 확인 프롬프트 예시</h3>
+              <p>여행 전에 챙길 것을 알고 싶을 때 아래 문장을 따라 입력해 보세요.</p>
+              <pre id="week2PackingPrompt">이 여행 일정에 필요한 준비물을 알려줘.
+
+시니어가 챙기면 좋은 물건을 중심으로
+옷, 신발, 약, 충전기, 물, 간식,
+날씨에 필요한 준비물을
+짧고 보기 쉽게 정리해줘.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="week2PackingPrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>인포그래픽 만들기</strong>
+            <span>완성된 여행 일정을 이미지로 만들고 휴대폰에 저장합니다.</span>
+            <div class="inline-prompt">
+              <h3>인포그래픽 생성 프롬프트</h3>
+              <p>완성된 여행 일정을 이미지로 저장할 때 사용합니다.</p>
+              <pre id="week2InfographicPrompt">네가 제안한 마지막 여행일정을 바탕으로
+시니어가 보기 쉬운 여행 일정 인포그래픽을 만들어줘.
+
+디자인 조건:
+1. 글씨는 크고 선명하게 해줘.
+2. 시간 순서가 한눈에 보이게 정리해줘.
+3. 출발 시간, 이동 방법, 방문 장소, 식사 시간, 쉬는 시간을 포함해줘.
+4. 준비물과 주의사항을 짧게 넣어줘.
+5. 따뜻한 여행 노트 느낌으로 만들어줘.
+6. 복잡한 장식은 줄이고 보기 쉽게 만들어줘.
+
+여행 일정:
+[네가 소개한 여행일정]</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="week2InfographicPrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>집에서 다시 해보기</strong>
+            <span>짧은 미니 프롬프트로 여행 일정을 다시 만들어봅니다.</span>
+            <div class="inline-prompt">
+              <h3>집에서 혼자 연습할 때 쓰는 미니 프롬프트</h3>
+              <p>수업이 끝난 뒤 집에서 다시 해볼 때는 아래 한 문장만 입력해 보세요.</p>
+              <pre id="week2MiniPrompt">내 여행지에 맞는 하루 여행 일정을 만들어줘.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="week2MiniPrompt">미니 프롬프트 복사</button>
             </div>
           </li>
         </ol>
@@ -250,8 +349,9 @@
     <p>AI와 인터뷰하며 여행지를 찾고, 하루 여행 일정을 이미지로 정리했습니다.</p>
     <h2>실습 순서</h2>
     <ol>
-      <li>AI에게 상세 인터뷰 프롬프트 입력</li>
-      <li>질문에 번호로 답하기</li>
+      <li>1교시: AI에게 상세 인터뷰 프롬프트 입력</li>
+      <li>질문에 번호로 답하며 여행지 찾기</li>
+      <li>2교시: 여행 계획 프롬프트 입력</li>
       <li>나에게 맞는 하루 여행 일정 만들기</li>
       <li>인포그래픽 프롬프트 입력</li>
       <li>이미지 저장 후 단체 톡방 공유</li>
