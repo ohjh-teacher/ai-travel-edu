@@ -1,4 +1,5 @@
 const STORAGE_KEY = "smartTravelClassSubmissions";
+const INSTITUTIONS_KEY = "smartTravelClassInstitutions";
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDbto7vFUwkaPZc7l0kyGX2qi4HjZQvvOg",
   authDomain: "aitraveledu.firebaseapp.com",
@@ -8,6 +9,7 @@ const FIREBASE_CONFIG = {
   appId: "1:19262129760:web:bfb1777ee404368294e505"
 };
 const FIREBASE_COLLECTION = "week1Submissions";
+const FIREBASE_INSTITUTIONS_COLLECTION = "institutions";
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdm9D1SE5WYQsr1DfZalDU3hDOCrGzmLehACksovrxyUki4AQ/formResponse";
 const GOOGLE_FORM_ENTRIES = {
   name: "entry.1884265043",
@@ -48,7 +50,24 @@ const toast = document.getElementById("toast");
 const absenceBox = document.getElementById("absenceBox");
 const saveMessage = document.getElementById("saveMessage");
 const adminList = document.getElementById("adminList");
+const classYearSelect = document.getElementById("classYear");
+const institutionSelect = document.getElementById("institutionName");
+const adminYearFilter = document.getElementById("adminYearFilter");
+const adminInstitutionFilter = document.getElementById("adminInstitutionFilter");
+const institutionForm = document.getElementById("institutionForm");
+const institutionYearSelect = document.getElementById("institutionYear");
+const institutionStartWeekSelect = document.getElementById("institutionStartWeek");
+const newInstitutionNameInput = document.getElementById("newInstitutionName");
 let firebaseServicesPromise = null;
+let institutionsCache = [];
+
+const currentYear = new Date().getFullYear();
+const defaultInstitutions = [
+  { name: "서울시민대학", year: currentYear, startWeek: 1 },
+  { name: "장미 경로당", year: currentYear, startWeek: 1 },
+  { name: "용답도서관", year: currentYear, startWeek: 1 },
+  { name: "문정2동주민센터", year: currentYear, startWeek: 1 }
+].map(normalizeInstitution);
 
 function showScreen(name) {
   document.body.dataset.screen = name;
@@ -111,10 +130,12 @@ async function getFirebaseServices() {
         db,
         addDoc: firestoreModule.addDoc,
         collection: firestoreModule.collection,
+        doc: firestoreModule.doc,
         getDocs: firestoreModule.getDocs,
         orderBy: firestoreModule.orderBy,
         query: firestoreModule.query,
-        serverTimestamp: firestoreModule.serverTimestamp
+        serverTimestamp: firestoreModule.serverTimestamp,
+        setDoc: firestoreModule.setDoc
       };
     });
   }
@@ -148,6 +169,158 @@ async function getFirebaseSubmissions() {
   );
 
   return snapshot.docs.map((doc) => doc.data());
+}
+
+function normalizeInstitution(institution) {
+  const year = Number(institution.year) || currentYear;
+  const name = String(institution.name || "").trim();
+  const startWeek = Math.min(Math.max(Number(institution.startWeek) || 1, 1), 13);
+
+  return {
+    key: institution.key || `${year}-${encodeURIComponent(name)}`,
+    name,
+    year,
+    startWeek
+  };
+}
+
+function getLocalInstitutions() {
+  const raw = localStorage.getItem(INSTITUTIONS_KEY);
+  const saved = raw ? JSON.parse(raw) : [];
+  return mergeInstitutions([...defaultInstitutions, ...saved.map(normalizeInstitution)]);
+}
+
+function saveLocalInstitutions(institutions) {
+  localStorage.setItem(INSTITUTIONS_KEY, JSON.stringify(institutions));
+}
+
+function mergeInstitutions(institutions) {
+  const map = new Map();
+  institutions
+    .map(normalizeInstitution)
+    .filter((institution) => institution.name)
+    .forEach((institution) => {
+      map.set(institution.key, institution);
+    });
+
+  return Array.from(map.values()).sort((a, b) => (
+    b.year - a.year || a.name.localeCompare(b.name, "ko")
+  ));
+}
+
+async function getFirebaseInstitutions() {
+  const services = await getFirebaseServices();
+  if (!services) {
+    return null;
+  }
+
+  const snapshot = await services.getDocs(
+    services.collection(services.db, FIREBASE_INSTITUTIONS_COLLECTION)
+  );
+
+  return snapshot.docs.map((doc) => normalizeInstitution({
+    key: doc.id,
+    ...doc.data()
+  }));
+}
+
+async function saveInstitutionToFirebase(institution) {
+  const services = await getFirebaseServices();
+  if (!services) {
+    return;
+  }
+
+  await services.setDoc(
+    services.doc(services.db, FIREBASE_INSTITUTIONS_COLLECTION, institution.key),
+    {
+      name: institution.name,
+      year: institution.year,
+      startWeek: institution.startWeek,
+      updatedAt: services.serverTimestamp()
+    }
+  );
+}
+
+async function loadInstitutions() {
+  institutionsCache = getLocalInstitutions();
+  renderInstitutionOptions();
+
+  try {
+    const firebaseInstitutions = await getFirebaseInstitutions();
+    if (firebaseInstitutions) {
+      institutionsCache = mergeInstitutions([...institutionsCache, ...firebaseInstitutions]);
+      saveLocalInstitutions(institutionsCache);
+    }
+  } catch (error) {
+    showToast("기관 목록은 기기 저장값을 사용합니다.");
+  }
+
+  renderInstitutionOptions();
+}
+
+function getSelectedInstitution() {
+  return institutionsCache.find((institution) => institution.key === institutionSelect?.value);
+}
+
+function renderInstitutionOptions() {
+  const selectedYear = Number(classYearSelect?.value) || currentYear;
+  const studentInstitutions = institutionsCache.filter((institution) => institution.year === selectedYear);
+
+  if (institutionSelect) {
+    institutionSelect.innerHTML = '<option value="">기관을 선택하세요</option>';
+    studentInstitutions.forEach((institution) => {
+      const option = document.createElement("option");
+      option.value = institution.key;
+      option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
+      institutionSelect.appendChild(option);
+    });
+  }
+
+  if (adminInstitutionFilter) {
+    const selectedFilter = adminInstitutionFilter.value;
+    adminInstitutionFilter.innerHTML = '<option value="">전체 기관</option>';
+    institutionsCache
+      .filter((institution) => String(institution.year) === String(adminYearFilter?.value || currentYear))
+      .forEach((institution) => {
+        const option = document.createElement("option");
+        option.value = institution.name;
+        option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
+        adminInstitutionFilter.appendChild(option);
+      });
+    adminInstitutionFilter.value = selectedFilter;
+  }
+}
+
+function populateYearSelects() {
+  const years = [currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
+  [classYearSelect, adminYearFilter, institutionYearSelect].forEach((select) => {
+    if (!select) {
+      return;
+    }
+
+    select.innerHTML = "";
+    years.forEach((year) => {
+      const option = document.createElement("option");
+      option.value = String(year);
+      option.textContent = `${year}년`;
+      select.appendChild(option);
+    });
+    select.value = String(currentYear);
+  });
+}
+
+function populateStartWeekSelect() {
+  if (!institutionStartWeekSelect) {
+    return;
+  }
+
+  institutionStartWeekSelect.innerHTML = "";
+  for (let week = 1; week <= 13; week += 1) {
+    const option = document.createElement("option");
+    option.value = String(week);
+    option.textContent = `${week}주차`;
+    institutionStartWeekSelect.appendChild(option);
+  }
 }
 
 function buildWeekCards() {
@@ -223,6 +396,10 @@ function validateSubmission(data) {
     return "학습 중인 기관명을 선택해 주세요.";
   }
 
+  if (!data.classYear) {
+    return "수업 연도를 선택해 주세요.";
+  }
+
   if (!data.nextAttendance) {
     return "다음 수업 참여 여부를 선택해 주세요.";
   }
@@ -255,10 +432,15 @@ async function submitToGoogleForm(data) {
 }
 
 async function submitReview() {
+  const selectedInstitution = getSelectedInstitution();
   const data = {
     name: document.getElementById("studentName").value.trim(),
     phoneLast4: document.getElementById("phoneLast4").value.trim(),
-    institutionName: document.getElementById("institutionName").value,
+    classYear: Number(classYearSelect?.value) || currentYear,
+    institutionKey: selectedInstitution?.key || "",
+    institutionName: selectedInstitution?.name || "",
+    institutionStartWeek: selectedInstitution?.startWeek || 1,
+    weekNumber: 1,
     attendanceStatus: "출석",
     completedItems: getSelectedCheckboxes(),
     review: document.getElementById("reviewText").value.trim(),
@@ -312,20 +494,52 @@ async function renderAdminList() {
     showToast("기기 저장 기록을 보여드립니다.");
   }
 
-  if (submissions.length === 0) {
+  const selectedYear = String(adminYearFilter?.value || currentYear);
+  const selectedInstitution = adminInstitutionFilter?.value || "";
+  const filteredSubmissions = submissions.filter((item) => {
+    const itemYear = String(item.classYear || currentYear);
+    const matchesYear = itemYear === selectedYear;
+    const matchesInstitution = !selectedInstitution || item.institutionName === selectedInstitution;
+    return matchesYear && matchesInstitution;
+  });
+
+  const institutionGroups = groupSubmissionsByInstitution(filteredSubmissions);
+
+  if (filteredSubmissions.length === 0) {
     adminList.innerHTML = '<p class="empty-text">아직 제출 내역이 없습니다.</p>';
     return;
   }
 
-  submissions.forEach((item) => {
+  const summary = document.createElement("section");
+  summary.className = "admin-summary";
+  summary.innerHTML = `
+    <article><strong>${filteredSubmissions.length}</strong><span>제출</span></article>
+    <article><strong>${institutionGroups.length}</strong><span>기관</span></article>
+    <article><strong>${filteredSubmissions.filter((item) => item.review).length}</strong><span>후기</span></article>
+  `;
+  adminList.appendChild(summary);
+
+  institutionGroups.forEach(({ institutionName, items }) => {
+    const group = document.createElement("section");
+    group.className = "admin-institution-group";
+    group.innerHTML = `<h2>${escapeHtml(institutionName)}</h2>`;
+    adminList.appendChild(group);
+
+    items.forEach((item) => {
     const card = document.createElement("article");
     card.className = "admin-card";
     card.innerHTML = `
       <dl>
+        <dt>연도</dt>
+        <dd>${escapeHtml(item.classYear || currentYear)}년</dd>
+        <dt>수업 주차</dt>
+        <dd>${escapeHtml(item.weekNumber || 1)}주차</dd>
         <dt>이름</dt>
         <dd>${escapeHtml(item.name)}</dd>
         <dt>연락처 뒷번호</dt>
         <dd>${escapeHtml(item.phoneLast4)}</dd>
+        <dt>기관 시작</dt>
+        <dd>${escapeHtml(item.institutionStartWeek || 1)}주차</dd>
         <dt>출석 상태</dt>
         <dd>${escapeHtml(item.attendanceStatus)}</dd>
         <dt>학습 체크</dt>
@@ -340,6 +554,51 @@ async function renderAdminList() {
     `;
     adminList.appendChild(card);
   });
+  });
+}
+
+function groupSubmissionsByInstitution(submissions) {
+  const map = new Map();
+  submissions.forEach((item) => {
+    const institutionName = item.institutionName || "기관 미지정";
+    if (!map.has(institutionName)) {
+      map.set(institutionName, []);
+    }
+    map.get(institutionName).push(item);
+  });
+
+  return Array.from(map.entries()).map(([institutionName, items]) => ({
+    institutionName,
+    items
+  }));
+}
+
+async function addInstitution(event) {
+  event.preventDefault();
+
+  const name = newInstitutionNameInput?.value.trim();
+  const year = Number(institutionYearSelect?.value) || currentYear;
+  const startWeek = Number(institutionStartWeekSelect?.value) || 1;
+
+  if (!name) {
+    showToast("기관명을 입력해 주세요.");
+    return;
+  }
+
+  const institution = normalizeInstitution({ name, year, startWeek });
+  institutionsCache = mergeInstitutions([...institutionsCache, institution]);
+  saveLocalInstitutions(institutionsCache);
+  renderInstitutionOptions();
+
+  try {
+    await saveInstitutionToFirebase(institution);
+    showToast("기관을 추가했습니다.");
+  } catch (error) {
+    showToast("기기에 먼저 저장했습니다.");
+  }
+
+  newInstitutionNameInput.value = "";
+  renderAdminList();
 }
 
 function escapeHtml(value) {
@@ -356,6 +615,13 @@ function bindEvents() {
   document.getElementById("adminButton")?.addEventListener("click", () => showScreen("admin"));
   document.getElementById("submitButton")?.addEventListener("click", submitReview);
   document.getElementById("printButton")?.addEventListener("click", () => window.print());
+  classYearSelect?.addEventListener("change", renderInstitutionOptions);
+  adminYearFilter?.addEventListener("change", () => {
+    renderInstitutionOptions();
+    renderAdminList();
+  });
+  adminInstitutionFilter?.addEventListener("change", renderAdminList);
+  institutionForm?.addEventListener("submit", addInstitution);
 
   document.querySelectorAll(".copy-button").forEach((button) => {
     button.addEventListener("click", () => copyPrompt(button.dataset.copyTarget));
@@ -370,5 +636,8 @@ function bindEvents() {
   });
 }
 
+populateYearSelects();
+populateStartWeekSelect();
 buildWeekCards();
 bindEvents();
+loadInstitutions();

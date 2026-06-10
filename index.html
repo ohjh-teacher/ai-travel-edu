@@ -111,12 +111,12 @@
         <label class="field-label" for="phoneLast4">연락처 뒷번호</label>
         <input id="phoneLast4" type="tel" maxlength="4" inputmode="numeric" placeholder="예: 1234">
 
+        <label class="field-label" for="classYear">수업 연도</label>
+        <select id="classYear"></select>
+
         <label class="field-label" for="institutionName">학습 중인 기관명</label>
         <select id="institutionName">
-          <option value="">기관을 선택하세요</option>
-          <option value="서울시민대학">서울시민대학</option>
-          <option value="장미 경로당">장미 경로당</option>
-          <option value="용답도서관">용답도서관</option>
+          <option value="">기관을 불러오는 중입니다</option>
         </select>
 
         <h3>오늘 해낸 것</h3>
@@ -274,8 +274,39 @@
       <div class="admin-head">
         <div>
           <p class="eyebrow">관리자 전용</p>
-          <h1 id="adminTitle">수강생 제출 내역</h1>
+          <h1 id="adminTitle">기관별 수업 대시보드</h1>
         </div>
+      </div>
+      <div class="admin-panel">
+        <div class="admin-filter-row">
+          <label>
+            <span>연도</span>
+            <select id="adminYearFilter"></select>
+          </label>
+          <label>
+            <span>기관</span>
+            <select id="adminInstitutionFilter">
+              <option value="">전체 기관</option>
+            </select>
+          </label>
+        </div>
+
+        <form class="admin-add-form" id="institutionForm">
+          <label>
+            <span>수업 연도</span>
+            <select id="institutionYear"></select>
+          </label>
+          <label>
+            <span>기관명</span>
+            <input id="newInstitutionName" type="text" placeholder="예: 문정2동주민센터">
+          </label>
+          <label>
+            <span>시작 주차</span>
+            <select id="institutionStartWeek"></select>
+          </label>
+          <button class="primary-button" type="submit">기관 추가</button>
+        </form>
+        <p class="admin-help">기관명과 시작 주차는 연도별로 관리됩니다.</p>
       </div>
       <div id="adminList" class="admin-list"></div>
     </section>
