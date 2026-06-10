@@ -59,6 +59,7 @@ const submitInstitutionSelect = document.getElementById("submitInstitutionName")
 const submitChecklist = document.getElementById("submitChecklist");
 const submitAbsenceBox = document.getElementById("submitAbsenceBox");
 const studentSaveMessage = document.getElementById("studentSaveMessage");
+const closeSubmitButton = document.getElementById("closeSubmitButton");
 const privacyConsent = document.getElementById("privacyConsent");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
@@ -625,6 +626,9 @@ async function submitStudentReview() {
   const errorMessage = validateSubmission(data, { requirePrivacyConsent: true });
   if (errorMessage) {
     studentSaveMessage.textContent = errorMessage;
+    if (closeSubmitButton) {
+      closeSubmitButton.hidden = true;
+    }
     return;
   }
 
@@ -633,11 +637,27 @@ async function submitStudentReview() {
   try {
     await submitToFirebase(data);
     studentSaveMessage.textContent = "제출했습니다. 오늘 수업 기록이 저장되었습니다.";
+    if (closeSubmitButton) {
+      closeSubmitButton.hidden = false;
+    }
     showToast("제출했습니다.");
   } catch (error) {
     studentSaveMessage.textContent = "기기에는 저장했습니다. 인터넷 연결 후 다시 제출해 주세요.";
+    if (closeSubmitButton) {
+      closeSubmitButton.hidden = true;
+    }
     showToast("기기에 저장했습니다.");
   }
+}
+
+function closeSubmitWindow() {
+  window.close();
+
+  window.setTimeout(() => {
+    if (!window.closed && studentSaveMessage) {
+      studentSaveMessage.textContent = "창이 닫히지 않으면 브라우저의 뒤로가기 또는 X 버튼을 눌러 닫아주세요.";
+    }
+  }, 250);
 }
 
 async function submitReview() {
@@ -993,6 +1013,7 @@ function bindEvents() {
   document.getElementById("adminButton")?.addEventListener("click", openAdminScreen);
   document.getElementById("submitButton")?.addEventListener("click", submitReview);
   document.getElementById("studentSubmitButton")?.addEventListener("click", submitStudentReview);
+  closeSubmitButton?.addEventListener("click", closeSubmitWindow);
   document.getElementById("printButton")?.addEventListener("click", () => window.print());
   classYearSelect?.addEventListener("change", renderInstitutionOptions);
   submitClassYearSelect?.addEventListener("change", renderInstitutionOptions);

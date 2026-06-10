@@ -1028,6 +1028,11 @@ body[data-screen="admin"] .plain-button {
   margin-top: 34px;
 }
 
+.close-submit-button {
+  width: 100%;
+  margin-top: 14px;
+}
+
 .print-sheet {
   display: none;
 }
