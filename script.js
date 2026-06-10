@@ -347,7 +347,7 @@ function renderInstitutionOptions() {
     studentInstitutions.filter((institution) => !institution.hidden).forEach((institution) => {
       const option = document.createElement("option");
       option.value = institution.key;
-      option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
+      option.textContent = institution.name;
       institutionSelect.appendChild(option);
     });
   }
@@ -358,7 +358,7 @@ function renderInstitutionOptions() {
     submitInstitutions.filter((institution) => !institution.hidden).forEach((institution) => {
       const option = document.createElement("option");
       option.value = institution.key;
-      option.textContent = `${institution.name} (${institution.startWeek}주차 시작)`;
+      option.textContent = institution.name;
       submitInstitutionSelect.appendChild(option);
     });
     submitInstitutionSelect.value = selectedSubmitInstitution;
