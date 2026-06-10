@@ -824,9 +824,20 @@ body[data-screen="admin"] .plain-button {
 
 #adminScreen .institution-edit-form {
   display: grid;
-  grid-template-columns: minmax(140px, 1fr) 110px auto auto;
+  grid-template-columns: minmax(140px, 1fr) 120px 150px auto auto;
   gap: 8px;
-  align-items: center;
+  align-items: end;
+}
+
+#adminScreen .institution-edit-form label {
+  display: grid;
+  gap: 4px;
+}
+
+#adminScreen .institution-edit-form span {
+  color: var(--blue-dark);
+  font-size: 12px;
+  font-weight: 900;
 }
 
 #adminScreen .institution-edit-form input,

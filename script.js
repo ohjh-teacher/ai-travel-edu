@@ -57,6 +57,7 @@ const adminInstitutionFilter = document.getElementById("adminInstitutionFilter")
 const institutionForm = document.getElementById("institutionForm");
 const institutionYearSelect = document.getElementById("institutionYear");
 const institutionStartWeekSelect = document.getElementById("institutionStartWeek");
+const institutionStartDateInput = document.getElementById("institutionStartDate");
 const newInstitutionNameInput = document.getElementById("newInstitutionName");
 const institutionToggleButton = document.getElementById("institutionToggleButton");
 const institutionList = document.getElementById("institutionList");
@@ -183,6 +184,7 @@ function normalizeInstitution(institution) {
     name,
     year,
     startWeek,
+    startDate: String(institution.startDate || ""),
     hidden: Boolean(institution.hidden)
   };
 }
@@ -239,6 +241,7 @@ async function saveInstitutionToFirebase(institution) {
       name: institution.name,
       year: institution.year,
       startWeek: institution.startWeek,
+      startDate: institution.startDate,
       hidden: institution.hidden,
       updatedAt: services.serverTimestamp()
     }
@@ -606,11 +609,12 @@ function renderInstitutionList() {
     card.innerHTML = `
       <div class="institution-view">
         <strong>${escapeHtml(institution.name)}</strong>
-        <span>${escapeHtml(institution.year)}년 · ${escapeHtml(institution.startWeek)}주차 시작${institution.hidden ? " · 숨김" : ""}</span>
+        <span>${escapeHtml(institution.year)}년 · ${escapeHtml(formatDate(institution.startDate))} · 첫 수업 ${escapeHtml(institution.startWeek)}주차${institution.hidden ? " · 숨김" : ""}</span>
       </div>
       <form class="institution-edit-form" data-key="${escapeHtml(institution.key)}">
-        <input name="name" type="text" value="${escapeHtml(institution.name)}" aria-label="기관명">
-        <select name="startWeek" aria-label="시작 주차">${weekOptions}</select>
+        <label><span>기관명</span><input name="name" type="text" value="${escapeHtml(institution.name)}" aria-label="기관명"></label>
+        <label><span>첫 수업 주차</span><select name="startWeek" aria-label="첫 수업 주차">${weekOptions}</select></label>
+        <label><span>수업 시작일</span><input name="startDate" type="date" value="${escapeHtml(institution.startDate)}" aria-label="수업 시작일"></label>
         <button class="secondary-button" type="submit">수정</button>
         <button class="secondary-button" type="button" data-action="toggle-hidden" data-key="${escapeHtml(institution.key)}">
           ${institution.hidden ? "다시 보이기" : "숨김"}
@@ -623,6 +627,15 @@ function renderInstitutionList() {
 
 function getInstitutionByKey(key) {
   return institutionsCache.find((institution) => institution.key === key);
+}
+
+function formatDate(value) {
+  if (!value) {
+    return "시작일 미정";
+  }
+
+  const [year, month, day] = value.split("-");
+  return `${year}.${month}.${day}`;
 }
 
 async function persistInstitutionChange(institution, successMessage) {
@@ -664,7 +677,8 @@ async function updateInstitution(event) {
   await persistInstitutionChange({
     ...institution,
     name,
-    startWeek: Number(form.elements.startWeek.value) || 1
+    startWeek: Number(form.elements.startWeek.value) || 1,
+    startDate: form.elements.startDate.value
   }, "기관 정보를 수정했습니다.");
 }
 
@@ -692,13 +706,14 @@ async function addInstitution(event) {
   const name = newInstitutionNameInput?.value.trim();
   const year = Number(institutionYearSelect?.value) || currentYear;
   const startWeek = Number(institutionStartWeekSelect?.value) || 1;
+  const startDate = institutionStartDateInput?.value || "";
 
   if (!name) {
     showToast("기관명을 입력해 주세요.");
     return;
   }
 
-  const institution = normalizeInstitution({ name, year, startWeek });
+  const institution = normalizeInstitution({ name, year, startWeek, startDate });
   institutionsCache = mergeInstitutions([...institutionsCache, institution]);
   saveLocalInstitutions(institutionsCache);
   renderInstitutionOptions();
@@ -711,6 +726,9 @@ async function addInstitution(event) {
   }
 
   newInstitutionNameInput.value = "";
+  if (institutionStartDateInput) {
+    institutionStartDateInput.value = "";
+  }
   institutionForm?.classList.remove("is-visible");
   institutionToggleButton?.setAttribute("aria-expanded", "false");
   if (institutionToggleButton) {
