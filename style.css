@@ -462,10 +462,63 @@ p {
   border-radius: 18px;
 }
 
-.icon-lesson {
+.lesson-illustration {
+  margin: 0 0 34px;
+  padding: 22px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 232, 0.9)),
-    repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(154, 79, 34, 0.045) 39px);
+    linear-gradient(135deg, #fff8ee, #ffffff);
+  border: 4px solid var(--line);
+  border-radius: 30px;
+  box-shadow: 0 10px 24px rgba(154, 79, 34, 0.08);
+}
+
+.lesson-illustration img {
+  display: block;
+  width: min(100%, 560px);
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.camera-guide-image {
+  padding: 18px;
+  background: #fffaf2;
+}
+
+.camera-guide-image img {
+  width: min(100%, 920px);
+  filter: brightness(1.18) contrast(1.18) saturate(1.08);
+  box-shadow: 0 8px 18px rgba(77, 44, 24, 0.16);
+}
+
+.camera-visual-list li {
+  grid-template-columns: 110px minmax(0, 1fr) minmax(220px, 320px);
+  column-gap: 40px;
+}
+
+.camera-visual-list .step-copy {
+  grid-column: 2;
+}
+
+.camera-visual-list strong,
+.camera-visual-list span {
+  grid-column: auto;
+}
+
+.camera-crop {
+  grid-column: 3;
+  justify-self: end;
+  display: block;
+  width: 220px;
+  height: 160px;
+  padding: 14px;
+  box-sizing: border-box;
+  object-fit: contain;
+  background: #fffaf2;
+  border: 7px solid #ff1c14;
+  border-radius: 0;
+  box-shadow: 0 8px 18px rgba(77, 44, 24, 0.16);
+  filter: brightness(1.22) contrast(1.22) saturate(1.08);
 }
 
 .step-list {
@@ -522,502 +575,30 @@ p {
   line-height: 1.45;
 }
 
-.camera-step-list {
-  grid-template-columns: 1fr;
-  gap: 22px;
+.mode-more-item {
+  align-items: start;
 }
 
-.camera-step-list li {
-  display: grid;
-  grid-template-columns: 118px minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  column-gap: 28px;
-  row-gap: 8px;
+.mode-chip-list {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.mode-chip-list span {
+  display: inline-flex;
   align-items: center;
-  min-height: 176px;
-  padding: 30px;
-  border-width: 3px;
-  border-radius: 28px;
-  overflow: visible;
-}
-
-.camera-step-list li::before {
-  display: none;
-}
-
-.step-icon {
-  --camera-button-bg: #101114;
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  justify-self: center;
-  align-self: center;
-  display: grid;
-  place-items: center;
-  position: relative;
-  width: 102px;
-  height: 102px;
-  color: #ffffff;
-  background:
-    linear-gradient(145deg, #1b1d21 0%, #08090b 72%);
-  border: 4px solid #f0b429;
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-    0 5px 10px rgba(0, 0, 0, 0.16);
-  font-size: 32px;
-  line-height: 1;
-  font-weight: 900;
-  text-align: center;
-}
-
-.step-icon::before,
-.step-icon::after {
-  content: "";
-  position: absolute;
-  box-sizing: border-box;
-}
-
-.icon-text::after,
-.icon-label::after {
-  display: none;
-}
-
-.icon-text::before {
-  content: attr(data-label);
-  inset: auto;
-  position: static;
-  color: #ffffff;
-  font-size: 30px;
-  letter-spacing: 0;
-  text-shadow: none;
-}
-
-.icon-label::before {
-  content: attr(data-label);
-  inset: auto;
-  position: static;
-  max-width: 82px;
-  color: #ffffff;
-  font-size: 26px;
-  line-height: 1.05;
-  letter-spacing: 0;
-  word-break: keep-all;
-  text-shadow: none;
-}
-
-.icon-sparkle::before {
-  width: 58px;
-  height: 58px;
-  background: currentColor;
-  clip-path: polygon(50% 0, 61% 34%, 96% 50%, 61% 66%, 50% 100%, 39% 66%, 4% 50%, 39% 34%);
-}
-
-.icon-sparkle::after {
-  right: 22px;
-  top: 21px;
-  width: 18px;
-  height: 18px;
-  background: currentColor;
-  clip-path: polygon(50% 0, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0 50%, 38% 36%);
-}
-
-.icon-shutter::before {
-  width: 68px;
-  height: 68px;
-  border: 7px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-shutter::after {
-  width: 42px;
-  height: 42px;
-  border: 4px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-preview::before,
-.icon-scene::before {
-  width: 64px;
-  height: 48px;
-  border: 5px solid currentColor;
-  border-radius: 10px;
-}
-
-.icon-preview::after,
-.icon-scene::after {
-  left: 30px;
-  bottom: 31px;
-  width: 46px;
-  height: 24px;
-  border-left: 5px solid currentColor;
-  border-bottom: 5px solid currentColor;
-  transform: skewX(-28deg);
-}
-
-.icon-switch::before,
-.icon-retake::before {
-  width: 64px;
-  height: 64px;
-  border: 5px solid currentColor;
-  border-left-color: transparent;
-  border-radius: 50%;
-}
-
-.icon-switch::after,
-.icon-retake::after {
-  right: 18px;
-  top: 22px;
-  width: 0;
-  height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-left: 18px solid currentColor;
-}
-
-.icon-camera::before,
-.icon-video::before {
-  width: 66px;
-  height: 46px;
-  border: 5px solid currentColor;
-  border-radius: 12px;
-}
-
-.icon-camera::after {
-  width: 24px;
-  height: 24px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-video::after {
-  right: 17px;
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 23px solid currentColor;
-}
-
-.icon-quick::before {
-  width: 12px;
-  height: 12px;
-  background: currentColor;
-  border-radius: 50%;
-  box-shadow: 24px 0 currentColor, 0 24px currentColor, 24px 24px currentColor;
-  transform: translate(-12px, -12px);
-}
-
-.icon-gear::before {
-  width: 58px;
-  height: 58px;
-  border: 7px dashed currentColor;
-  border-radius: 50%;
-}
-
-.icon-gear::after {
-  width: 20px;
-  height: 20px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-flash::before {
-  width: 36px;
-  height: 70px;
-  background: currentColor;
-  clip-path: polygon(50% 0, 12% 45%, 45% 45%, 28% 100%, 88% 36%, 55% 36%);
-}
-
-.icon-timer::before {
-  width: 58px;
-  height: 58px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-timer::after {
-  width: 24px;
-  height: 24px;
-  border-top: 5px solid currentColor;
-  border-right: 5px solid currentColor;
-  transform: rotate(15deg);
-}
-
-.icon-ratio::before {
-  width: 64px;
-  height: 44px;
-  border: 5px solid currentColor;
-  border-radius: 8px;
-}
-
-.icon-ratio::after {
-  width: 46px;
-  height: 28px;
-  border: 4px solid currentColor;
-  border-radius: 6px;
-}
-
-.icon-motion::before {
-  width: 56px;
-  height: 42px;
-  border: 5px solid currentColor;
-  border-radius: 10px;
-  box-shadow: -10px -10px 0 -3px var(--camera-button-bg), -10px -10px 0 1px currentColor;
-}
-
-.icon-exposure::before,
-.icon-sun::before {
-  width: 40px;
-  height: 40px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-exposure::after,
-.icon-sun::after {
-  width: 76px;
-  height: 76px;
-  border-top: 5px solid currentColor;
-  border-bottom: 5px solid currentColor;
-  transform: rotate(45deg);
-}
-
-.icon-face::before,
-.icon-beauty::before,
-.icon-portrait::before,
-.icon-person::before {
-  width: 40px;
-  height: 40px;
-  top: 18px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-face::after,
-.icon-beauty::after,
-.icon-portrait::after,
-.icon-person::after {
-  bottom: 18px;
-  width: 58px;
-  height: 32px;
-  border: 5px solid currentColor;
-  border-bottom: 0;
-  border-radius: 34px 34px 0 0;
-}
-
-.icon-filter::before {
-  width: 26px;
-  height: 26px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-  box-shadow: 28px -12px 0 -5px var(--camera-button-bg), 28px -12px 0 0 currentColor, 22px 28px 0 -5px var(--camera-button-bg), 22px 28px 0 0 currentColor;
-}
-
-.icon-night::before {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  box-shadow: -13px 0 0 0 currentColor;
-  transform: translateX(14px);
-}
-
-.icon-close::before,
-.icon-close::after {
-  width: 62px;
-  height: 6px;
-  background: currentColor;
-  border-radius: 6px;
-}
-
-.icon-close::before {
-  transform: rotate(45deg);
-}
-
-.icon-close::after {
-  transform: rotate(-45deg);
-}
-
-.icon-guide::before {
-  width: 62px;
-  height: 62px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-guide::after {
-  width: 34px;
-  height: 18px;
-  border-left: 6px solid currentColor;
-  border-bottom: 6px solid currentColor;
-  transform: rotate(-45deg);
-}
-
-.icon-grid::before {
-  width: 64px;
-  height: 64px;
-  border: 5px solid currentColor;
-  background:
-    linear-gradient(90deg, transparent 31%, currentColor 31% 38%, transparent 38% 62%, currentColor 62% 69%, transparent 69%),
-    linear-gradient(0deg, transparent 31%, currentColor 31% 38%, transparent 38% 62%, currentColor 62% 69%, transparent 69%);
-}
-
-.icon-more::before {
-  width: 58px;
-  height: 6px;
-  background: currentColor;
-  border-radius: 6px;
-}
-
-.icon-more::after {
-  width: 6px;
-  height: 58px;
-  background: currentColor;
-  border-radius: 6px;
-}
-
-.icon-watermark::before {
-  width: 58px;
-  height: 36px;
-  border: 5px solid currentColor;
-  border-radius: 8px;
-  transform: rotate(-12deg);
-}
-
-.icon-watermark::after {
-  content: "A";
-  position: static;
-  font-size: 34px;
-}
-
-.icon-swipe::before {
-  width: 6px;
-  height: 68px;
-  background: currentColor;
-  border-radius: 6px;
-}
-
-.icon-swipe::after {
-  width: 34px;
-  height: 34px;
-  border-top: 6px solid currentColor;
-  border-right: 6px solid currentColor;
-  transform: rotate(-45deg);
-}
-
-.icon-location::before {
-  width: 46px;
-  height: 46px;
-  border: 5px solid currentColor;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-}
-
-.icon-location::after {
-  width: 14px;
-  height: 14px;
-  border: 4px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-mirror::before {
-  width: 54px;
-  height: 68px;
-  border: 5px solid currentColor;
-  border-radius: 26px;
-}
-
-.icon-mirror::after {
-  width: 6px;
-  height: 70px;
-  border-left: 5px dashed currentColor;
-}
-
-.icon-palm::before {
-  width: 44px;
-  height: 50px;
-  border: 5px solid currentColor;
-  border-radius: 20px 20px 14px 14px;
-}
-
-.icon-palm::after {
-  top: 15px;
-  width: 10px;
-  height: 36px;
-  background: currentColor;
-  border-radius: 8px;
-  box-shadow: -16px 5px currentColor, 16px 5px currentColor, 31px 14px currentColor;
-}
-
-.icon-focus::before {
-  width: 68px;
-  height: 68px;
-  border: 5px solid currentColor;
-  border-radius: 16px;
-}
-
-.icon-focus::after {
-  width: 22px;
-  height: 22px;
-  border: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-stabilize::before {
-  width: 62px;
-  height: 42px;
-  border: 5px solid currentColor;
+  min-height: 54px;
+  padding: 10px 18px;
+  color: var(--ink);
+  background: #fff7ea;
+  border: 3px solid var(--line);
   border-radius: 18px;
-}
-
-.icon-stabilize::after {
-  width: 84px;
-  height: 84px;
-  border-left: 5px solid currentColor;
-  border-right: 5px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-lens::before {
-  width: 62px;
-  height: 62px;
-  border: 6px solid currentColor;
-  border-radius: 50%;
-}
-
-.icon-lens::after {
-  width: 30px;
-  height: 6px;
-  background: currentColor;
-  border-radius: 6px;
-  transform: rotate(-25deg) translate(16px, 20px);
-}
-
-.icon-zoom::before {
-  width: 42px;
-  height: 42px;
-  border: 6px solid currentColor;
-  border-radius: 50%;
-  transform: translate(-8px, -8px);
-}
-
-.icon-zoom::after {
-  width: 34px;
-  height: 7px;
-  background: currentColor;
-  border-radius: 7px;
-  transform: rotate(45deg) translate(22px, 22px);
-}
-
-.camera-step-list strong {
-  grid-column: 2;
-  margin-bottom: 8px;
-  font-size: clamp(30px, 2.25vw, 42px);
-}
-
-.camera-step-list span:not(.step-icon) {
-  grid-column: 2;
-  font-size: clamp(25px, 1.75vw, 34px);
-  line-height: 1.38;
+  font-size: clamp(24px, 1.7vw, 32px);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .step-with-prompt {
@@ -1644,10 +1225,6 @@ body[data-screen="admin"] .plain-button {
   .week-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .camera-step-list {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 720px) {
@@ -1707,38 +1284,21 @@ body[data-screen="admin"] .plain-button {
     font-size: 30px;
   }
 
-  .camera-step-list li {
-    grid-template-columns: 82px minmax(0, 1fr);
-    column-gap: 18px;
-    row-gap: 6px;
-    min-height: 132px;
-    padding: 18px;
-    border-radius: 22px;
+  .camera-visual-list li {
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
   }
 
-  .step-icon {
-    width: 76px;
-    height: 76px;
-    border-width: 4px;
-    border-radius: 50%;
-    font-size: 23px;
+  .camera-visual-list .step-copy {
+    grid-column: 2;
   }
 
-  .icon-text::before {
-    font-size: 22px;
-  }
-
-  .icon-label::before {
-    max-width: 60px;
-    font-size: 20px;
-  }
-
-  .camera-step-list strong {
-    font-size: clamp(26px, 7vw, 34px);
-  }
-
-  .camera-step-list span:not(.step-icon) {
-    font-size: clamp(22px, 5.8vw, 28px);
+  .camera-crop {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 260px);
+    height: 190px;
+    margin-top: 12px;
   }
 
   .primary-button,
