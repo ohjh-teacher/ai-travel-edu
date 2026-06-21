@@ -619,7 +619,7 @@ function validateSubmission(data, options = {}) {
   }
 
   if (!data.review) {
-    return "오늘 내가 직접 해본 기능 1가지를 적어 주세요.";
+    return "가장 재밌었거나 좋았던 한가지를 적어 주세요.";
   }
 
   if (options.requirePrivacyConsent && !data.privacyConsent) {
