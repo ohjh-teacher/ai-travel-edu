@@ -536,7 +536,8 @@ p {
 }
 
 .gallery-crop,
-.gallery-text-card {
+.gallery-text-card,
+.gallery-action-card {
   grid-column: 3;
   justify-self: end;
   display: block;
@@ -567,7 +568,8 @@ p {
   height: 170px;
 }
 
-.gallery-text-card {
+.gallery-text-card,
+.gallery-action-card {
   display: grid;
   place-items: center;
   padding: 18px;
@@ -578,11 +580,39 @@ p {
   text-align: center;
 }
 
+.gallery-action-card strong,
+.gallery-action-card span,
+.gallery-action-card em {
+  display: block;
+  width: 100%;
+  font-style: normal;
+}
+
+.gallery-action-card strong {
+  color: var(--stamp);
+  font-size: 34px;
+}
+
+.gallery-action-card span {
+  color: var(--muted);
+  font-size: 26px;
+}
+
+.gallery-action-card em {
+  padding: 10px 14px;
+  color: var(--white);
+  background: var(--stamp);
+  border-radius: 16px;
+  font-size: 30px;
+  font-weight: 900;
+}
+
 .gallery-menu-item {
   align-items: start;
 }
 
-.gallery-menu-grid {
+.gallery-menu-grid,
+.gallery-compare-grid {
   grid-column: 2 / -1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -590,14 +620,16 @@ p {
   margin-top: 22px;
 }
 
-.gallery-menu-grid article {
+.gallery-menu-grid article,
+.gallery-compare-grid article {
   padding: 18px 20px;
   background: #fff7ea;
   border: 3px solid var(--line);
   border-radius: 18px;
 }
 
-.gallery-menu-grid strong {
+.gallery-menu-grid strong,
+.gallery-compare-grid strong {
   display: block;
   margin-bottom: 8px;
   color: var(--ink);
@@ -606,7 +638,8 @@ p {
   font-weight: 900;
 }
 
-.gallery-menu-grid span {
+.gallery-menu-grid span,
+.gallery-compare-grid span {
   display: block;
   color: var(--muted);
   font-size: clamp(21px, 1.35vw, 27px);
@@ -1415,7 +1448,8 @@ body[data-screen="admin"] .plain-button {
   }
 
   .gallery-crop,
-  .gallery-text-card {
+  .gallery-text-card,
+  .gallery-action-card {
     grid-column: 1 / -1;
     justify-self: center;
     width: min(100%, 280px);
@@ -1435,18 +1469,21 @@ body[data-screen="admin"] .plain-button {
     height: 180px;
   }
 
-  .gallery-text-card {
+  .gallery-text-card,
+  .gallery-action-card {
     font-size: 28px;
   }
 
-  .gallery-menu-grid {
+  .gallery-menu-grid,
+  .gallery-compare-grid {
     grid-column: 1 / -1;
     grid-template-columns: 1fr;
     gap: 14px;
     margin-top: 14px;
   }
 
-  .gallery-menu-grid article {
+  .gallery-menu-grid article,
+  .gallery-compare-grid article {
     padding: 16px 18px;
   }
 
