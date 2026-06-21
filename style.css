@@ -563,6 +563,10 @@ p {
   height: 190px;
 }
 
+.gallery-crop.is-detail {
+  height: 170px;
+}
+
 .gallery-text-card {
   display: grid;
   place-items: center;
@@ -1425,6 +1429,10 @@ body[data-screen="admin"] .plain-button {
 
   .gallery-crop.is-wide {
     height: 190px;
+  }
+
+  .gallery-crop.is-detail {
+    height: 180px;
   }
 
   .gallery-text-card {
