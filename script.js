@@ -94,11 +94,11 @@ const lessonChecklists = {
     "셀프카메라 촬영 방법을 연습했습니다."
   ],
   3: [
-    "갤러리앱에서 사진을 찾았습니다.",
-    "마음에 드는 사진을 골랐습니다.",
-    "앨범 만들기 기능을 확인했습니다.",
-    "사진 자르기 또는 밝기 수정을 해봤습니다.",
-    "정리한 사진을 제출했습니다."
+    "사진탭, 앨범탭, 스토리탭을 구분했습니다.",
+    "새 앨범을 만들었습니다.",
+    "카메라 사진을 만든 앨범으로 이동했습니다.",
+    "사진 편집과 AI 기능을 살펴봤습니다.",
+    "사진 삭제와 복원 방법을 확인했습니다."
   ]
 };
 
@@ -616,6 +616,10 @@ function validateSubmission(data, options = {}) {
 
   if (!data.nextAttendance) {
     return "다음 수업 참여 여부를 선택해 주세요.";
+  }
+
+  if (!data.review) {
+    return "오늘 내가 직접 해본 기능 1가지를 적어 주세요.";
   }
 
   if (options.requirePrivacyConsent && !data.privacyConsent) {

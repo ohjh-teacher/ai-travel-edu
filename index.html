@@ -268,8 +268,8 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
           <label><input type="checkbox" value="단체 톡방에 공유했습니다."> 단체 톡방에 공유했습니다.</label>
         </div>
 
-        <label class="field-label" for="reviewText">오늘 가장 기억에 남는 것은?</label>
-        <textarea id="reviewText" rows="5" placeholder="오늘 느낀 점을 적어보세요"></textarea>
+        <label class="field-label" for="reviewText">오늘 내가 직접 해본 기능 1가지는?</label>
+        <textarea id="reviewText" rows="5" placeholder="예: AI에게 여행 계획을 물어봤어요"></textarea>
 
         <div class="next-lesson">
           <h3>다음 수업 안내</h3>
@@ -515,8 +515,8 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         </div>
 
         <div class="review-guide-box">
-          <h3>오늘 가장 기억에 남는 것은?</h3>
-          <p>아래 QR 제출 화면에서 오늘 느낀 점과 사진을 남깁니다.</p>
+          <h3>오늘 내가 직접 해본 기능 1가지는?</h3>
+          <p>아래 QR 제출 화면에서 오늘 해본 기능을 한 가지 적습니다.</p>
         </div>
 
         <div class="next-lesson">
@@ -543,42 +543,113 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
       <article class="lesson-cover">
         <p class="stamp-label">3주차</p>
         <h1 id="weekThreeTitle">3주차 | 갤러리앱과 사진 정리</h1>
-        <p>갤러리앱에서 사진을 찾고<br>앨범 만들기와 사진 수정을 연습합니다.</p>
+        <p>갤러리앱에서 사진을 찾고<br>앨범 정리와 AI 편집을 연습합니다.</p>
       </article>
 
       <section class="lesson-block">
         <h2>오늘 수업 목표</h2>
         <ul class="simple-list">
-          <li>갤러리앱에서 사진을 찾습니다.</li>
-          <li>마음에 드는 사진을 고르고 즐겨찾기합니다.</li>
-          <li>앨범을 만들어 사진을 정리합니다.</li>
-          <li>사진 자르기와 밝기 수정을 연습합니다.</li>
+          <li>사진탭, 앨범탭, 스토리탭을 구분합니다.</li>
+          <li>새 앨범을 만들고 사진을 이동합니다.</li>
+          <li>사진 편집과 AI 기능을 가볍게 체험합니다.</li>
+          <li>사진을 삭제하고 다시 복원합니다.</li>
         </ul>
       </section>
 
       <section class="lesson-block">
-        <h2>갤러리앱에서 사진 찾기</h2>
-        <ol class="step-list">
-          <li><strong>갤러리앱 열기</strong><span>홈 화면에서 갤러리 또는 사진 앱을 찾아 실행합니다.</span></li>
-          <li><strong>최근 사진 보기</strong><span>최근에 찍은 사진이 어디에 모여 있는지 확인합니다.</span></li>
-          <li><strong>날짜로 찾기</strong><span>사진을 찍은 날짜를 보고 오늘 찍은 사진을 찾습니다.</span></li>
-          <li><strong>사진 크게 보기</strong><span>사진을 눌러 크게 보고, 손가락으로 확대해 확인합니다.</span></li>
-          <li><strong>마음에 드는 사진 고르기</strong><span>흔들리지 않고 밝게 나온 사진을 골라봅니다.</span></li>
-          <li><strong>즐겨찾기 표시</strong><span>별표나 하트 표시를 눌러 중요한 사진을 찾기 쉽게 만듭니다.</span></li>
+        <h2>사진탭, 앨범탭, 스토리탭 구분하기</h2>
+        <ol class="step-list gallery-visual-list">
+          <li>
+            <div class="step-copy"><strong>사진탭</strong><span>날짜순으로 사진을 봅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/gallery-tab-photo.png" alt="갤러리 사진탭 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>앨범탭</strong><span>카메라, 다운로드, 스크린샷처럼 묶어서 봅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/gallery-tab-album.png" alt="갤러리 앨범탭 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>스토리탭</strong><span>갤러리가 자동으로 만든 추억을 봅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/gallery-tab-story.png" alt="갤러리 스토리탭 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>동영상만 보기</strong><span>메뉴에서 동영상을 눌러 영상만 모아봅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/gallery-video-filter.png" alt="갤러리 동영상 메뉴 화면">
+          </li>
         </ol>
       </section>
 
       <section class="lesson-block">
-        <h2>앨범 만들기와 사진 수정</h2>
-        <ol class="step-list">
-          <li><strong>앨범 메뉴 찾기</strong><span>앨범 또는 폴더 메뉴를 눌러 사진을 묶어둘 곳을 확인합니다.</span></li>
-          <li><strong>새 앨범 만들기</strong><span>새 앨범을 만들고 이름을 여행 사진처럼 쉽게 붙입니다.</span></li>
-          <li><strong>사진 앨범에 넣기</strong><span>마음에 드는 사진을 선택해 새 앨범으로 옮기거나 복사합니다.</span></li>
-          <li><strong>수정 버튼 찾기</strong><span>연필 모양 또는 편집 버튼을 눌러 사진 수정 화면을 엽니다.</span></li>
-          <li><strong>사진 자르기</strong><span>필요 없는 부분을 잘라내고 보고 싶은 부분을 크게 남깁니다.</span></li>
-          <li><strong>밝기 조절</strong><span>사진이 어두우면 밝기를 조금 올려 더 잘 보이게 합니다.</span></li>
-          <li><strong>원본 복원 알기</strong><span>수정이 마음에 들지 않으면 원본으로 되돌릴 수 있는지 확인합니다.</span></li>
-          <li><strong>결과 사진 제출</strong><span>정리하거나 수정한 사진 중 마음에 드는 사진을 후기 제출 화면에 올립니다.</span></li>
+        <h2>앨범 만들기와 사진 이동하기</h2>
+        <ol class="step-list gallery-visual-list">
+          <li>
+            <div class="step-copy"><strong>앨범탭 열기</strong><span>아래 앨범을 누릅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/album-plus.png" alt="앨범탭과 새 앨범 만들기 버튼">
+          </li>
+          <li>
+            <div class="step-copy"><strong>새 앨범 만들기</strong><span>위쪽 + 버튼을 누르고 앨범을 선택합니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/album-create-menu.png" alt="앨범 만들기 메뉴">
+          </li>
+          <li>
+            <div class="step-copy"><strong>앨범 이름 쓰기</strong><span>예: 여행사진, 가족사진처럼 쉽게 씁니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/album-name.png" alt="새 앨범 이름 입력 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>카메라 사진 이동</strong><span>카메라 앨범에서 사진을 고르고 이동을 누릅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/album-select-photos.png" alt="앨범으로 이동할 사진 선택 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>이동 확인</strong><span>복사와 이동 중에서 이동을 선택합니다.</span></div>
+            <img class="gallery-crop is-short" src="assets/week3-gallery/album-move.png" alt="사진 이동 선택 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>앨범 삭제하기</strong><span>앨범만 지울지, 사진도 지울지 꼭 확인합니다.</span></div>
+            <div class="gallery-text-card">앨범 길게 누르기<br>삭제<br>확인</div>
+          </li>
+        </ol>
+        <p class="caution-note">앨범 삭제와 사진 삭제는 다릅니다. 수업에서는 선생님과 함께 확인하고 누릅니다.</p>
+      </section>
+
+      <section class="lesson-block">
+        <h2>사진 편집과 AI 기능 맛보기</h2>
+        <ol class="step-list gallery-visual-list">
+          <li>
+            <div class="step-copy"><strong>편집 버튼</strong><span>연필 모양을 눌러 사진 편집을 엽니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/edit-crop.png" alt="갤러리 편집 버튼">
+          </li>
+          <li>
+            <div class="step-copy"><strong>AI 기능 맛보기</strong><span>포토 어시스트처럼 자동 보정 기능을 살펴봅니다.</span></div>
+            <img class="gallery-crop is-wide" src="assets/week3-gallery/gallery-tools.png" alt="갤러리 기능별 아이콘 설명">
+          </li>
+          <li>
+            <div class="step-copy"><strong>회전하기</strong><span>사진 방향이 틀어졌을 때 돌립니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/edit-rotate.png" alt="사진 회전 편집 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>밝게 보정하기</strong><span>Auto 또는 밝기 조절로 더 선명하게 만듭니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/edit-brightness.png" alt="사진 밝기 조절 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>저장하기</strong><span>마음에 들면 저장을 누릅니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/edit-save.png" alt="사진 편집 저장 화면">
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block">
+        <h2>사진 삭제하고 복원하기</h2>
+        <ol class="step-list gallery-visual-list">
+          <li>
+            <div class="step-copy"><strong>사진 선택</strong><span>지울 사진을 길게 눌러 선택합니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/photo-delete-select.png" alt="삭제할 사진 선택 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>휴지통으로 이동</strong><span>삭제를 누르면 바로 사라지는 것이 아니라 휴지통으로 갑니다.</span></div>
+            <img class="gallery-crop" src="assets/week3-gallery/photo-delete-confirm.png" alt="휴지통으로 이동 확인 화면">
+          </li>
+          <li>
+            <div class="step-copy"><strong>복원하기</strong><span>메뉴에서 휴지통을 열고 복원을 누르면 다시 돌아옵니다.</span></div>
+            <div class="gallery-text-card">휴지통<br>사진 선택<br>복원</div>
+          </li>
         </ol>
       </section>
 
@@ -586,16 +657,16 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         <h2>수업 종료 확인</h2>
         <h3>오늘 해낸 것</h3>
         <div class="check-list">
-          <label><input type="checkbox"> 갤러리앱에서 사진을 찾았습니다.</label>
-          <label><input type="checkbox"> 마음에 드는 사진을 골랐습니다.</label>
-          <label><input type="checkbox"> 앨범 만들기 기능을 확인했습니다.</label>
-          <label><input type="checkbox"> 사진 자르기 또는 밝기 수정을 해봤습니다.</label>
-          <label><input type="checkbox"> 정리한 사진을 제출했습니다.</label>
+          <label><input type="checkbox"> 사진탭, 앨범탭, 스토리탭을 구분했습니다.</label>
+          <label><input type="checkbox"> 새 앨범을 만들었습니다.</label>
+          <label><input type="checkbox"> 카메라 사진을 만든 앨범으로 이동했습니다.</label>
+          <label><input type="checkbox"> 사진 편집과 AI 기능을 살펴봤습니다.</label>
+          <label><input type="checkbox"> 사진 삭제와 복원 방법을 확인했습니다.</label>
         </div>
 
         <div class="review-guide-box">
-          <h3>오늘 가장 기억에 남는 것은?</h3>
-          <p>아래 QR 제출 화면에서 오늘 느낀 점과 정리한 사진을 남깁니다.</p>
+          <h3>오늘 내가 직접 해본 기능 1가지는?</h3>
+          <p>아래 QR 제출 화면에서 오늘 해본 기능을 한 가지 적습니다.</p>
         </div>
 
         <div class="next-lesson">
@@ -651,8 +722,8 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         <h3>오늘 해낸 것</h3>
         <div class="check-list" id="submitChecklist"></div>
 
-        <label class="field-label" for="submitReviewText">오늘 가장 기억에 남는 것은?</label>
-        <textarea id="submitReviewText" rows="5" placeholder="오늘 느낀 점을 적어보세요"></textarea>
+        <label class="field-label" for="submitReviewText">오늘 내가 직접 해본 기능 1가지는?</label>
+        <textarea id="submitReviewText" rows="5" placeholder="예: 카메라 설정을 열어 봤어요"></textarea>
 
         <label class="field-label" for="submitFiles">사진 또는 이미지 추가</label>
         <input id="submitFiles" type="file" accept="image/*" multiple>

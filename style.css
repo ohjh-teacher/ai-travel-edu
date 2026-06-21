@@ -521,6 +521,71 @@ p {
   filter: brightness(1.22) contrast(1.22) saturate(1.08);
 }
 
+.gallery-visual-list li {
+  grid-template-columns: 110px minmax(0, 1fr) minmax(220px, 320px);
+  column-gap: 40px;
+}
+
+.gallery-visual-list .step-copy {
+  grid-column: 2;
+}
+
+.gallery-visual-list strong,
+.gallery-visual-list span {
+  grid-column: auto;
+}
+
+.gallery-crop,
+.gallery-text-card {
+  grid-column: 3;
+  justify-self: end;
+  display: block;
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box;
+  background: #fffaf2;
+  border: 4px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(77, 44, 24, 0.14);
+}
+
+.gallery-crop {
+  padding: 8px;
+  object-fit: contain;
+  filter: brightness(1.08) contrast(1.08) saturate(1.04);
+}
+
+.gallery-crop.is-short {
+  height: 150px;
+}
+
+.gallery-crop.is-wide {
+  height: 190px;
+}
+
+.gallery-text-card {
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.caution-note {
+  margin: 26px 0 0;
+  padding: 22px 26px;
+  color: #6b3f25;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.45;
+  background: #fff3d8;
+  border: 3px solid #f0d7ad;
+  border-radius: 24px;
+}
+
 .step-list {
   display: grid;
   gap: 28px;
@@ -1299,6 +1364,41 @@ body[data-screen="admin"] .plain-button {
     width: min(100%, 260px);
     height: 190px;
     margin-top: 12px;
+  }
+
+  .gallery-visual-list li {
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+  }
+
+  .gallery-visual-list .step-copy {
+    grid-column: 2;
+  }
+
+  .gallery-crop,
+  .gallery-text-card {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 280px);
+    height: 230px;
+    margin-top: 12px;
+  }
+
+  .gallery-crop.is-short {
+    height: 150px;
+  }
+
+  .gallery-crop.is-wide {
+    height: 190px;
+  }
+
+  .gallery-text-card {
+    font-size: 28px;
+  }
+
+  .caution-note {
+    font-size: 24px;
+    border-radius: 22px;
   }
 
   .primary-button,
