@@ -724,11 +724,11 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
       <section class="lesson-block">
         <h2>오늘 수업 목표</h2>
         <ul class="simple-list">
-          <li>1주차 여행 계획과 인포그래픽을 다시 봅니다.</li>
-          <li>AI에게 구체적인 이동 경로를 물어봅니다.</li>
-          <li>AI 답변에서 지도앱 검색어를 찾습니다.</li>
-          <li>지도앱에서 실제 이동 시간과 순서를 확인합니다.</li>
-          <li>무리한 일정은 AI에게 다시 수정해 달라고 요청합니다.</li>
+          <li>내가 만든 인포그래픽 이미지를 AI에 첨부합니다.</li>
+          <li>AI에게 내 일정에 맞는 동선을 정리해 달라고 요청합니다.</li>
+          <li>AI 답변에서 네이버지도 검색어를 찾습니다.</li>
+          <li>네이버지도에서 목적지와 경유지를 입력합니다.</li>
+          <li>AI 답변과 네이버지도 결과를 비교하고 일정을 다시 수정합니다.</li>
         </ul>
       </section>
 
@@ -736,51 +736,72 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         <h2>수업 순서</h2>
         <ol class="step-list route-lesson-list">
           <li>
-            <div class="step-copy"><strong>지난 여행 계획 확인</strong><span>1주차에서 만든 여행 계획과 인포그래픽 이미지를 꺼냅니다.</span></div>
-            <div class="route-card"><strong>확인할 것</strong><span>출발지<br>여행 장소<br>출발 시간<br>식사 시간</span></div>
+            <div class="step-copy"><strong>인포그래픽 이미지 첨부</strong><span>1주차에 만든 내 여행 인포그래픽 이미지를 ChatGPT에 첨부합니다.</span></div>
+            <div class="route-card"><strong>준비물</strong><span>1주차 인포그래픽<br>여행 장소<br>출발 시간<br>식사 시간</span></div>
           </li>
           <li class="step-with-prompt">
-            <strong>AI에게 경로 물어보기</strong>
-            <span>아래 프롬프트를 복사해서 내 여행 계획에 맞게 고쳐 입력합니다.</span>
+            <strong>AI에게 동선 정리 요청</strong>
+            <span>첨부한 이미지를 기준으로 내 여행 일정에 맞는 동선을 정리해 달라고 합니다.</span>
             <div class="inline-prompt">
-              <h3>여행 경로 확인 프롬프트</h3>
-              <p>AI에게 일정이 실제로 가능한지 물어볼 때 사용합니다.</p>
-              <pre id="routeCheckPrompt">나는 시니어 여행자가 직접 만든 여행 일정을 확인하려고 합니다.
-
-아래 일정이 실제로 가능한지 확인해 주세요.
-
-출발지:
-고덕동
-
-여행 장소:
-진안 마이산
-전주 한옥마을
-
-일정:
-오전 6시 고덕동 출발
-오전 9시 30분 진안 마이산 도착
-오후 12시 진안에서 점심
-오후 1시 30분 전주 한옥마을 이동
-오후 4시 30분 저녁 식사 및 간식
-오후 6시 30분 서울로 출발
-오후 9시 30분 고덕동 도착
+              <h3>이미지 기반 동선 정리 프롬프트</h3>
+              <p>1주차 인포그래픽 이미지를 첨부한 뒤 사용합니다.</p>
+              <pre id="routeCheckPrompt">첨부한 여행 인포그래픽 이미지를 보고,
+내 여행 일정에 맞는 실제 이동 동선을 정리해 주세요.
 
 확인해 주세요:
-1. 장소 이동 순서가 괜찮은지
-2. 자동차 이동 시간이 무리 없는지
-3. 어르신이 걷기 힘든 구간은 없는지
-4. 쉬는 시간을 어디에 넣으면 좋은지
-5. 지도앱에서 검색할 장소 이름을 알려주세요.</pre>
+1. 출발지와 도착지를 찾아 주세요.
+2. 방문 장소를 순서대로 정리해 주세요.
+3. 장소마다 네이버지도에서 검색할 이름을 알려 주세요.
+4. 장소 사이의 예상 이동 시간을 알려 주세요.
+5. 자동차, 대중교통, 도보 중 어떤 이동 방법이 좋은지 알려 주세요.
+6. 시니어가 걷기 힘든 구간이나 쉬어야 할 시간을 알려 주세요.
+7. 일정이 너무 빠듯하면 더 여유 있는 일정으로 바꿔 주세요.
+
+마지막에는 아래 형식으로 정리해 주세요.
+
+시간 / 장소 / 이동 방법 / 네이버지도 검색어 / 확인할 점</pre>
               <button class="primary-button copy-button" type="button" data-copy-target="routeCheckPrompt">프롬프트 복사</button>
+            </div>
+            <div class="inline-prompt">
+              <h3>인포그래픽이 없을 때 쓰는 프롬프트</h3>
+              <p>여행 장소와 시간을 직접 바꿔서 사용합니다.</p>
+              <pre id="routeTextPrompt">아래 여행 계획을 보고,
+실제 이동 동선을 정리해 주세요.
+
+여행 계획:
+1. 출발지: 고덕동
+2. 출발 시간: 오전 6시
+3. 이동 방법: 자동차
+4. 가고 싶은 곳: 진안 마이산, 전주 한옥마을
+5. 점심 식사: 진안 또는 전주 맛집
+6. 저녁 식사: 전주 한옥마을 근처
+7. 도착지: 고덕동
+8. 도착 희망 시간: 밤 9시 30분
+
+확인해 주세요:
+1. 방문 장소를 알맞은 순서로 정리해 주세요.
+2. 장소마다 네이버지도에서 검색할 이름을 알려 주세요.
+3. 장소 사이의 예상 이동 시간을 알려 주세요.
+4. 시니어가 무리하지 않도록 쉬는 시간을 넣어 주세요.
+5. 일정이 너무 빠듯하면 더 여유 있게 바꿔 주세요.
+
+마지막에는 아래 형식으로 정리해 주세요.
+
+시간 / 장소 / 이동 방법 / 네이버지도 검색어 / 확인할 점</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="routeTextPrompt">예시 프롬프트 복사</button>
             </div>
           </li>
           <li>
-            <div class="step-copy"><strong>AI 답변에서 검색어 찾기</strong><span>AI가 알려준 장소 이름을 지도앱 검색어로 적어 둡니다.</span></div>
-            <div class="route-card"><strong>검색어 예시</strong><span>고덕동<br>진안 마이산<br>전주 한옥마을<br>전주 맛집</span></div>
+            <div class="step-copy"><strong>AI 답변에서 지도앱 검색어 찾기</strong><span>AI가 알려준 장소 이름을 그대로 네이버지도에 입력할 준비를 합니다.</span></div>
+            <div class="route-card"><strong>찾을 것</strong><span>장소 이름<br>방문 순서<br>이동 방법<br>예상 시간</span></div>
           </li>
           <li>
-            <div class="step-copy"><strong>지도앱에서 검증하기</strong><span>지도앱에서 출발지와 도착지를 넣고 실제 이동 시간을 확인합니다.</span></div>
-            <div class="route-card"><strong>지도앱 확인</strong><span>출발지<br>도착지<br>자동차<br>소요 시간</span></div>
+            <div class="step-copy"><strong>네이버지도 목적지 입력</strong><span>네이버지도에서 길찾기를 누르고 출발지와 첫 목적지를 입력합니다.</span></div>
+            <div class="route-card"><strong>입력 순서</strong><span>길찾기<br>출발지<br>목적지<br>이동 방법</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>경유지 추가 / 다구간 길찾기</strong><span>방문 장소가 여러 곳이면 경유지를 추가해서 여행 순서대로 넣습니다.</span></div>
+            <div class="route-card"><strong>다구간 예시</strong><span>집<br>첫 관광지<br>식당<br>마지막 장소</span></div>
           </li>
           <li>
             <div class="step-copy"><strong>AI 답변과 비교하기</strong><span>AI가 말한 시간과 지도앱 시간이 다르면 지도앱을 먼저 믿습니다.</span></div>
@@ -794,12 +815,14 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
               <p>지도앱 결과와 AI 답변이 다를 때 사용합니다.</p>
               <pre id="routeRevisePrompt">지도앱에서 확인해 보니 실제 이동 시간이 더 오래 걸립니다.
 
-아래 내용을 반영해서 시니어가 무리하지 않는 여행 일정으로 다시 짜 주세요.
+첨부한 여행 일정은 유지하되,
+네이버지도에서 확인한 실제 이동 시간을 반영해서
+시니어가 무리하지 않는 여행 일정으로 다시 정리해 주세요.
 
 지도앱 확인 결과:
-고덕동에서 진안 마이산까지 자동차로 약 3시간 50분
-진안 마이산에서 전주 한옥마을까지 자동차로 약 1시간
-전주에서 고덕동까지 자동차로 약 3시간
+1. 출발지 → 첫 번째 장소: ___분
+2. 첫 번째 장소 → 두 번째 장소: ___분
+3. 두 번째 장소 → 세 번째 장소: ___분
 
 요청:
 1. 쉬는 시간을 넣어 주세요.
