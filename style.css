@@ -423,6 +423,10 @@ p {
   content: "3 WEEK";
 }
 
+.week-four .lesson-cover::after {
+  content: "4 WEEK";
+}
+
 .lesson-cover p:last-child {
   margin-top: 28px;
 }
@@ -711,6 +715,94 @@ p {
   background: #fff3d8;
   border: 3px solid #f0d7ad;
   border-radius: 24px;
+}
+
+.route-lesson-list li {
+  grid-template-columns: 110px minmax(0, 1fr) minmax(260px, 340px);
+  column-gap: 40px;
+  align-items: start;
+}
+
+.route-lesson-list .step-copy {
+  grid-column: 2;
+}
+
+.route-lesson-list strong,
+.route-lesson-list span {
+  grid-column: auto;
+}
+
+.route-card,
+.route-warning {
+  grid-column: 3;
+  justify-self: end;
+  width: 300px;
+  box-sizing: border-box;
+  padding: 24px;
+  background: #fff7ea;
+  border: 4px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 8px 18px rgba(77, 44, 24, 0.12);
+}
+
+.route-card strong,
+.route-warning strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--ink);
+  font-size: clamp(28px, 1.8vw, 36px);
+  line-height: 1.2;
+  font-weight: 900;
+  word-break: keep-all;
+}
+
+.route-card span,
+.route-warning span {
+  display: block;
+  color: var(--muted);
+  font-size: clamp(24px, 1.45vw, 31px);
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.route-warning {
+  background: #fff3d8;
+  border-color: #e6c994;
+}
+
+.route-warning strong {
+  color: var(--stamp);
+}
+
+.route-check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.route-check-grid article {
+  padding: 24px 26px;
+  background: #fff7ea;
+  border: 3px solid var(--line);
+  border-radius: 20px;
+}
+
+.route-check-grid strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-size: clamp(28px, 1.8vw, 36px);
+  line-height: 1.25;
+  font-weight: 900;
+  word-break: keep-all;
+}
+
+.route-check-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: clamp(24px, 1.45vw, 31px);
+  line-height: 1.4;
+  word-break: keep-all;
 }
 
 .step-list {
@@ -1572,6 +1664,32 @@ body[data-screen="admin"] .plain-button {
   .caution-note {
     font-size: 24px;
     border-radius: 22px;
+  }
+
+  .route-lesson-list li {
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+  }
+
+  .route-lesson-list .step-copy {
+    grid-column: 2;
+  }
+
+  .route-card,
+  .route-warning {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .route-check-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .route-check-grid article {
+    padding: 20px;
   }
 
   .primary-button,

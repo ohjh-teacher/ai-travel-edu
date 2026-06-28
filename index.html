@@ -696,8 +696,8 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
 
         <div class="next-lesson">
           <h3>다음 수업 안내</h3>
-          <p><strong>4주차 | 지도와 길찾기</strong></p>
-          <p>지도 앱으로 길찾기와 여행 동선을 연습해 봅니다.</p>
+          <p><strong>4주차 | AI 경로와 지도앱 검증</strong></p>
+          <p>AI가 알려준 여행 경로를 지도앱에서 실제 시간으로 확인합니다.</p>
         </div>
 
         <h3>다음 수업 참여 여부</h3>
@@ -709,6 +709,154 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         <p>수업 마지막에 아래 QR코드를 찍고 후기와 사진을 남겨주세요.</p>
         <div class="submit-qr" data-week="3">
           <img alt="3주차 후기 제출 QR코드">
+          <a class="secondary-button" href="#">제출 화면 열기</a>
+        </div>
+      </section>
+    </section>
+
+    <section class="screen week-four" id="weekFourScreen" aria-labelledby="weekFourTitle">
+      <article class="lesson-cover">
+        <p class="stamp-label">4주차</p>
+        <h1 id="weekFourTitle">4주차 | AI 경로와 지도앱 검증</h1>
+        <p>AI가 알려준 여행 경로를<br>지도앱에서 실제 시간으로 확인합니다.</p>
+      </article>
+
+      <section class="lesson-block">
+        <h2>오늘 수업 목표</h2>
+        <ul class="simple-list">
+          <li>1주차 여행 계획과 인포그래픽을 다시 봅니다.</li>
+          <li>AI에게 구체적인 이동 경로를 물어봅니다.</li>
+          <li>AI 답변에서 지도앱 검색어를 찾습니다.</li>
+          <li>지도앱에서 실제 이동 시간과 순서를 확인합니다.</li>
+          <li>무리한 일정은 AI에게 다시 수정해 달라고 요청합니다.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>수업 순서</h2>
+        <ol class="step-list route-lesson-list">
+          <li>
+            <div class="step-copy"><strong>지난 여행 계획 확인</strong><span>1주차에서 만든 여행 계획과 인포그래픽 이미지를 꺼냅니다.</span></div>
+            <div class="route-card"><strong>확인할 것</strong><span>출발지<br>여행 장소<br>출발 시간<br>식사 시간</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>AI에게 경로 물어보기</strong>
+            <span>아래 프롬프트를 복사해서 내 여행 계획에 맞게 고쳐 입력합니다.</span>
+            <div class="inline-prompt">
+              <h3>여행 경로 확인 프롬프트</h3>
+              <p>AI에게 일정이 실제로 가능한지 물어볼 때 사용합니다.</p>
+              <pre id="routeCheckPrompt">나는 시니어 여행자가 직접 만든 여행 일정을 확인하려고 합니다.
+
+아래 일정이 실제로 가능한지 확인해 주세요.
+
+출발지:
+고덕동
+
+여행 장소:
+진안 마이산
+전주 한옥마을
+
+일정:
+오전 6시 고덕동 출발
+오전 9시 30분 진안 마이산 도착
+오후 12시 진안에서 점심
+오후 1시 30분 전주 한옥마을 이동
+오후 4시 30분 저녁 식사 및 간식
+오후 6시 30분 서울로 출발
+오후 9시 30분 고덕동 도착
+
+확인해 주세요:
+1. 장소 이동 순서가 괜찮은지
+2. 자동차 이동 시간이 무리 없는지
+3. 어르신이 걷기 힘든 구간은 없는지
+4. 쉬는 시간을 어디에 넣으면 좋은지
+5. 지도앱에서 검색할 장소 이름을 알려주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="routeCheckPrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>AI 답변에서 검색어 찾기</strong><span>AI가 알려준 장소 이름을 지도앱 검색어로 적어 둡니다.</span></div>
+            <div class="route-card"><strong>검색어 예시</strong><span>고덕동<br>진안 마이산<br>전주 한옥마을<br>전주 맛집</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>지도앱에서 검증하기</strong><span>지도앱에서 출발지와 도착지를 넣고 실제 이동 시간을 확인합니다.</span></div>
+            <div class="route-card"><strong>지도앱 확인</strong><span>출발지<br>도착지<br>자동차<br>소요 시간</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>AI 답변과 비교하기</strong><span>AI가 말한 시간과 지도앱 시간이 다르면 지도앱을 먼저 믿습니다.</span></div>
+            <div class="route-warning"><strong>중요</strong><span>AI 이동 시간은 참고용입니다.<br>실제 길찾기는 지도앱에서 다시 확인합니다.</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>무리한 일정 다시 수정</strong>
+            <span>지도앱에서 더 오래 걸리면 AI에게 쉬는 시간을 넣어 다시 짜 달라고 합니다.</span>
+            <div class="inline-prompt">
+              <h3>일정 다시 수정 프롬프트</h3>
+              <p>지도앱 결과와 AI 답변이 다를 때 사용합니다.</p>
+              <pre id="routeRevisePrompt">지도앱에서 확인해 보니 실제 이동 시간이 더 오래 걸립니다.
+
+아래 내용을 반영해서 시니어가 무리하지 않는 여행 일정으로 다시 짜 주세요.
+
+지도앱 확인 결과:
+고덕동에서 진안 마이산까지 자동차로 약 3시간 50분
+진안 마이산에서 전주 한옥마을까지 자동차로 약 1시간
+전주에서 고덕동까지 자동차로 약 3시간
+
+요청:
+1. 쉬는 시간을 넣어 주세요.
+2. 걷는 시간을 줄여 주세요.
+3. 식사 시간을 여유 있게 잡아 주세요.
+4. 너무 빠듯한 일정은 빼거나 줄여 주세요.
+5. 최종 일정을 시간표로 다시 정리해 주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="routeRevisePrompt">수정 프롬프트 복사</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block">
+        <h2>지도앱에서 꼭 확인할 것</h2>
+        <div class="route-check-grid">
+          <article><strong>출발지</strong><span>내가 출발하는 곳이 맞는지 확인합니다.</span></article>
+          <article><strong>도착지</strong><span>장소 이름이 정확한지 확인합니다.</span></article>
+          <article><strong>이동 방법</strong><span>자동차, 대중교통, 도보 중 맞는 것을 고릅니다.</span></article>
+          <article><strong>소요 시간</strong><span>AI가 말한 시간과 지도앱 시간을 비교합니다.</span></article>
+          <article><strong>걷는 구간</strong><span>시니어에게 무리한 도보 구간이 있는지 봅니다.</span></article>
+          <article><strong>쉬는 시간</strong><span>오래 이동하면 중간에 쉬는 시간을 넣습니다.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-block completion-guide">
+        <h2>수업 종료 확인</h2>
+        <h3>오늘 해낸 것</h3>
+        <div class="check-list">
+          <label><input type="checkbox"> 1주차 여행 계획과 인포그래픽을 확인했습니다.</label>
+          <label><input type="checkbox"> AI에게 여행 경로 확인 프롬프트를 입력했습니다.</label>
+          <label><input type="checkbox"> AI 답변에서 지도앱 검색어를 찾았습니다.</label>
+          <label><input type="checkbox"> 지도앱에서 실제 이동 시간을 확인했습니다.</label>
+          <label><input type="checkbox"> AI 답변과 지도앱 결과를 비교했습니다.</label>
+          <label><input type="checkbox"> 무리한 일정을 다시 수정해 봤습니다.</label>
+        </div>
+
+        <div class="review-guide-box">
+          <h3>가장 재밌었거나 좋았던 한가지를 적어주세요.</h3>
+          <p>아래 QR 제출 화면에서 좋았던 내용을 한 가지 적습니다.</p>
+        </div>
+
+        <div class="next-lesson">
+          <h3>다음 수업 안내</h3>
+          <p><strong>5주차 | 기차·버스 이용</strong></p>
+          <p>스마트폰으로 교통편을 확인하고 예매 연습을 해봅니다.</p>
+        </div>
+
+        <h3>다음 수업 참여 여부</h3>
+        <p>참여 여부도 QR 제출 화면에서 함께 선택합니다.</p>
+      </section>
+
+      <section class="lesson-block submit-qr-block">
+        <h2>수강생 후기 제출</h2>
+        <p>수업 마지막에 아래 QR코드를 찍고 후기와 사진을 남겨주세요.</p>
+        <div class="submit-qr" data-week="4">
+          <img alt="4주차 후기 제출 QR코드">
           <a class="secondary-button" href="#">제출 화면 열기</a>
         </div>
       </section>

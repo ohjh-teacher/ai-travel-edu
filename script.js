@@ -17,7 +17,7 @@ const weeks = [
   ["1주차", "AI와 여행지·여행 계획", "AI와 함께 여행지를 찾고 나만의 여행 일정을 만들어봅니다.", "weekOne", true],
   ["2주차", "카메라 기능과 설정", "스마트폰 카메라의 기본 기능과 사진 설정을 익혀봅니다.", "weekTwo", true],
   ["3주차", "갤러리앱과 사진 정리", "갤러리앱에서 사진을 찾고 앨범 만들기와 사진 수정을 연습합니다.", "weekThree", true],
-  ["4주차", "지도와 길찾기", "지도 앱으로 길찾기와 여행 동선을 연습해 봅니다.", "", false],
+  ["4주차", "AI 경로와 지도앱 검증", "AI가 만든 여행 경로를 지도앱에서 실제 이동 시간으로 확인합니다.", "weekFour", true],
   ["5주차", "기차·버스 이용", "스마트폰으로 교통편을 확인하고 예매 연습을 해봅니다.", "", false],
   ["6주차", "숙소와 맛집 찾기", "숙소와 맛집 정보를 검색하고 후기도 알아봅니다.", "", false],
   ["7주차", "AI 번역과 여행 회화 활용", "번역 기능과 AI 음성 대화를 활용하여 해외 여행 상황을 연습해 봅니다.", "", false],
@@ -34,6 +34,7 @@ const screens = {
   weekOne: document.getElementById("weekOneScreen"),
   weekTwo: document.getElementById("weekTwoScreen"),
   weekThree: document.getElementById("weekThreeScreen"),
+  weekFour: document.getElementById("weekFourScreen"),
   submit: document.getElementById("submitScreen"),
   admin: document.getElementById("adminScreen")
 };
@@ -99,6 +100,14 @@ const lessonChecklists = {
     "카메라 사진을 만든 앨범으로 이동했습니다.",
     "사진 편집과 AI 기능을 살펴봤습니다.",
     "사진 삭제와 복원 방법을 확인했습니다."
+  ],
+  4: [
+    "1주차 여행 계획과 인포그래픽을 확인했습니다.",
+    "AI에게 여행 경로 확인 프롬프트를 입력했습니다.",
+    "AI 답변에서 지도앱 검색어를 찾았습니다.",
+    "지도앱에서 실제 이동 시간을 확인했습니다.",
+    "AI 답변과 지도앱 결과를 비교했습니다.",
+    "무리한 일정을 다시 수정해 봤습니다."
   ]
 };
 
