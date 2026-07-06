@@ -884,8 +884,8 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
 
         <div class="next-lesson">
           <h3>다음 수업 안내</h3>
-          <p><strong>5주차 | 기차·버스 이용</strong></p>
-          <p>스마트폰으로 교통편을 확인하고 예매 연습을 해봅니다.</p>
+          <p><strong>5주차 | AI와 교통편 찾기·예매 준비</strong></p>
+          <p>AI로 교통편을 찾고 실제 앱에서 시간표를 확인합니다.</p>
         </div>
 
         <h3>다음 수업 참여 여부</h3>
@@ -897,6 +897,185 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
         <p>수업 마지막에 아래 QR코드를 찍고 후기와 사진을 남겨주세요.</p>
         <div class="submit-qr" data-week="4">
           <img alt="4주차 후기 제출 QR코드">
+          <a class="secondary-button" href="#">제출 화면 열기</a>
+        </div>
+      </section>
+    </section>
+
+    <section class="screen week-five" id="weekFiveScreen" aria-labelledby="weekFiveTitle">
+      <article class="lesson-cover">
+        <p class="stamp-label">5주차</p>
+        <h1 id="weekFiveTitle">5주차 | AI와 교통편 찾기·예매 준비</h1>
+        <p>AI가 알려준 교통편을<br>실제 앱에서 다시 확인합니다.</p>
+      </article>
+
+      <section class="lesson-block">
+        <h2>오늘 수업 목표</h2>
+        <ul class="simple-list">
+          <li>내 여행 일정에서 기차·버스 이동 구간을 찾습니다.</li>
+          <li>AI에게 교통편을 물어보고 예매앱 검색어를 찾습니다.</li>
+          <li>교통앱에서 날짜, 시간, 출발지, 도착지, 승객 유형을 확인합니다.</li>
+          <li>실제 예매 전 꼭 확인할 내용을 익힙니다.</li>
+          <li>AI 답변과 교통앱 결과를 비교해 일정을 다시 정리합니다.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>수업 순서</h2>
+        <ol class="step-list route-lesson-list">
+          <li>
+            <div class="step-copy"><strong>이동 구간 확인</strong><span>내 여행 일정에서 어디에서 어디로 이동하는지 먼저 찾습니다.</span></div>
+            <div class="route-card"><strong>찾을 것</strong><span>출발지<br>도착지<br>여행 날짜<br>인원</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>AI에게 교통편 물어보기</strong>
+            <span>출발지, 도착지, 날짜, 승객 유형과 인원을 넣어 기차와 버스 방법을 물어봅니다.</span>
+            <div class="inline-prompt">
+              <h3>교통편 찾기 프롬프트</h3>
+              <p>여행 날짜와 장소를 내 일정에 맞게 바꿔서 사용합니다.</p>
+              <pre id="transportFindPrompt">나는 시니어 여행자가 이용하기 쉬운 교통편을 찾고 있습니다.
+
+아래 조건에 맞춰 기차와 버스 이동 방법을 비교해 주세요.
+
+여행 정보:
+1. 출발지: 서울
+2. 도착지: 전주
+3. 여행 날짜: 2026년 __월 __일
+4. 출발 희망 시간: 오전 __시쯤
+5. 승객 유형: 어른 __명, 청소년 __명, 어린이 __명, 경로 __명
+6. 동승 인원: 총 __명
+7. 걷는 거리는 짧을수록 좋습니다.
+8. 환승은 적을수록 좋습니다.
+
+확인해 주세요:
+1. 기차를 이용할 때 출발역과 도착역을 알려 주세요.
+2. 버스를 이용할 때 출발 터미널과 도착 터미널을 알려 주세요.
+3. 각 방법의 예상 이동 시간을 알려 주세요.
+4. 예매앱에서 검색할 이름을 알려 주세요.
+5. 승객 유형에 따라 요금이 달라질 수 있는지 알려 주세요.
+6. 전체 요금 예상 범위를 알려 주세요.
+7. 시니어에게 더 편한 방법을 추천해 주세요.
+
+마지막에는 아래 형식으로 정리해 주세요.
+
+교통수단 / 출발지 / 도착지 / 예상 시간 / 앱 검색어 / 요금 예상 범위 / 확인할 점</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="transportFindPrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>AI 답변에서 검색어 찾기</strong><span>AI가 알려준 역 이름과 터미널 이름을 그대로 적어 둡니다.</span></div>
+            <div class="route-card"><strong>검색어</strong><span>서울역<br>전주역<br>센트럴시티<br>전주고속버스터미널</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>기차와 버스 구분</strong><span>KTX·SRT·일반열차와 고속버스·시외버스를 구분합니다.</span></div>
+            <div class="route-card"><strong>교통수단</strong><span>기차<br>고속버스<br>시외버스<br>환승 여부</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>교통앱에서 시간표 확인</strong><span>AI 답변은 참고용입니다. 실제 시간표는 교통앱에서 다시 확인합니다.</span></div>
+            <div class="route-warning"><strong>중요</strong><span>예매 가능 시간과 좌석은 앱에서 바뀔 수 있습니다.<br>반드시 앱 화면을 먼저 믿습니다.</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>승객 유형과 인원 설정</strong><span>어른, 청소년, 어린이, 경로 인원에 따라 요금이 달라질 수 있습니다.</span></div>
+            <div class="route-card"><strong>인원</strong><span>어른<br>청소년<br>어린이<br>경로<br>총 인원</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>예매 전 꼭 확인</strong><span>결제 전에 날짜, 출발 시간, 승객 유형, 예상 요금을 천천히 다시 봅니다.</span></div>
+            <div class="route-card"><strong>확인</strong><span>날짜<br>시간<br>승객 유형<br>총 인원<br>요금</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>AI에게 다시 정리 요청</strong>
+            <span>교통앱에서 확인한 시간표를 넣어 하루 일정을 다시 정리합니다.</span>
+            <div class="inline-prompt">
+              <h3>교통앱 확인 후 수정 프롬프트</h3>
+              <p>앱에서 확인한 실제 시간표를 적어 넣습니다.</p>
+              <pre id="transportRevisePrompt">교통앱에서 실제 시간표를 확인했습니다.
+
+아래 결과를 반영해서
+시니어가 무리하지 않는 여행 일정으로 다시 정리해 주세요.
+
+교통앱 확인 결과:
+1. 출발 교통편: ________
+2. 출발 시간: ________
+3. 도착 시간: ________
+4. 출발역 또는 터미널: ________
+5. 도착역 또는 터미널: ________
+6. 승객 유형과 인원: ________
+7. 요금 예상 범위: ________
+
+요청:
+1. 출발 전에 도착해야 하는 여유 시간을 넣어 주세요.
+2. 역이나 터미널에서 걷는 시간을 고려해 주세요.
+3. 식사 시간과 쉬는 시간을 넣어 주세요.
+4. 너무 빠듯한 일정은 줄여 주세요.
+5. 최종 일정을 시간표로 다시 정리해 주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="transportRevisePrompt">수정 프롬프트 복사</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block route-news-block">
+        <h2>교통앱에서 보는 것</h2>
+        <p>오늘은 실제 결제보다 예매 전 확인을 연습합니다. 회원가입, 결제, 환불은 강사 안내에 따라 천천히 진행합니다.</p>
+        <div class="route-news-grid">
+          <article>
+            <h3>기차</h3>
+            <p>코레일톡, SRT 앱에서 출발역, 도착역, 날짜, 시간, 승객 유형을 확인합니다. KTX, SRT, 일반열차 이름을 구분합니다.</p>
+          </article>
+          <article>
+            <h3>버스</h3>
+            <p>고속버스와 시외버스는 터미널 이름과 인원 설정이 중요합니다. 출발 터미널과 도착 터미널을 다시 확인합니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-block">
+        <h2>예매 전 꼭 확인할 것</h2>
+        <div class="route-check-grid">
+          <article><strong>날짜</strong><span>오늘 날짜가 아니라 여행 날짜인지 확인합니다.</span></article>
+          <article><strong>시간</strong><span>오전과 오후를 헷갈리지 않게 봅니다.</span></article>
+          <article><strong>출발지</strong><span>내가 탈 역이나 터미널이 맞는지 확인합니다.</span></article>
+          <article><strong>도착지</strong><span>비슷한 이름의 역이나 터미널을 조심합니다.</span></article>
+          <article><strong>승객 유형</strong><span>어른, 청소년, 어린이, 경로 인원을 확인합니다.</span></article>
+          <article><strong>요금</strong><span>인원에 따른 전체 요금 예상 범위를 확인합니다.</span></article>
+          <article><strong>좌석</strong><span>좌석 선택이 필요한지 확인합니다.</span></article>
+          <article><strong>취소</strong><span>취소 수수료와 환불 시간을 확인합니다.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-block completion-guide">
+        <h2>수업 종료 확인</h2>
+        <h3>오늘 해낸 것</h3>
+        <div class="check-list">
+          <label><input type="checkbox"> 내 여행 일정에서 이동 구간을 찾았습니다.</label>
+          <label><input type="checkbox"> AI에게 기차와 버스 교통편을 물어봤습니다.</label>
+          <label><input type="checkbox"> AI 답변에서 앱 검색어를 찾았습니다.</label>
+          <label><input type="checkbox"> 교통앱에서 날짜와 시간을 확인했습니다.</label>
+          <label><input type="checkbox"> 승객 유형과 동승 인원을 확인했습니다.</label>
+          <label><input type="checkbox"> 예매 전 확인할 내용을 점검했습니다.</label>
+          <label><input type="checkbox"> AI 답변과 교통앱 결과를 비교했습니다.</label>
+        </div>
+
+        <div class="review-guide-box">
+          <h3>가장 재밌었거나 좋았던 한가지를 적어주세요.</h3>
+          <p>아래 QR 제출 화면에서 좋았던 내용을 한 가지 적습니다.</p>
+        </div>
+
+        <div class="next-lesson">
+          <h3>다음 수업 안내</h3>
+          <p><strong>6주차 | 숙소와 맛집 찾기</strong></p>
+          <p>숙소와 맛집 정보를 검색하고 후기도 함께 확인합니다.</p>
+        </div>
+
+        <h3>다음 수업 참여 여부</h3>
+        <p>참여 여부도 QR 제출 화면에서 함께 선택합니다.</p>
+      </section>
+
+      <section class="lesson-block submit-qr-block">
+        <h2>수강생 후기 제출</h2>
+        <p>수업 마지막에 아래 QR코드를 찍고 후기와 사진을 남겨주세요.</p>
+        <div class="submit-qr" data-week="5">
+          <img alt="5주차 후기 제출 QR코드">
           <a class="secondary-button" href="#">제출 화면 열기</a>
         </div>
       </section>
