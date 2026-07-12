@@ -70,6 +70,7 @@ main {
 #weekThreeScreen,
 #weekFourScreen,
 #weekFiveScreen,
+#weekSixScreen,
 #submitScreen,
 #adminScreen {
   width: min(100%, 1480px);

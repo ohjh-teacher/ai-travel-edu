@@ -19,7 +19,7 @@ const weeks = [
   ["3주차", "갤러리앱과 사진 정리", "갤러리앱에서 사진을 찾고 앨범 만들기와 사진 수정을 연습합니다.", "weekThree", true],
   ["4주차", "AI 경로와 지도앱 검증", "AI가 만든 여행 경로를 지도앱에서 실제 이동 시간으로 확인합니다.", "weekFour", true],
   ["5주차", "AI와 교통편 찾기·예매 준비", "AI로 기차와 버스 이동 방법을 정리하고 실제 교통앱에서 확인합니다.", "weekFive", true],
-  ["6주차", "숙소와 맛집 찾기", "숙소와 맛집 정보를 검색하고 후기도 알아봅니다.", "", false],
+  ["6주차", "AI와 숙소·맛집 찾기", "AI로 숙소와 맛집 후보를 찾고 지도앱에서 위치와 후기를 확인합니다.", "weekSix", true],
   ["7주차", "AI 번역과 여행 회화 활용", "번역 기능과 AI 음성 대화를 활용하여 해외 여행 상황을 연습해 봅니다.", "", false],
   ["8주차", "키오스크·QR 활용", "키오스크 주문과 QR 기능을 체험하며 여행 중 필요한 기능을 익혀봅니다.", "", false],
   ["9주차", "안전한 스마트폰 활용", "위치 공유와 긴급신고 기능을 배우고 AI와 함께 위험 문자를 확인해 봅니다.", "", false],
@@ -36,6 +36,7 @@ const screens = {
   weekThree: document.getElementById("weekThreeScreen"),
   weekFour: document.getElementById("weekFourScreen"),
   weekFive: document.getElementById("weekFiveScreen"),
+  weekSix: document.getElementById("weekSixScreen"),
   submit: document.getElementById("submitScreen"),
   admin: document.getElementById("adminScreen")
 };
@@ -118,6 +119,14 @@ const lessonChecklists = {
     "승객 유형과 동승 인원을 확인했습니다.",
     "예매 전 확인할 내용을 점검했습니다.",
     "AI 답변과 교통앱 결과를 비교했습니다."
+  ],
+  6: [
+    "내 여행 일정에서 숙소와 식사 위치를 확인했습니다.",
+    "AI에게 숙소 후보를 물어봤습니다.",
+    "AI에게 맛집 후보를 물어봤습니다.",
+    "지도앱에서 위치와 거리를 확인했습니다.",
+    "최근 후기와 사진 후기를 확인했습니다.",
+    "예약 전 확인할 내용을 점검했습니다."
   ]
 };
 
