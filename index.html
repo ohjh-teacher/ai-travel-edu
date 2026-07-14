@@ -1277,18 +1277,18 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
     <section class="screen week-seven" id="weekSevenScreen" aria-labelledby="weekSevenTitle">
       <article class="lesson-cover">
         <p class="stamp-label">7주차</p>
-        <h1 id="weekSevenTitle">7주차 | AI 번역과 여행 회화 활용</h1>
-        <p>여행에서 필요한 말을<br>AI와 번역앱으로 쉽게 연습합니다.</p>
+        <h1 id="weekSevenTitle">7주차 | AI 번역과 구글 번역기 활용</h1>
+        <p>여행에서 필요한 말을<br>AI와 구글 번역기로 쉽게 연습합니다.</p>
       </article>
 
       <section class="lesson-block">
         <h2>오늘 수업 목표</h2>
         <ul class="simple-list">
-          <li>여행에서 자주 쓰는 짧은 문장을 고릅니다.</li>
-          <li>AI에게 쉬운 여행 문장을 만들어 달라고 합니다.</li>
-          <li>번역앱에서 문장을 번역하고 소리로 들어봅니다.</li>
-          <li>음성 입력으로 말하기를 연습합니다.</li>
-          <li>어색한 번역은 AI에게 더 쉬운 표현으로 바꿔 달라고 합니다.</li>
+          <li>AI에게 여행에서 자주 쓰는 회화 문장을 뽑아 달라고 합니다.</li>
+          <li>AI와 짧은 역할극으로 외국어 회화를 연습합니다.</li>
+          <li>어렵거나 긴 문장은 AI에게 더 쉽게 바꿔 달라고 합니다.</li>
+          <li>구글 번역기에서 언어 선택, 입력, 듣기, 말하기, 카메라 번역을 익힙니다.</li>
+          <li>중요한 표현은 구글 번역기로 다시 확인합니다.</li>
         </ul>
       </section>
 
@@ -1300,53 +1300,57 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
             <div class="route-card"><strong>상황</strong><span>공항<br>호텔<br>식당<br>길찾기<br>쇼핑</span></div>
           </li>
           <li class="step-with-prompt">
-            <strong>AI에게 문장 만들기 요청</strong>
-            <span>내가 말하고 싶은 내용을 짧고 쉬운 여행 문장으로 바꿉니다.</span>
+            <strong>AI에게 자주 쓰는 문장 뽑기 요청</strong>
+            <span>여행 중 자주 쓰는 말을 상황별로 먼저 정리합니다.</span>
             <div class="inline-prompt">
-              <h3>여행 회화 문장 만들기 프롬프트</h3>
-              <p>상황과 언어를 바꿔서 사용합니다.</p>
-              <pre id="travelPhrasePrompt">나는 해외여행에서 쓸 쉬운 회화 문장을 연습하고 있습니다.
+              <h3>여행 회화 문장 뽑기 프롬프트</h3>
+              <p>필요한 상황을 더하거나 빼서 사용합니다.</p>
+              <pre id="travelPhrasePrompt">해외여행에서 자주 쓰는 쉬운 회화 문장을 알려 주세요.
 
-아래 상황에 맞는 짧은 문장을 만들어 주세요.
+상황별로 정리해 주세요.
+1. 공항
+2. 호텔
+3. 식당
+4. 길찾기
+5. 쇼핑
+6. 도움 요청
 
-상황:
-1. 장소: 호텔
-2. 하고 싶은 말: 체크인을 하고 싶어요
-3. 언어: 영어
-4. 조건: 문장은 짧고 쉬워야 합니다.
-5. 발음이 어려운 단어는 피해주세요.
+조건:
+1. 문장은 짧게 만들어 주세요.
+2. 시니어가 천천히 따라 말하기 쉽게 만들어 주세요.
+3. 영어 문장과 한글 발음을 함께 써 주세요.
+4. 상대방이 자주 대답할 말도 함께 알려 주세요.
+5. 꼭 필요한 표현부터 알려 주세요.
 
-요청:
-1. 한국어 문장을 먼저 써 주세요.
-2. 외국어 문장을 써 주세요.
-3. 한글 발음도 함께 써 주세요.
-4. 더 공손한 표현이 있으면 알려 주세요.
-5. 직원이 답할 수 있는 말도 2개 알려 주세요.
-
-마지막에는 아래 형식으로 정리해 주세요.
-
-상황 / 한국어 / 외국어 / 한글 발음 / 상대방 답변</pre>
+마지막에는 상황별로 보기 쉽게 정리해 주세요.</pre>
               <button class="primary-button copy-button" type="button" data-copy-target="travelPhrasePrompt">프롬프트 복사</button>
             </div>
           </li>
-          <li>
-            <div class="step-copy"><strong>번역앱에서 확인</strong><span>AI가 만든 문장을 번역앱에 넣고 뜻이 맞는지 확인합니다.</span></div>
-            <div class="route-warning"><strong>중요</strong><span>AI 번역은 참고용입니다.<br>번역앱에서도 다시 확인합니다.</span></div>
-          </li>
-          <li>
-            <div class="step-copy"><strong>번역앱에서 소리로 듣기</strong><span>번역앱의 스피커 버튼을 눌러 문장이 어떻게 들리는지 확인합니다.</span></div>
-            <div class="route-card"><strong>듣기</strong><span>스피커<br>천천히 듣기<br>따라 말하기<br>다시 듣기</span></div>
-          </li>
-          <li>
-            <div class="step-copy"><strong>음성 입력 연습</strong><span>마이크 버튼을 눌러 내가 말한 문장이 잘 입력되는지 확인합니다.</span></div>
-            <div class="route-card"><strong>말하기</strong><span>마이크<br>짧게 말하기<br>천천히 말하기<br>다시 말하기</span></div>
+          <li class="step-with-prompt">
+            <strong>AI와 역할극으로 연습하기</strong>
+            <span>AI에게 직원 역할을 맡기고 한 문장씩 천천히 대화합니다.</span>
+            <div class="inline-prompt">
+              <h3>외국어 회화 역할극 프롬프트</h3>
+              <p>호텔, 식당, 길찾기처럼 상황을 바꿔서 사용합니다.</p>
+              <pre id="rolePlayPrompt">너는 호텔 직원이고, 나는 여행객입니다.
+
+아주 쉬운 ________로 체크인 대화 연습을 해 주세요.
+
+요청:
+1. 한 번에 한 문장만 말해 주세요.
+2. 내가 대답하면 다음 문장으로 넘어가 주세요.
+3. 내 답이 어색하면 더 쉬운 표현으로 고쳐 주세요.
+4. 영어 문장 아래에 한글 발음을 써 주세요.
+5. 대화가 끝나면 오늘 연습한 문장 5개를 다시 정리해 주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="rolePlayPrompt">역할극 프롬프트 복사</button>
+            </div>
           </li>
           <li class="step-with-prompt">
             <strong>어색한 문장 다시 바꾸기</strong>
             <span>번역이 길거나 어렵게 나오면 AI에게 더 쉬운 말로 바꿔 달라고 합니다.</span>
             <div class="inline-prompt">
               <h3>쉬운 표현으로 바꾸기 프롬프트</h3>
-              <p>번역앱에서 어색하게 느껴진 문장을 붙여 넣고 사용합니다.</p>
+              <p>구글 번역기에서 어색하게 느껴진 문장을 붙여 넣고 사용합니다.</p>
               <pre id="simplePhrasePrompt">아래 문장이 여행 중에 말하기에는 조금 어렵습니다.
 
 더 짧고 쉬운 표현으로 바꿔 주세요.
@@ -1363,11 +1367,78 @@ ________
               <button class="primary-button copy-button" type="button" data-copy-target="simplePhrasePrompt">쉬운 표현 복사</button>
             </div>
           </li>
+          <li>
+            <div class="step-copy"><strong>구글 번역기로 다시 확인하기</strong><span>AI가 만든 중요한 문장을 구글 번역기에 넣고 뜻과 발음을 확인합니다.</span></div>
+            <div class="route-warning"><strong>중요</strong><span>AI 답변은 참고용입니다.<br>중요한 문장은 번역기로 다시 확인합니다.</span></div>
+          </li>
         </ol>
       </section>
 
       <section class="lesson-block">
-        <h2>여행에서 자주 쓰는 말</h2>
+        <h2>구글 번역기 사용 순서</h2>
+        <ol class="step-list route-lesson-list">
+          <li>
+            <div class="step-copy"><strong>앱 열기</strong><span>휴대폰에서 구글 번역기 앱을 누릅니다. 앱이 없으면 강사와 함께 설치 여부를 확인합니다.</span></div>
+            <div class="route-card"><strong>시작</strong><span>구글 번역기<br>앱 열기<br>인터넷 확인</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>위쪽 언어 줄 확인</strong><span>왼쪽은 내가 쓰는 말, 오른쪽은 번역할 말을 고릅니다. 가운데 화살표는 방향을 바꿀 때 씁니다.</span></div>
+            <div class="route-card"><strong>예시</strong><span>한국어 → ________<br>________ → 한국어<br>화살표로 바꾸기</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>입력창 누르기</strong><span>가운데 큰 입력창을 누르고 한국어 문장을 씁니다. 긴 말은 한 문장씩 나누어 씁니다.</span></div>
+            <div class="route-card"><strong>입력</strong><span>한 문장씩<br>천천히 쓰기<br>오타 확인</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>번역 결과 카드 보기</strong><span>아래에 나온 번역 문장을 읽고 뜻이 맞는지 확인합니다. 이상하면 원래 문장을 더 쉽게 고칩니다.</span></div>
+            <div class="route-warning"><strong>주의</strong><span>이름, 장소, 날짜, 금액은<br>화면을 보여주며 다시 확인합니다.</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>스피커로 듣기</strong><span>스피커 버튼을 눌러 발음을 듣고, 천천히 따라 말해 봅니다.</span></div>
+            <div class="route-card"><strong>듣기</strong><span>스피커<br>다시 듣기<br>따라 말하기</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>마이크로 말하기</strong><span>마이크 버튼을 누르고 짧게 말합니다. 주변이 시끄러우면 글자로 입력하는 것이 더 정확합니다.</span></div>
+            <div class="route-card"><strong>말하기</strong><span>마이크<br>짧게 말하기<br>천천히 말하기</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>대화 기능 사용하기</strong><span>두 사람이 번갈아 말할 때 사용합니다. 내 언어와 상대방 언어가 맞게 선택되었는지 먼저 확인합니다.</span></div>
+            <div class="route-card"><strong>대화</strong><span>내 말<br>상대방 말<br>번갈아 말하기</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>카메라 번역 사용하기</strong><span>메뉴판, 안내문, 표지판을 카메라로 비춥니다. 화면 속 글자가 선명하게 보이도록 가까이 맞춥니다.</span></div>
+            <div class="route-card"><strong>카메라</strong><span>메뉴판<br>안내문<br>표지판<br>간판</span></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block">
+        <h2>구글 번역기 화면에서 먼저 볼 것</h2>
+        <div class="route-check-grid">
+          <article><strong>언어 선택 줄</strong><span>화면 위쪽에서 내가 쓰는 말과 번역할 말을 고릅니다.</span></article>
+          <article><strong>바꾸기 화살표</strong><span>한국어에서 외국어, 외국어에서 한국어로 방향을 바꿉니다.</span></article>
+          <article><strong>큰 입력창</strong><span>직접 글자를 쓰거나 복사한 문장을 붙여 넣습니다.</span></article>
+          <article><strong>번역 결과</strong><span>아래에 나온 번역 문장을 보고 뜻이 맞는지 확인합니다.</span></article>
+          <article><strong>소리 듣기</strong><span>스피커를 눌러 발음을 듣고 따라 말합니다.</span></article>
+          <article><strong>상대방에게 보여주기</strong><span>말하기 어려우면 번역 결과 화면을 그대로 보여줍니다.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-block">
+        <h2>구글 번역기 버튼 뜻</h2>
+        <div class="route-check-grid">
+          <article><strong>언어 선택</strong><span>왼쪽은 내가 쓰는 말, 오른쪽은 번역할 말을 고릅니다.</span></article>
+          <article><strong>입력창</strong><span>짧은 한국어 문장을 한 문장씩 입력합니다.</span></article>
+          <article><strong>스피커</strong><span>번역된 문장의 발음을 소리로 듣습니다.</span></article>
+          <article><strong>마이크</strong><span>내가 말한 문장이 글자로 잘 들어가는지 확인합니다.</span></article>
+          <article><strong>대화</strong><span>나와 상대방이 번갈아 말할 때 사용합니다.</span></article>
+          <article><strong>카메라</strong><span>메뉴판, 표지판, 안내문을 비추어 번역합니다.</span></article>
+          <article><strong>복사</strong><span>번역된 문장을 복사해서 AI에게 다시 물어볼 수 있습니다.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-block">
+        <h2>AI에게 요청할 여행 상황 예시</h2>
         <div class="route-check-grid">
           <article><strong>호텔</strong><span>체크인하고 싶어요. 예약 확인 부탁드립니다.</span></article>
           <article><strong>식당</strong><span>이 메뉴는 맵나요? 물을 주세요.</span></article>
@@ -1379,7 +1450,7 @@ ________
       </section>
 
       <section class="lesson-block route-news-block">
-        <h2>번역할 때 조심할 것</h2>
+        <h2>구글 번역기를 쓸 때 조심할 것</h2>
         <p>번역은 완벽하지 않을 수 있습니다. 중요한 내용은 짧게 말하고, 숫자와 장소 이름은 화면으로 함께 보여주는 것이 안전합니다.</p>
         <div class="route-news-grid">
           <article>
@@ -1397,12 +1468,12 @@ ________
         <h2>수업 종료 확인</h2>
         <h3>오늘 해낸 것</h3>
         <div class="check-list">
-          <label><input type="checkbox"> 여행에서 자주 쓰는 말을 골랐습니다.</label>
-          <label><input type="checkbox"> AI에게 쉬운 여행 문장을 만들어 달라고 했습니다.</label>
-          <label><input type="checkbox"> 번역앱에서 문장을 번역했습니다.</label>
-          <label><input type="checkbox"> 번역앱에서 문장을 소리로 들어봤습니다.</label>
-          <label><input type="checkbox"> 음성 입력으로 말하기를 연습했습니다.</label>
-          <label><input type="checkbox"> 어색한 번역은 AI에게 다시 쉽게 바꿔 달라고 했습니다.</label>
+          <label><input type="checkbox"> 여행에서 필요한 회화 상황을 골랐습니다.</label>
+          <label><input type="checkbox"> AI에게 자주 쓰는 여행 문장을 뽑아 달라고 했습니다.</label>
+          <label><input type="checkbox"> AI와 짧은 역할극 회화를 연습했습니다.</label>
+          <label><input type="checkbox"> 어려운 문장을 AI에게 쉽게 바꿔 달라고 했습니다.</label>
+          <label><input type="checkbox"> 구글 번역기에서 언어를 선택하고 문장을 입력했습니다.</label>
+          <label><input type="checkbox"> 구글 번역기에서 스피커, 마이크, 대화, 카메라 기능을 확인했습니다.</label>
         </div>
 
         <div class="review-guide-box">

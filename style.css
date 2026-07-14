@@ -964,12 +964,17 @@ pre {
   white-space: pre-wrap;
   word-break: keep-all;
   margin: 22px 0 28px;
-  padding: 34px;
-  color: #f8fafc;
-  background: #111827;
+  padding: 38px;
+  color: #ffffff;
+  background: #0f172a;
+  border: 5px solid #334155;
   border-radius: 28px;
-  font-size: clamp(24px, 1.65vw, 32px);
-  line-height: 1.65;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: clamp(28px, 1.9vw, 38px);
+  font-weight: 800;
+  line-height: 1.72;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
 }
 
 .field-label {
