@@ -1274,6 +1274,162 @@ AI가 임의로 정하기보다, 사용자가 원하는 방향을 잘 정리해 
       </section>
     </section>
 
+    <section class="screen week-seven" id="weekSevenScreen" aria-labelledby="weekSevenTitle">
+      <article class="lesson-cover">
+        <p class="stamp-label">7주차</p>
+        <h1 id="weekSevenTitle">7주차 | AI 번역과 여행 회화 활용</h1>
+        <p>여행에서 필요한 말을<br>AI와 번역앱으로 쉽게 연습합니다.</p>
+      </article>
+
+      <section class="lesson-block">
+        <h2>오늘 수업 목표</h2>
+        <ul class="simple-list">
+          <li>여행에서 자주 쓰는 짧은 문장을 고릅니다.</li>
+          <li>AI에게 쉬운 여행 문장을 만들어 달라고 합니다.</li>
+          <li>번역앱에서 문장을 번역하고 소리로 들어봅니다.</li>
+          <li>음성 입력으로 말하기를 연습합니다.</li>
+          <li>어색한 번역은 AI에게 더 쉬운 표현으로 바꿔 달라고 합니다.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>수업 순서</h2>
+        <ol class="step-list route-lesson-list">
+          <li>
+            <div class="step-copy"><strong>여행 상황 고르기</strong><span>공항, 호텔, 식당, 길찾기처럼 실제로 말할 상황을 고릅니다.</span></div>
+            <div class="route-card"><strong>상황</strong><span>공항<br>호텔<br>식당<br>길찾기<br>쇼핑</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>AI에게 문장 만들기 요청</strong>
+            <span>내가 말하고 싶은 내용을 짧고 쉬운 여행 문장으로 바꿉니다.</span>
+            <div class="inline-prompt">
+              <h3>여행 회화 문장 만들기 프롬프트</h3>
+              <p>상황과 언어를 바꿔서 사용합니다.</p>
+              <pre id="travelPhrasePrompt">나는 해외여행에서 쓸 쉬운 회화 문장을 연습하고 있습니다.
+
+아래 상황에 맞는 짧은 문장을 만들어 주세요.
+
+상황:
+1. 장소: 호텔
+2. 하고 싶은 말: 체크인을 하고 싶어요
+3. 언어: 영어
+4. 조건: 문장은 짧고 쉬워야 합니다.
+5. 발음이 어려운 단어는 피해주세요.
+
+요청:
+1. 한국어 문장을 먼저 써 주세요.
+2. 외국어 문장을 써 주세요.
+3. 한글 발음도 함께 써 주세요.
+4. 더 공손한 표현이 있으면 알려 주세요.
+5. 직원이 답할 수 있는 말도 2개 알려 주세요.
+
+마지막에는 아래 형식으로 정리해 주세요.
+
+상황 / 한국어 / 외국어 / 한글 발음 / 상대방 답변</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="travelPhrasePrompt">프롬프트 복사</button>
+            </div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>번역앱에서 확인</strong><span>AI가 만든 문장을 번역앱에 넣고 뜻이 맞는지 확인합니다.</span></div>
+            <div class="route-warning"><strong>중요</strong><span>AI 번역은 참고용입니다.<br>번역앱에서도 다시 확인합니다.</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>번역앱에서 소리로 듣기</strong><span>번역앱의 스피커 버튼을 눌러 문장이 어떻게 들리는지 확인합니다.</span></div>
+            <div class="route-card"><strong>듣기</strong><span>스피커<br>천천히 듣기<br>따라 말하기<br>다시 듣기</span></div>
+          </li>
+          <li>
+            <div class="step-copy"><strong>음성 입력 연습</strong><span>마이크 버튼을 눌러 내가 말한 문장이 잘 입력되는지 확인합니다.</span></div>
+            <div class="route-card"><strong>말하기</strong><span>마이크<br>짧게 말하기<br>천천히 말하기<br>다시 말하기</span></div>
+          </li>
+          <li class="step-with-prompt">
+            <strong>어색한 문장 다시 바꾸기</strong>
+            <span>번역이 길거나 어렵게 나오면 AI에게 더 쉬운 말로 바꿔 달라고 합니다.</span>
+            <div class="inline-prompt">
+              <h3>쉬운 표현으로 바꾸기 프롬프트</h3>
+              <p>번역앱에서 어색하게 느껴진 문장을 붙여 넣고 사용합니다.</p>
+              <pre id="simplePhrasePrompt">아래 문장이 여행 중에 말하기에는 조금 어렵습니다.
+
+더 짧고 쉬운 표현으로 바꿔 주세요.
+
+문장:
+________
+
+요청:
+1. 같은 뜻으로 더 쉬운 문장을 만들어 주세요.
+2. 외국인이 알아듣기 쉬운 표현으로 바꿔 주세요.
+3. 한글 발음을 함께 써 주세요.
+4. 급할 때 손짓이나 화면을 보여주며 말할 수 있는 짧은 표현도 알려 주세요.
+5. 실례가 되지 않도록 공손한 표현으로 알려 주세요.</pre>
+              <button class="primary-button copy-button" type="button" data-copy-target="simplePhrasePrompt">쉬운 표현 복사</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="lesson-block">
+        <h2>여행에서 자주 쓰는 말</h2>
+        <div class="route-check-grid">
+          <article><strong>호텔</strong><span>체크인하고 싶어요. 예약 확인 부탁드립니다.</span></article>
+          <article><strong>식당</strong><span>이 메뉴는 맵나요? 물을 주세요.</span></article>
+          <article><strong>길찾기</strong><span>이곳에 가려면 어디로 가야 하나요?</span></article>
+          <article><strong>쇼핑</strong><span>얼마인가요? 카드로 결제할 수 있나요?</span></article>
+          <article><strong>도움 요청</strong><span>천천히 말씀해 주세요. 다시 말해 주세요.</span></article>
+          <article><strong>응급 상황</strong><span>도와주세요. 병원에 가고 싶어요.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-block route-news-block">
+        <h2>번역할 때 조심할 것</h2>
+        <p>번역은 완벽하지 않을 수 있습니다. 중요한 내용은 짧게 말하고, 숫자와 장소 이름은 화면으로 함께 보여주는 것이 안전합니다.</p>
+        <div class="route-news-grid">
+          <article>
+            <h3>짧게 말하기</h3>
+            <p>한 번에 긴 문장을 말하면 번역이 틀릴 수 있습니다. 한 문장씩 천천히 말합니다.</p>
+          </article>
+          <article>
+            <h3>다시 확인하기</h3>
+            <p>날짜, 시간, 금액, 장소 이름은 번역 결과를 다시 확인하고 화면을 보여줍니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-block completion-guide">
+        <h2>수업 종료 확인</h2>
+        <h3>오늘 해낸 것</h3>
+        <div class="check-list">
+          <label><input type="checkbox"> 여행에서 자주 쓰는 말을 골랐습니다.</label>
+          <label><input type="checkbox"> AI에게 쉬운 여행 문장을 만들어 달라고 했습니다.</label>
+          <label><input type="checkbox"> 번역앱에서 문장을 번역했습니다.</label>
+          <label><input type="checkbox"> 번역앱에서 문장을 소리로 들어봤습니다.</label>
+          <label><input type="checkbox"> 음성 입력으로 말하기를 연습했습니다.</label>
+          <label><input type="checkbox"> 어색한 번역은 AI에게 다시 쉽게 바꿔 달라고 했습니다.</label>
+        </div>
+
+        <div class="review-guide-box">
+          <h3>가장 재밌었거나 좋았던 한가지를 적어주세요.</h3>
+          <p>아래 QR 제출 화면에서 좋았던 내용을 한 가지 적습니다.</p>
+        </div>
+
+        <div class="next-lesson">
+          <h3>다음 수업 안내</h3>
+          <p><strong>8주차 | 키오스크·QR 활용</strong></p>
+          <p>키오스크 주문과 QR 기능을 여행 상황에 맞게 연습합니다.</p>
+        </div>
+
+        <h3>다음 수업 참여 여부</h3>
+        <p>참여 여부도 QR 제출 화면에서 함께 선택합니다.</p>
+      </section>
+
+      <section class="lesson-block submit-qr-block">
+        <h2>수강생 후기 제출</h2>
+        <p>수업 마지막에 아래 QR코드를 찍고 후기와 사진을 남겨주세요.</p>
+        <div class="submit-qr" data-week="7">
+          <img alt="7주차 후기 제출 QR코드">
+          <a class="secondary-button" href="#">제출 화면 열기</a>
+        </div>
+      </section>
+    </section>
+
     <section class="screen student-submit-screen" id="submitScreen" aria-labelledby="submitTitle">
       <article class="lesson-cover">
         <p class="stamp-label" id="submitWeekLabel">후기 제출</p>
