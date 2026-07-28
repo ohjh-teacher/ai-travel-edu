@@ -21,7 +21,7 @@ const weeks = [
   ["5주차", "AI와 교통편 찾기·예매 준비", "AI로 기차와 버스 이동 방법을 정리하고 실제 교통앱에서 확인합니다.", "weekFive", true],
   ["6주차", "AI와 숙소·맛집 찾기", "AI로 숙소와 맛집 후보를 찾고 지도앱에서 위치와 후기를 확인합니다.", "weekSix", true],
   ["7주차", "AI 번역과 구글 번역기 활용", "AI와 구글 번역기로 여행 상황에서 쓸 쉬운 문장을 연습합니다.", "weekSeven", true],
-  ["8주차", "키오스크·QR 활용", "키오스크 주문과 QR 기능을 체험하며 여행 중 필요한 기능을 익혀봅니다.", "", false],
+  ["8주차", "공항 셀프체크인·키오스크·QR", "공항 셀프체크인과 수하물 부치기, QR 메뉴판과 키오스크 주문을 연습합니다.", "weekEight", true],
   ["9주차", "안전한 스마트폰 활용", "위치 공유와 긴급신고 기능을 배우고 AI와 함께 위험 문자를 확인해 봅니다.", "", false],
   ["10주차", "AI와 여행 음악", "여행 분위기에 어울리는 음악을 찾고 AI 음악 생성 기능을 체험해 봅니다.", "", false],
   ["11주차", "AI와 여행 영상", "사진과 음악을 활용하여 감성 여행 영상을 만들어봅니다.", "", false],
@@ -38,6 +38,7 @@ const screens = {
   weekFive: document.getElementById("weekFiveScreen"),
   weekSix: document.getElementById("weekSixScreen"),
   weekSeven: document.getElementById("weekSevenScreen"),
+  weekEight: document.getElementById("weekEightScreen"),
   submit: document.getElementById("submitScreen"),
   admin: document.getElementById("adminScreen")
 };
@@ -67,9 +68,16 @@ const studentSaveMessage = document.getElementById("studentSaveMessage");
 const closeSubmitButton = document.getElementById("closeSubmitButton");
 const privacyConsent = document.getElementById("privacyConsent");
 const submitFilesInput = document.getElementById("submitFiles");
+const adminViewButtons = document.querySelectorAll("[data-admin-view]");
+const adminAccessDialog = document.getElementById("adminAccessDialog");
+const adminAccessForm = document.getElementById("adminAccessForm");
+const adminPasscodeInput = document.getElementById("adminPasscodeInput");
+const adminAccessMessage = document.getElementById("adminAccessMessage");
+const adminAccessCancel = document.getElementById("adminAccessCancel");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
 let activeSubmitWeek = 1;
+let adminViewMode = "list";
 
 const currentYear = new Date().getFullYear();
 const MAX_UPLOAD_FILES = 3;
@@ -136,6 +144,15 @@ const lessonChecklists = {
     "어려운 문장을 AI에게 쉽게 바꿔 달라고 했습니다.",
     "구글 번역기에서 언어를 선택하고 문장을 입력했습니다.",
     "구글 번역기에서 스피커, 마이크, 대화, 카메라 기능을 확인했습니다."
+  ],
+  8: [
+    "항공사 앱이나 사이트에서 셀프체크인 시작 위치를 확인했습니다.",
+    "여권 정보, 좌석, 탑승권 확인 순서를 살펴봤습니다.",
+    "공항 셀프체크인 키오스크에서 예약번호와 여권을 확인하는 흐름을 익혔습니다.",
+    "수하물 태그를 붙이고 수하물 위탁 카운터를 찾는 방법을 확인했습니다.",
+    "QR코드를 카메라로 찍어 메뉴판을 열었습니다.",
+    "키오스크 주문에서 메뉴, 수량, 결제 전 확인 화면을 살펴봤습니다.",
+    "AI로 공항 셀프체크인 인포그래픽을 만들었습니다."
   ]
 };
 
@@ -175,28 +192,44 @@ function showToast(message) {
   }, 1800);
 }
 
-function ensureAdminAccess() {
+function hasAdminAccess() {
   if (sessionStorage.getItem(ADMIN_UNLOCK_KEY) === "true") {
     return true;
-  }
-
-  const passcode = window.prompt("관리자 비밀번호를 입력해 주세요.");
-  if (passcode === ADMIN_PASSCODE) {
-    sessionStorage.setItem(ADMIN_UNLOCK_KEY, "true");
-    return true;
-  }
-
-  if (passcode !== null) {
-    showToast("관리자 비밀번호가 맞지 않습니다.");
   }
 
   return false;
 }
 
 function openAdminScreen() {
-  if (ensureAdminAccess()) {
+  if (hasAdminAccess()) {
     showScreen("admin");
+    return;
   }
+
+  if (!adminAccessDialog || !adminPasscodeInput) {
+    showToast("관리자 비밀번호 창을 열지 못했습니다.");
+    return;
+  }
+
+  adminPasscodeInput.value = "";
+  adminAccessMessage.textContent = "";
+  adminAccessDialog.showModal();
+  window.setTimeout(() => adminPasscodeInput.focus(), 0);
+}
+
+function submitAdminAccess(event) {
+  event.preventDefault();
+
+  if (adminPasscodeInput?.value === ADMIN_PASSCODE) {
+    sessionStorage.setItem(ADMIN_UNLOCK_KEY, "true");
+    adminAccessMessage.textContent = "";
+    adminAccessDialog?.close();
+    showScreen("admin");
+    return;
+  }
+
+  adminAccessMessage.textContent = "비밀번호가 맞지 않습니다. 다시 입력해 주세요.";
+  adminPasscodeInput?.select();
 }
 
 function getSubmissions() {
@@ -861,6 +894,7 @@ async function submitReview() {
 
 async function renderAdminList() {
   let submissions = getSubmissions().slice().reverse();
+  adminList.dataset.view = adminViewMode;
   adminList.innerHTML = "";
 
   try {
@@ -897,51 +931,122 @@ async function renderAdminList() {
   `;
   adminList.appendChild(summary);
 
+  const listView = document.createElement("div");
+  listView.className = "admin-list-view";
+
   institutionGroups.forEach(({ institutionName, items }) => {
     const group = document.createElement("section");
     group.className = "admin-institution-group";
     group.innerHTML = `<h2>${escapeHtml(institutionName)}</h2>`;
-    adminList.appendChild(group);
+    listView.appendChild(group);
 
     items.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "admin-card";
+      const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
+      card.innerHTML = `
+        <dl>
+          <dt>연도</dt>
+          <dd>${escapeHtml(item.classYear || currentYear)}년</dd>
+          <dt>수업 구분</dt>
+          <dd>${item.courseType === "special" ? "단기특강" : "정규과정"}</dd>
+          <dt>수업 내용</dt>
+          <dd>${item.courseType === "special" ? escapeHtml(item.lectureTitle || "단기특강") : `${escapeHtml(item.weekNumber || 1)}주차`}</dd>
+          <dt>이름</dt>
+          <dd>${escapeHtml(item.name)}</dd>
+          <dt>연락처 뒷번호</dt>
+          <dd>${escapeHtml(item.phoneLast4)}</dd>
+          <dt>기관 시작</dt>
+          <dd>${escapeHtml(item.institutionStartWeek || 1)}주차</dd>
+          <dt>출석 상태</dt>
+          <dd>${escapeHtml(item.attendanceStatus)}</dd>
+          <dt>학습 체크</dt>
+          <dd>${item.completedItems?.length ? escapeHtml(item.completedItems.join(" / ")) : "체크 없음"}</dd>
+          <dt>후기</dt>
+          <dd>${item.review ? escapeHtml(item.review) : "후기 없음"}</dd>
+          <dt>첨부 사진</dt>
+          <dd>${renderAttachments(item.attachments)}</dd>
+          <dt>다음 수업 참여 여부</dt>
+          <dd>${escapeHtml(item.nextAttendance)}${item.absenceReason ? `<br>사유: ${escapeHtml(item.absenceReason)}` : ""}</dd>
+          <dt>개인정보 동의</dt>
+          <dd>${item.privacyConsent ? "동의" : "미기록"}</dd>
+          <dt>제출 시간</dt>
+          <dd>${escapeHtml(item.submittedAt)}</dd>
+        </dl>
+        <div class="admin-card-actions">
+          <button class="secondary-button" type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(item.attachments || []))}">
+            삭제
+          </button>
+        </div>
+      `;
+      listView.appendChild(card);
+    });
+  });
+
+  adminList.appendChild(listView);
+
+  const cardNewsView = document.createElement("div");
+  cardNewsView.className = "admin-card-news-view";
+
+  filteredSubmissions.forEach((item) => {
     const card = document.createElement("article");
-    card.className = "admin-card";
+    card.className = "review-card-news";
+    const attachments = item.attachments || [];
+    const primaryAttachment = attachments[0];
     const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
+    const mediaMarkup = primaryAttachment
+      ? `
+        <div class="review-card-media">
+          <img src="${escapeHtml(primaryAttachment.url)}" alt="${escapeHtml(primaryAttachment.name || `${item.name} 수강생의 후기 사진`)}">
+          ${attachments.length > 1 ? `<span class="review-image-count">사진 ${attachments.length}장</span>` : ""}
+        </div>
+      `
+      : `
+        <div class="review-card-media is-placeholder" aria-label="첨부 사진 없음">
+          <span>${item.courseType === "special" ? escapeHtml(item.lectureTitle || "단기특강") : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
+          <strong>MY TRAVEL<br>STORY</strong>
+          <small>AI 스마트 여행 수업</small>
+        </div>
+      `;
+
     card.innerHTML = `
-      <dl>
-        <dt>연도</dt>
-        <dd>${escapeHtml(item.classYear || currentYear)}년</dd>
-        <dt>수업 주차</dt>
-        <dd>${escapeHtml(item.weekNumber || 1)}주차</dd>
-        <dt>이름</dt>
-        <dd>${escapeHtml(item.name)}</dd>
-        <dt>연락처 뒷번호</dt>
-        <dd>${escapeHtml(item.phoneLast4)}</dd>
-        <dt>기관 시작</dt>
-        <dd>${escapeHtml(item.institutionStartWeek || 1)}주차</dd>
-        <dt>출석 상태</dt>
-        <dd>${escapeHtml(item.attendanceStatus)}</dd>
-        <dt>학습 체크</dt>
-        <dd>${item.completedItems?.length ? escapeHtml(item.completedItems.join(" / ")) : "체크 없음"}</dd>
-        <dt>후기</dt>
-        <dd>${item.review ? escapeHtml(item.review) : "후기 없음"}</dd>
-        <dt>첨부 사진</dt>
-        <dd>${renderAttachments(item.attachments)}</dd>
-        <dt>다음 수업 참여 여부</dt>
-        <dd>${escapeHtml(item.nextAttendance)}${item.absenceReason ? `<br>사유: ${escapeHtml(item.absenceReason)}` : ""}</dd>
-        <dt>개인정보 동의</dt>
-        <dd>${item.privacyConsent ? "동의" : "미기록"}</dd>
-        <dt>제출 시간</dt>
-        <dd>${escapeHtml(item.submittedAt)}</dd>
-      </dl>
-      <div class="admin-card-actions">
-        <button class="secondary-button" type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(item.attachments || []))}">
-          삭제
-        </button>
+      ${mediaMarkup}
+      <div class="review-card-body">
+        <div class="review-card-badges">
+          <span>${escapeHtml(item.institutionName || "기관 미지정")}</span>
+          <span>${item.courseType === "special" ? "단기특강" : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
+        </div>
+        <blockquote>${item.review ? escapeHtml(item.review) : "오늘의 여행 수업을 완료했습니다."}</blockquote>
+        <div class="review-card-person">
+          <strong>${escapeHtml(item.name || "이름 미기록")} 수강생</strong>
+          <span>${escapeHtml(item.submittedAt || "제출 시간 미기록")}</span>
+        </div>
+        <div class="review-card-progress">
+          <span>오늘 해낸 것</span>
+          <strong>${item.completedItems?.length || 0}개</strong>
+        </div>
+        <div class="review-card-actions">
+          ${primaryAttachment ? `<a href="${escapeHtml(primaryAttachment.url)}" download>사진 다운로드</a>` : "<span>첨부 사진 없음</span>"}
+          <button type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(attachments))}">삭제</button>
+        </div>
       </div>
     `;
-    adminList.appendChild(card);
+    cardNewsView.appendChild(card);
   });
+
+  adminList.appendChild(cardNewsView);
+}
+
+function setAdminViewMode(mode) {
+  adminViewMode = mode === "cards" ? "cards" : "list";
+  if (adminList) {
+    adminList.dataset.view = adminViewMode;
+  }
+
+  adminViewButtons.forEach((button) => {
+    const isActive = button.dataset.adminView === adminViewMode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
   });
 }
 
@@ -1230,9 +1335,56 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function selectKioskPracticeMode(mode) {
+  document.querySelectorAll(".kiosk-mode-button").forEach((button) => {
+    const isActive = button.dataset.kioskMode === mode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  document.querySelectorAll(".practice-kiosk-screen").forEach((panel) => {
+    const isActive = panel.dataset.kioskPanel === mode;
+    panel.classList.toggle("is-active", isActive);
+    if (isActive) {
+      panel.querySelectorAll(".practice-screen-body button").forEach((button) => {
+        button.classList.remove("is-selected");
+      });
+      panel.querySelectorAll(".practice-visual-state").forEach((state, index) => {
+        state.classList.toggle("is-active", index === 0);
+      });
+      const result = panel.querySelector(".practice-result");
+      if (result) {
+        result.textContent = "버튼을 누르면 결과가 여기에 보입니다.";
+      }
+    }
+  });
+}
+
+function showKioskPracticeResult(button) {
+  const panel = button.closest(".practice-kiosk-screen");
+  const result = panel?.querySelector(".practice-result");
+  const practiceStep = button.dataset.practiceStep;
+
+  panel?.querySelectorAll(".practice-screen-body button").forEach((item) => {
+    item.classList.toggle("is-selected", item === button);
+  });
+
+  if (practiceStep) {
+    panel?.querySelectorAll(".practice-visual-state").forEach((state) => {
+      state.classList.toggle("is-active", state.dataset.practiceStep === practiceStep);
+    });
+  }
+
+  if (result) {
+    result.textContent = button.dataset.practiceResult || "이 버튼을 눌렀습니다.";
+  }
+}
+
 function bindEvents() {
   document.getElementById("homeButton")?.addEventListener("click", () => showScreen("home"));
   document.getElementById("adminButton")?.addEventListener("click", openAdminScreen);
+  adminAccessForm?.addEventListener("submit", submitAdminAccess);
+  adminAccessCancel?.addEventListener("click", () => adminAccessDialog?.close());
   document.getElementById("submitButton")?.addEventListener("click", submitReview);
   document.getElementById("studentSubmitButton")?.addEventListener("click", submitStudentReview);
   closeSubmitButton?.addEventListener("click", closeSubmitWindow);
@@ -1245,6 +1397,9 @@ function bindEvents() {
   });
   adminInstitutionFilter?.addEventListener("change", renderAdminList);
   adminList?.addEventListener("click", deleteSubmission);
+  adminViewButtons.forEach((button) => {
+    button.addEventListener("click", () => setAdminViewMode(button.dataset.adminView));
+  });
   institutionForm?.addEventListener("submit", addInstitution);
   institutionList?.addEventListener("submit", updateInstitution);
   institutionList?.addEventListener("click", toggleInstitutionHidden);
@@ -1252,6 +1407,14 @@ function bindEvents() {
     const isOpen = institutionForm?.classList.toggle("is-visible");
     institutionToggleButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
     institutionToggleButton.textContent = isOpen ? "기관 등록 닫기" : "새 기관 등록";
+  });
+
+  document.querySelectorAll(".kiosk-mode-button").forEach((button) => {
+    button.addEventListener("click", () => selectKioskPracticeMode(button.dataset.kioskMode));
+  });
+
+  document.querySelectorAll(".practice-screen-body button").forEach((button) => {
+    button.addEventListener("click", () => showKioskPracticeResult(button));
   });
 
   document.querySelectorAll(".copy-button").forEach((button) => {
@@ -1283,6 +1446,17 @@ function openInitialScreen() {
     return;
   }
 
+  const requestedWeek = Number(params.get("week"));
+  if (requestedWeek) {
+    const week = weeks[requestedWeek - 1];
+    const screenName = week?.[3];
+    const isReady = week?.[4];
+    if (screenName && isReady) {
+      showScreen(screenName);
+      return;
+    }
+  }
+
   showScreen("home");
 }
 
@@ -1291,5 +1465,6 @@ populateStartWeekSelect();
 buildWeekCards();
 setupSubmitQrLinks();
 bindEvents();
+setAdminViewMode(adminViewMode);
 loadInstitutions();
 openInitialScreen();

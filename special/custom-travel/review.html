@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI 가이드와 함께 떠나는 맞춤 여행 특강 후기를 제출합니다.">
+  <title>특강 후기 제출 | AI 가이드와 함께 떠나는 맞춤 여행</title>
+  <link rel="stylesheet" href="../special.css?v=20260728-4">
+</head>
+<body>
+  <header class="special-topbar">
+    <a class="brand-link" href="./">특강으로 돌아가기</a>
+    <a class="back-link" href="../../">전체 과정으로</a>
+  </header>
+
+  <main class="review-page">
+    <section class="review-page-hero" aria-labelledby="reviewPageTitle">
+      <p class="eyebrow">CLASS REVIEW</p>
+      <h1 id="reviewPageTitle">맞춤 여행 특강<br>후기 남기기</h1>
+      <p>오늘 완성한 여행과 가장 재미있었던 활동을 기록해 주세요.</p>
+    </section>
+
+    <form class="special-review-form" id="specialReviewForm">
+      <div class="review-form-heading">
+        <p class="section-number">기본 정보</p>
+        <h2>누가 참여했나요?</h2>
+      </div>
+
+      <div class="review-field-grid">
+        <label>
+          <span>수업 연도</span>
+          <select id="specialReviewYear"></select>
+        </label>
+        <label>
+          <span>참여 기관</span>
+          <select id="specialReviewInstitution">
+            <option value="bangbae-open-culture-center" data-name="방배열린문화센터(방배4동 주민센터)" data-start-week="1">방배열린문화센터(방배4동 주민센터)</option>
+          </select>
+        </label>
+        <label>
+          <span>이름</span>
+          <input id="specialReviewName" type="text" autocomplete="name" placeholder="이름을 입력해 주세요">
+        </label>
+        <label>
+          <span>휴대전화 뒷번호 4자리</span>
+          <input id="specialReviewPhone" type="text" inputmode="numeric" maxlength="4" placeholder="예: 1234">
+        </label>
+      </div>
+
+      <section class="review-checklist" aria-labelledby="reviewChecklistTitle">
+        <h3 id="reviewChecklistTitle">오늘 해낸 것</h3>
+        <div class="review-checklist-items">
+          <label><input type="checkbox" name="specialCompleted" value="AI의 8가지 질문에 답했습니다."> <span>AI의 8가지 질문에 답했습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="나에게 어울리는 여행 제안을 받았습니다."> <span>나에게 어울리는 여행 제안을 받았습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="여행 포스터 또는 인포그래픽을 저장했습니다."> <span>여행 포스터 또는 인포그래픽을 저장했습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="나만의 여행을 소개했습니다."> <span>나만의 여행을 소개했습니다.</span></label>
+        </div>
+      </section>
+
+      <label class="review-wide-field">
+        <span>가장 재미있었거나 좋았던 점</span>
+        <textarea id="specialReviewText" rows="5" placeholder="예: AI가 내 취향을 물어보고 여행지를 추천해 준 것이 재미있었어요."></textarea>
+      </label>
+
+      <label class="review-wide-field">
+        <span>완성한 여행 이미지 추가</span>
+        <input id="specialReviewFiles" type="file" accept="image/*" multiple>
+        <em>사진은 최대 3장, 한 장당 5MB 이하로 올릴 수 있습니다.</em>
+      </label>
+
+      <div class="special-review-privacy">
+        <label><input id="specialReviewPrivacy" type="checkbox"> 후기 저장을 위한 개인정보 수집에 동의합니다.</label>
+        <p>이름, 휴대전화 뒷번호, 기관명, 후기와 선택한 이미지를 수업 기록 관리에 사용합니다.</p>
+      </div>
+
+      <button class="review-submit-button" id="specialReviewSubmit" type="submit">특강 후기 제출하기</button>
+      <p class="review-submit-message" id="specialReviewMessage" role="status" aria-live="polite"></p>
+      <a class="review-return-button" id="specialReviewReturn" href="./" hidden>특강 자료로 돌아가기</a>
+    </form>
+  </main>
+
+  <script src="special-review.js?v=20260728-4"></script>
+</body>
+</html>
