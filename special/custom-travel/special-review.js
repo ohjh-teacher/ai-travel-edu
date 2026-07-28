@@ -8,11 +8,12 @@ const SPECIAL_FIREBASE_CONFIG = {
 };
 const SPECIAL_SUBMISSIONS_COLLECTION = "week1Submissions";
 const SPECIAL_STORAGE_KEY = "smartTravelClassSubmissions";
-const SPECIAL_LECTURE_ID = "custom-travel";
-const SPECIAL_LECTURE_TITLE = "AI 가이드와 함께 떠나는 맞춤 여행";
+const SPECIAL_PAGE_CONFIG = document.body.dataset;
+const SPECIAL_LECTURE_ID = SPECIAL_PAGE_CONFIG.lectureId || "custom-travel";
+const SPECIAL_LECTURE_TITLE = SPECIAL_PAGE_CONFIG.lectureTitle || "AI 가이드와 함께 떠나는 맞춤 여행";
 const SPECIAL_FIXED_INSTITUTION = {
-  key: "bangbae-open-culture-center",
-  name: "방배열린문화센터(방배4동 주민센터)",
+  key: SPECIAL_PAGE_CONFIG.institutionKey || "bangbae-open-culture-center",
+  name: SPECIAL_PAGE_CONFIG.institutionName || "방배열린문화센터(방배4동 주민센터)",
   startWeek: 1
 };
 const SPECIAL_MAX_FILES = 3;

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="서울경찰전직지원센터 AI로 만드는 나의 새로운 출발 특강 후기를 제출합니다.">
+  <title>특강 후기 제출 | AI로 만드는 나의 새로운 출발</title>
+  <link rel="stylesheet" href="../special.css?v=20260729-7">
+</head>
+<body
+  data-lecture-id="career-ai"
+  data-lecture-title="AI로 만드는 나의 새로운 출발"
+  data-institution-key="seoul-police-career-transition-center"
+  data-institution-name="서울경찰전직지원센터"
+>
+  <header class="special-topbar">
+    <a class="brand-link" href="./">특강으로 돌아가기</a>
+    <a class="back-link" href="../../">전체 과정으로</a>
+  </header>
+
+  <main class="review-page">
+    <section class="review-page-hero career-review-hero" aria-labelledby="careerReviewPageTitle">
+      <p class="eyebrow">CLASS REVIEW</p>
+      <h1 id="careerReviewPageTitle">새로운 출발 AI 특강<br>후기 남기기</h1>
+      <p>오늘 발견한 나의 강점과 가장 도움이 되었던 활동을 기록해 주세요.</p>
+    </section>
+
+    <form class="special-review-form" id="specialReviewForm">
+      <div class="review-form-heading">
+        <p class="section-number">기본 정보</p>
+        <h2>누가 참여했나요?</h2>
+      </div>
+
+      <div class="review-field-grid">
+        <label>
+          <span>수업 연도</span>
+          <select id="specialReviewYear"></select>
+        </label>
+        <label>
+          <span>참여 기관</span>
+          <select id="specialReviewInstitution">
+            <option value="seoul-police-career-transition-center" data-name="서울경찰전직지원센터" data-start-week="1">서울경찰전직지원센터</option>
+          </select>
+        </label>
+        <label>
+          <span>이름</span>
+          <input id="specialReviewName" type="text" autocomplete="name" placeholder="이름을 입력해 주세요">
+        </label>
+        <label>
+          <span>휴대전화 뒷번호 4자리</span>
+          <input id="specialReviewPhone" type="text" inputmode="numeric" maxlength="4" placeholder="예: 1234">
+        </label>
+      </div>
+
+      <section class="review-checklist" aria-labelledby="careerReviewChecklistTitle">
+        <h3 id="careerReviewChecklistTitle">오늘 해낸 것</h3>
+        <div class="review-checklist-items">
+          <label><input type="checkbox" name="specialCompleted" value="AI 인터뷰로 경력과 강점을 정리했습니다."> <span>AI 인터뷰로 경력과 강점을 정리했습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="자기소개서 또는 이력서 초안을 만들었습니다."> <span>자기소개서 또는 이력서 초안을 만들었습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="나의 새로운 출발 이미지를 만들었습니다."> <span>나의 새로운 출발 이미지를 만들었습니다.</span></label>
+          <label><input type="checkbox" name="specialCompleted" value="Suno AI로 나를 위한 노래를 만들었습니다."> <span>Suno AI로 나를 위한 노래를 만들었습니다.</span></label>
+        </div>
+      </section>
+
+      <label class="review-wide-field">
+        <span>가장 도움이 되었거나 기억에 남는 점</span>
+        <textarea id="specialReviewText" rows="5" placeholder="예: AI의 질문에 답하면서 내가 가진 강점을 새롭게 발견한 점이 도움이 됐어요."></textarea>
+      </label>
+
+      <label class="review-wide-field">
+        <span>완성한 결과물 이미지 추가</span>
+        <input id="specialReviewFiles" type="file" accept="image/*" multiple>
+        <em>사진은 최대 3장, 한 장당 5MB 이하로 올릴 수 있습니다.</em>
+      </label>
+
+      <div class="special-review-privacy">
+        <label><input id="specialReviewPrivacy" type="checkbox"> 후기 저장을 위한 개인정보 수집에 동의합니다.</label>
+        <p>이름, 휴대전화 뒷번호, 기관명, 후기와 첨부 이미지를 수업 기록 관리에 사용합니다.</p>
+      </div>
+
+      <button class="review-submit-button" id="specialReviewSubmit" type="submit">특강 후기 제출하기</button>
+      <p class="review-submit-message" id="specialReviewMessage" role="status" aria-live="polite"></p>
+      <a class="review-return-button" id="specialReviewReturn" href="./" hidden>특강 자료로 돌아가기</a>
+    </form>
+  </main>
+
+  <script src="../custom-travel/special-review.js?v=20260729-5"></script>
+</body>
+</html>

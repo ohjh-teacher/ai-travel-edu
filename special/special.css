@@ -260,6 +260,10 @@ h3 {
   font-size: 19px;
 }
 
+.lecture-card + .lecture-card {
+  margin-top: 24px;
+}
+
 .lecture-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 270px;
@@ -324,6 +328,123 @@ h3 {
   padding-top: 16px;
   border-top: 2px dashed var(--teal-600);
   font-size: 17px;
+}
+
+.career-hero {
+  background:
+    radial-gradient(circle at 86% 20%, rgba(239, 189, 85, 0.92) 0 54px, transparent 55px),
+    linear-gradient(135deg, #233b55, #4b7284);
+}
+
+.career-ticket {
+  transform: rotate(-2deg);
+}
+
+.career-review-hero {
+  background:
+    radial-gradient(circle at 86% 20%, rgba(239, 189, 85, 0.92) 0 42px, transparent 43px),
+    linear-gradient(135deg, #233b55, #4b7284);
+}
+
+.event-info-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1.55fr 1.45fr 1fr;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.event-info-grid article {
+  padding: 20px;
+  background: var(--sand-50);
+  border: 2px solid var(--sand-100);
+  border-radius: 16px;
+}
+
+.event-info-grid span,
+.event-info-grid strong,
+.event-info-grid small {
+  display: block;
+}
+
+.event-info-grid span {
+  color: var(--coral);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.event-info-grid strong {
+  margin-top: 5px;
+  color: var(--teal-950);
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.event-info-grid small {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.career-outcome-grid {
+  margin-top: 8px;
+}
+
+.security-warning {
+  padding: 24px 26px;
+  color: #6f2d26;
+  background: #fff0e8;
+  border: 3px solid rgba(218, 111, 88, 0.42);
+  border-radius: 18px;
+}
+
+.security-warning > strong {
+  font-size: 23px;
+}
+
+.security-warning ul {
+  margin: 13px 0 0;
+  padding-left: 24px;
+}
+
+.security-warning li + li {
+  margin-top: 7px;
+}
+
+.security-lead {
+  margin: 20px 0 0;
+}
+
+.blank-guide {
+  margin: 0 0 22px;
+  padding: 18px 22px;
+  color: var(--teal-950);
+  background: var(--teal-100);
+  border-left: 7px solid var(--teal-600);
+  border-radius: 14px;
+}
+
+.blank-guide strong {
+  font-size: 21px;
+}
+
+.blank-guide code {
+  padding: 2px 8px;
+  color: var(--white);
+  background: var(--teal-800);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 22px;
+}
+
+.blank-guide p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.prompt-card-spaced {
+  margin-top: 28px;
 }
 
 .quick-nav {
@@ -1443,6 +1564,10 @@ pre:focus-visible {
 
   .lecture-card,
   .image-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-info-grid {
     grid-template-columns: 1fr;
   }
 
