@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-31T14:09:48.524Z",
+  "files": {
+    "src/presentation/contexts/portal/index.html": {
+      "context": "portal",
+      "output": "index.html",
+      "visibleTextSha256": "9a4c97dcd569aa555b9801c477485340e92f7efda79c2c56a6b99a4e1436650d"
+    },
+    "src/presentation/contexts/smart-travel/course.html": {
+      "context": "smart-travel",
+      "output": "course.html",
+      "visibleTextSha256": "cee3172d9122dab99b5e5c7892c9810c5c749f32265de8230d34248615a8b1d6"
+    },
+    "src/presentation/contexts/special/index.html": {
+      "context": "special",
+      "output": "special/index.html",
+      "visibleTextSha256": "d56684240b291428fd642cb5df91be357278ca2ab408ad337fde24fe31381cc0"
+    },
+    "src/presentation/contexts/special/career-ai/index.html": {
+      "context": "special",
+      "output": "special/career-ai/index.html",
+      "visibleTextSha256": "0ce85d2538d5b7cd45c195c6dd74f9d65bcac9335f99d90d0e7deaba955c4891"
+    },
+    "src/presentation/contexts/special/career-ai/review.html": {
+      "context": "special",
+      "output": "special/career-ai/review.html",
+      "visibleTextSha256": "a50ab1f3765855492044ef306d522b817585cf505742b4489c7100f4c764c17b"
+    },
+    "src/presentation/contexts/special/custom-travel/index.html": {
+      "context": "special",
+      "output": "special/custom-travel/index.html",
+      "visibleTextSha256": "fdb3e68dcc7c4f24564f90b918abb5f96b4b2e287452df9558b55ee4a3852b9b"
+    },
+    "src/presentation/contexts/special/custom-travel/review.html": {
+      "context": "special",
+      "output": "special/custom-travel/review.html",
+      "visibleTextSha256": "327bafb1b23ad03c8520eb83486f688bc9e5f043729e4e685c09e40da077116b"
+    },
+    "src/presentation/contexts/regular/ai-storybook/index.html": {
+      "context": "regular-ai-storybook",
+      "output": "regular/ai-storybook/index.html",
+      "visibleTextSha256": "b7d44a5cf1194cf075c14b2d6927e127743a2f13029f6022d444321989a90fef"
+    },
+    "src/presentation/contexts/regular/ai-storybook/week-1/index.html": {
+      "context": "regular-ai-storybook",
+      "output": "regular/ai-storybook/week-1/index.html",
+      "visibleTextSha256": "fd62f16ff4b604816fcef2de9c8bfd916a60b1ef795365afacf6bb9574701042"
+    }
+  }
+}

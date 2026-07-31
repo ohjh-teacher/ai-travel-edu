@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "courses": [
+    {
+      "id": "smart-travel",
+      "category": "regular",
+      "title": "AI와 함께 떠나는 스마트 여행 생활",
+      "route": "course.html",
+      "sourceContext": "smart-travel"
+    },
+    {
+      "id": "ai-storybook",
+      "category": "regular",
+      "title": "AI 그림동화책 만들기",
+      "route": "regular/ai-storybook/index.html",
+      "sourceContext": "regular-ai-storybook",
+      "delivery": "projector"
+    },
+    {
+      "id": "custom-travel",
+      "category": "special",
+      "title": "AI 가이드와 함께 떠나는 맞춤 여행",
+      "route": "special/custom-travel/index.html",
+      "sourceContext": "special",
+      "delivery": "projector"
+    },
+    {
+      "id": "career-ai",
+      "category": "special",
+      "title": "AI로 만드는 나의 새로운 출발",
+      "route": "special/career-ai/index.html",
+      "sourceContext": "special",
+      "delivery": "projector"
+    }
+  ]
+}

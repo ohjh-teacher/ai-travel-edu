@@ -1,0 +1,11 @@
+{
+  "name": "ai-travel-edu",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/project.mjs build",
+    "lock:content": "node tools/project.mjs lock",
+    "validate": "node tools/project.mjs validate",
+    "check": "npm run build && npm run validate"
+  }
+}

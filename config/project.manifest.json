@@ -1,0 +1,143 @@
+{
+    "architectureVersion":  1,
+    "name":  "AI_travel_edu",
+    "publicRoot":  ".",
+    "shared":  [
+                   {
+                       "source":  "src/presentation/shared/styles/projector.css",
+                       "output":  "shared/styles/projector.css"
+                   },
+                   {
+                       "source":  "src/presentation/shared/scripts/firebase-config.js",
+                       "output":  "shared/scripts/firebase-config.js"
+                   }
+               ],
+    "contexts":  [
+                     {
+                         "id":  "portal",
+                         "sourceRoot":  "src/presentation/contexts/portal",
+                         "files":  [
+                                       {
+                                           "source":  "index.html",
+                                           "output":  "index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "portal.css",
+                                           "output":  "portal.css"
+                                       },
+                                       {
+                                           "source":  "portal.js",
+                                           "output":  "portal.js"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "smart-travel",
+                         "sourceRoot":  "src/presentation/contexts/smart-travel",
+                         "files":  [
+                                       {
+                                           "source":  "course.html",
+                                           "output":  "course.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "style.css",
+                                           "output":  "style.css"
+                                       },
+                                       {
+                                           "source":  "script.js",
+                                           "output":  "script.js"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "special",
+                         "sourceRoot":  "src/presentation/contexts/special",
+                         "files":  [
+                                       {
+                                           "source":  "index.html",
+                                           "output":  "special/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "special.css",
+                                           "output":  "special/special.css"
+                                       },
+                                       {
+                                           "source":  "special.js",
+                                           "output":  "special/special.js"
+                                       },
+                                       {
+                                           "source":  "career-ai/index.html",
+                                           "output":  "special/career-ai/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "career-ai/review.html",
+                                           "output":  "special/career-ai/review.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "career-ai/career-presentation.js",
+                                           "output":  "special/career-ai/career-presentation.js"
+                                       },
+                                       {
+                                           "source":  "custom-travel/index.html",
+                                           "output":  "special/custom-travel/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "custom-travel/review.html",
+                                           "output":  "special/custom-travel/review.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "custom-travel/special-review.js",
+                                           "output":  "special/custom-travel/special-review.js"
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  "regular-ai-storybook",
+                         "sourceRoot":  "src/presentation/contexts/regular/ai-storybook",
+                         "projector":  true,
+                         "files":  [
+                                       {
+                                           "source":  "index.html",
+                                           "output":  "regular/ai-storybook/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "storybook.css",
+                                           "output":  "regular/ai-storybook/storybook.css"
+                                       },
+                                       {
+                                           "source":  "week-1/index.html",
+                                           "output":  "regular/ai-storybook/week-1/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "week-1/week-1.css",
+                                           "output":  "regular/ai-storybook/week-1/week-1.css"
+                                       },
+                                       {
+                                           "source":  "week-1/slides.js",
+                                           "output":  "regular/ai-storybook/week-1/slides.js"
+                                       }
+                                   ]
+                     }
+                 ],
+    "protectedInfrastructure":  [
+                                    "firebase.json",
+                                    "firestore.rules",
+                                    "storage.rules",
+                                    ".firebaserc"
+                                ],
+    "catalog":  "content/catalog.json",
+    "projectorOutputs":  [
+                             "regular/ai-storybook/week-1/index.html",
+                             "special/career-ai/index.html",
+                             "special/custom-travel/index.html"
+                         ]
+}

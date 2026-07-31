@@ -8,7 +8,15 @@
       "storage.rules",
       ".git/**",
       ".netlify/**",
-      "node_modules/**"
+      "node_modules/**",
+      "src/**",
+      "content/**",
+      "config/**",
+      "locks/**",
+      "tools/**",
+      "docs/**",
+      "package.json",
+      "PROJECT_RULES.md"
     ],
     "headers": [
       {
