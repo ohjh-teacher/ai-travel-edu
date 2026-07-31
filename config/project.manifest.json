@@ -124,6 +124,15 @@
                                        {
                                            "source":  "week-1/slides.js",
                                            "output":  "regular/ai-storybook/week-1/slides.js"
+                                       },
+                                       {
+                                           "source":  "review.html",
+                                           "output":  "regular/ai-storybook/review.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "review.js",
+                                           "output":  "regular/ai-storybook/review.js"
                                        }
                                    ]
                      }
