@@ -46,6 +46,7 @@
 .projector-deck .curriculum-list { row-gap: .8%; }
 .projector-deck .curriculum-list li {
   min-height: 2.4em;
+  column-gap: clamp(24px, 2vw, 32px);
   padding-block: .18em;
 }
 .projector-deck .curriculum-list li.is-double { min-height: 3.15em; }
