@@ -5,6 +5,7 @@
   const MAX_FILE_SIZE = 5 * 1024 * 1024;
   const form = document.getElementById("storybookReviewForm");
   const yearSelect = document.getElementById("storybookReviewYear");
+  const institutionSelect = document.getElementById("storybookReviewInstitution");
   const filesInput = document.getElementById("storybookReviewFiles");
   const privacyInput = document.getElementById("storybookReviewPrivacy");
   const submitButton = document.getElementById("storybookReviewSubmit");
@@ -27,6 +28,43 @@
     yearSelect.value = String(currentYear);
   }
 
+  async function loadInstitutions() {
+    institutionSelect.innerHTML = '<option value="">기관을 선택해 주세요</option>';
+    institutionSelect.disabled = true;
+
+    try {
+      const services = await getFirebaseServices();
+      const snapshot = await services.getDocs(services.collection(services.db, "institutions"));
+      const selectedYear = Number(yearSelect.value) || currentYear;
+      const institutions = snapshot.docs
+        .map((document) => ({ key: document.id, ...document.data() }))
+        .filter((institution) => Number(institution.year) === selectedYear && !institution.hidden && institution.name)
+        .sort((left, right) => String(left.name).localeCompare(String(right.name), "ko"));
+
+      institutions.forEach((institution) => {
+        const option = document.createElement("option");
+        option.value = institution.key;
+        option.textContent = institution.name;
+        option.dataset.name = institution.name;
+        option.dataset.startWeek = String(Number(institution.startWeek) || 1);
+        institutionSelect.appendChild(option);
+      });
+
+      if (!institutions.length) {
+        const option = document.createElement("option");
+        option.textContent = "등록된 기관이 없습니다";
+        option.disabled = true;
+        institutionSelect.appendChild(option);
+      }
+    } catch (error) {
+      const option = document.createElement("option");
+      option.textContent = "기관 목록을 불러오지 못했습니다";
+      option.disabled = true;
+      institutionSelect.appendChild(option);
+    } finally {
+      institutionSelect.disabled = false;
+    }
+  }
   function getFirebaseServices() {
     if (!firebasePromise) {
       firebasePromise = Promise.all([
@@ -39,6 +77,7 @@
           db: firestoreModule.getFirestore(app),
           storage: storageModule.getStorage(app),
           addDoc: firestoreModule.addDoc,
+          getDocs: firestoreModule.getDocs,
           collection: firestoreModule.collection,
           serverTimestamp: firestoreModule.serverTimestamp,
           getDownloadURL: storageModule.getDownloadURL,
@@ -65,7 +104,7 @@
     const basePath = [
       "submissions",
       String(data.classYear),
-      "ai-storybook-regular",
+      safePath(data.institutionName),
       "week-1",
       safePath(data.submissionId)
     ].join("/");
@@ -97,9 +136,11 @@
     const name = document.getElementById("storybookReviewName").value.trim();
     const phoneLast4 = document.getElementById("storybookReviewPhone").value.trim();
     const review = document.getElementById("storybookReviewText").value.trim();
+    const selectedInstitution = institutionSelect.options[institutionSelect.selectedIndex];
     const completedItems = Array.from(document.querySelectorAll('input[name="storybookCompleted"]:checked')).map((item) => item.value);
     const files = Array.from(filesInput.files || []);
 
+    if (!institutionSelect.value) return setMessage("기관명을 선택해 주세요.");
     if (!name) return setMessage("이름을 입력해 주세요.");
     if (!/^\d{4}$/.test(phoneLast4)) return setMessage("휴대전화 뒷번호 4자리를 숫자로 입력해 주세요.");
     if (!completedItems.length) return setMessage("오늘 해낸 것을 한 가지 이상 선택해 주세요.");
@@ -113,9 +154,9 @@
       name,
       phoneLast4,
       classYear: Number(yearSelect.value) || currentYear,
-      institutionKey: "ai-storybook-regular",
-      institutionName: "AI 그림동화책 정규과정",
-      institutionStartWeek: 1,
+      institutionKey: institutionSelect.value,
+      institutionName: selectedInstitution?.dataset.name || selectedInstitution?.textContent || "",
+      institutionStartWeek: Number(selectedInstitution?.dataset.startWeek) || 1,
       weekNumber: 1,
       courseType: "regular",
       lectureId: "ai-storybook-week-1",
@@ -142,6 +183,7 @@
       });
       form.reset();
       yearSelect.value = String(currentYear);
+      await loadInstitutions();
       setMessage("제출했습니다. 후기와 워크시트가 저장되었습니다.");
       returnLink.hidden = false;
     } catch (error) {
@@ -152,5 +194,7 @@
   }
 
   populateYears();
+  yearSelect.addEventListener("change", loadInstitutions);
   form.addEventListener("submit", submitReview);
+  loadInstitutions();
 })();

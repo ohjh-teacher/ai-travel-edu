@@ -1426,6 +1426,9 @@ pre:focus-visible {
   gap: 16px;
 }
 
+.review-field-grid .review-course-fixed {
+  grid-column: 1 / -1;
+}
 .review-field-grid label,
 .review-wide-field {
   display: grid;
