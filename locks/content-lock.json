@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-01T21:25:56.687Z",
+  "generatedAt": "2026-08-01T21:38:22.050Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -10,7 +10,7 @@
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
       "output": "course.html",
-      "visibleTextSha256": "cee3172d9122dab99b5e5c7892c9810c5c749f32265de8230d34248615a8b1d6"
+      "visibleTextSha256": "80638cacb636d9f1c221f5d1cd24469cbdc72d736f891caaad5c0412b54521b1"
     },
     "src/presentation/contexts/special/index.html": {
       "context": "special",

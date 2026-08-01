@@ -44,6 +44,7 @@ const adminList = document.getElementById("adminList");
 const classYearSelect = document.getElementById("classYear");
 const institutionSelect = document.getElementById("institutionName");
 const adminYearFilter = document.getElementById("adminYearFilter");
+const adminCourseFilter = document.getElementById("adminCourseFilter");
 const adminInstitutionFilter = document.getElementById("adminInstitutionFilter");
 const institutionForm = document.getElementById("institutionForm");
 const institutionYearSelect = document.getElementById("institutionYear");
@@ -885,6 +886,54 @@ async function submitReview() {
   }
 }
 
+function getSubmissionCourseKey(item) {
+  if (item.lectureId) {
+    return String(item.lectureId);
+  }
+  if (item.courseType === "special") {
+    return `special-${item.lectureTitle || "other"}`;
+  }
+  return "smart-travel";
+}
+
+function getSubmissionCourseLabel(item) {
+  if (item.lectureId === "ai-storybook-week-1") {
+    return "AI 그림동화책 정규과정";
+  }
+  if (item.courseType === "special") {
+    return item.lectureTitle || "단기특강";
+  }
+  return "스마트폰 디지털여행 정규과정";
+}
+
+function renderAdminCourseOptions(submissions) {
+  if (!adminCourseFilter) {
+    return;
+  }
+
+  const selectedCourse = adminCourseFilter.value;
+  const selectedYear = String(adminYearFilter?.value || currentYear);
+  const courses = new Map();
+  submissions
+    .filter((item) => String(item.classYear || currentYear) === selectedYear)
+    .forEach((item) => {
+      courses.set(getSubmissionCourseKey(item), getSubmissionCourseLabel(item));
+    });
+
+  adminCourseFilter.innerHTML = '<option value="">전체 과정</option>';
+  Array.from(courses.entries())
+    .sort((left, right) => left[1].localeCompare(right[1], "ko"))
+    .forEach(([key, label]) => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = label;
+      adminCourseFilter.appendChild(option);
+    });
+
+  if (courses.has(selectedCourse)) {
+    adminCourseFilter.value = selectedCourse;
+  }
+}
 async function renderAdminList() {
   let submissions = getSubmissions().slice().reverse();
   adminList.dataset.view = adminViewMode;
@@ -899,13 +948,17 @@ async function renderAdminList() {
     showToast("기기 저장 기록을 보여드립니다.");
   }
 
+  renderAdminCourseOptions(submissions);
+
   const selectedYear = String(adminYearFilter?.value || currentYear);
+  const selectedCourse = adminCourseFilter?.value || "";
   const selectedInstitution = adminInstitutionFilter?.value || "";
   const filteredSubmissions = submissions.filter((item) => {
     const itemYear = String(item.classYear || currentYear);
     const matchesYear = itemYear === selectedYear;
+    const matchesCourse = !selectedCourse || getSubmissionCourseKey(item) === selectedCourse;
     const matchesInstitution = !selectedInstitution || item.institutionName === selectedInstitution;
-    return matchesYear && matchesInstitution;
+    return matchesYear && matchesCourse && matchesInstitution;
   });
 
   const institutionGroups = groupSubmissionsByInstitution(filteredSubmissions);
@@ -917,9 +970,11 @@ async function renderAdminList() {
 
   const summary = document.createElement("section");
   summary.className = "admin-summary";
+  const courseCount = new Set(filteredSubmissions.map(getSubmissionCourseKey)).size;
   summary.innerHTML = `
     <article><strong>${filteredSubmissions.length}</strong><span>제출</span></article>
-    <article><strong>${institutionGroups.length}</strong><span>기관</span></article>
+    <article><strong>${courseCount}</strong><span>과정</span></article>
+    <article><strong>${institutionGroups.length}</strong><span>과정·기관 묶음</span></article>
     <article><strong>${filteredSubmissions.filter((item) => item.review).length}</strong><span>후기</span></article>
   `;
   adminList.appendChild(summary);
@@ -927,10 +982,16 @@ async function renderAdminList() {
   const listView = document.createElement("div");
   listView.className = "admin-list-view";
 
-  institutionGroups.forEach(({ institutionName, items }) => {
-    const group = document.createElement("section");
+  institutionGroups.forEach(({ courseLabel, institutionName, items }) => {
+    const group = document.createElement("details");
     group.className = "admin-institution-group";
-    group.innerHTML = `<h2>${escapeHtml(institutionName)}</h2>`;
+    group.open = Boolean(selectedCourse || selectedInstitution);
+    group.innerHTML = `
+      <summary>
+        <span><strong>${escapeHtml(courseLabel)}</strong><small>${escapeHtml(institutionName)}</small></span>
+        <b>${items.length}건</b>
+      </summary>
+    `;
     listView.appendChild(group);
 
     items.forEach((item) => {
@@ -972,7 +1033,7 @@ async function renderAdminList() {
           </button>
         </div>
       `;
-      listView.appendChild(card);
+      group.appendChild(card);
     });
   });
 
@@ -1120,17 +1181,20 @@ async function deleteSubmission(event) {
 function groupSubmissionsByInstitution(submissions) {
   const map = new Map();
   submissions.forEach((item) => {
+    const courseKey = getSubmissionCourseKey(item);
+    const courseLabel = getSubmissionCourseLabel(item);
     const institutionName = item.institutionName || "기관 미지정";
-    if (!map.has(institutionName)) {
-      map.set(institutionName, []);
+    const groupKey = `${courseKey}::${institutionName}`;
+    if (!map.has(groupKey)) {
+      map.set(groupKey, { courseLabel, institutionName, items: [] });
     }
-    map.get(institutionName).push(item);
+    map.get(groupKey).items.push(item);
   });
 
-  return Array.from(map.entries()).map(([institutionName, items]) => ({
-    institutionName,
-    items
-  }));
+  return Array.from(map.values()).sort((left, right) => {
+    const courseOrder = left.courseLabel.localeCompare(right.courseLabel, "ko");
+    return courseOrder || left.institutionName.localeCompare(right.institutionName, "ko");
+  });
 }
 
 function formatFileSize(size) {
@@ -1388,6 +1452,7 @@ function bindEvents() {
     renderInstitutionOptions();
     renderAdminList();
   });
+  adminCourseFilter?.addEventListener("change", renderAdminList);
   adminInstitutionFilter?.addEventListener("change", renderAdminList);
   adminList?.addEventListener("click", deleteSubmission);
   adminViewButtons.forEach((button) => {
