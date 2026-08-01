@@ -1042,50 +1042,67 @@ async function renderAdminList() {
   const cardNewsView = document.createElement("div");
   cardNewsView.className = "admin-card-news-view";
 
-  filteredSubmissions.forEach((item) => {
-    const card = document.createElement("article");
-    card.className = "review-card-news";
-    const attachments = item.attachments || [];
-    const primaryAttachment = attachments[0];
-    const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
-    const mediaMarkup = primaryAttachment
-      ? `
-        <div class="review-card-media">
-          <img src="${escapeHtml(primaryAttachment.url)}" alt="${escapeHtml(primaryAttachment.name || `${item.name} 수강생의 후기 사진`)}">
-          ${attachments.length > 1 ? `<span class="review-image-count">사진 ${attachments.length}장</span>` : ""}
-        </div>
-      `
-      : `
-        <div class="review-card-media is-placeholder" aria-label="첨부 사진 없음">
-          <span>${item.courseType === "special" ? escapeHtml(item.lectureTitle || "단기특강") : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
-          <strong>MY TRAVEL<br>STORY</strong>
-          <small>AI 스마트 여행 수업</small>
+  institutionGroups.forEach(({ courseLabel, institutionName, items }) => {
+    const group = document.createElement("section");
+    group.className = "admin-card-news-group";
+    group.innerHTML = `
+      <header>
+        <span><strong>${escapeHtml(courseLabel)}</strong><small>${escapeHtml(institutionName)}</small></span>
+        <b>${items.length}건</b>
+      </header>
+    `;
+
+    const grid = document.createElement("div");
+    grid.className = "admin-card-news-grid";
+
+    items.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "review-card-news";
+      const attachments = item.attachments || [];
+      const primaryAttachment = attachments[0];
+      const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
+      const mediaMarkup = primaryAttachment
+        ? `
+          <div class="review-card-media">
+            <img src="${escapeHtml(primaryAttachment.url)}" alt="${escapeHtml(primaryAttachment.name || `${item.name} 수강생의 후기 사진`)}">
+            ${attachments.length > 1 ? `<span class="review-image-count">사진 ${attachments.length}장</span>` : ""}
+          </div>
+        `
+        : `
+          <div class="review-card-media is-placeholder" aria-label="첨부 사진 없음">
+            <span>${item.courseType === "special" ? escapeHtml(item.lectureTitle || "단기특강") : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
+            <strong>MY TRAVEL<br>STORY</strong>
+            <small>AI 스마트 여행 수업</small>
+          </div>
+        `;
+
+      card.innerHTML = `
+        ${mediaMarkup}
+        <div class="review-card-body">
+          <div class="review-card-badges">
+            <span>${escapeHtml(item.institutionName || "기관 미지정")}</span>
+            <span>${item.courseType === "special" ? "단기특강" : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
+          </div>
+          <blockquote>${item.review ? escapeHtml(item.review) : "오늘의 여행 수업을 완료했습니다."}</blockquote>
+          <div class="review-card-person">
+            <strong>${escapeHtml(item.name || "이름 미기록")} 수강생</strong>
+            <span>${escapeHtml(item.submittedAt || "제출 시간 미기록")}</span>
+          </div>
+          <div class="review-card-progress">
+            <span>오늘 해낸 것</span>
+            <strong>${item.completedItems?.length || 0}개</strong>
+          </div>
+          <div class="review-card-actions">
+            ${primaryAttachment ? `<a href="${escapeHtml(primaryAttachment.url)}" download>사진 다운로드</a>` : "<span>첨부 사진 없음</span>"}
+            <button type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(attachments))}">삭제</button>
+          </div>
         </div>
       `;
+      grid.appendChild(card);
+    });
 
-    card.innerHTML = `
-      ${mediaMarkup}
-      <div class="review-card-body">
-        <div class="review-card-badges">
-          <span>${escapeHtml(item.institutionName || "기관 미지정")}</span>
-          <span>${item.courseType === "special" ? "단기특강" : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
-        </div>
-        <blockquote>${item.review ? escapeHtml(item.review) : "오늘의 여행 수업을 완료했습니다."}</blockquote>
-        <div class="review-card-person">
-          <strong>${escapeHtml(item.name || "이름 미기록")} 수강생</strong>
-          <span>${escapeHtml(item.submittedAt || "제출 시간 미기록")}</span>
-        </div>
-        <div class="review-card-progress">
-          <span>오늘 해낸 것</span>
-          <strong>${item.completedItems?.length || 0}개</strong>
-        </div>
-        <div class="review-card-actions">
-          ${primaryAttachment ? `<a href="${escapeHtml(primaryAttachment.url)}" download>사진 다운로드</a>` : "<span>첨부 사진 없음</span>"}
-          <button type="button" data-action="delete-submission" data-delete-key="${escapeHtml(deleteKey)}" data-firebase-id="${escapeHtml(item.firebaseId || "")}" data-attachments="${escapeHtml(JSON.stringify(attachments))}">삭제</button>
-        </div>
-      </div>
-    `;
-    cardNewsView.appendChild(card);
+    group.appendChild(grid);
+    cardNewsView.appendChild(group);
   });
 
   adminList.appendChild(cardNewsView);
