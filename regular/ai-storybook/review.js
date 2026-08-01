@@ -10,7 +10,6 @@
   const privacyInput = document.getElementById("storybookReviewPrivacy");
   const submitButton = document.getElementById("storybookReviewSubmit");
   const message = document.getElementById("storybookReviewMessage");
-  const returnLink = document.getElementById("storybookReviewReturn");
   const currentYear = new Date().getFullYear();
   let firebasePromise;
 
@@ -184,8 +183,7 @@
       form.reset();
       yearSelect.value = String(currentYear);
       await loadInstitutions();
-      setMessage("제출했습니다. 후기와 워크시트가 저장되었습니다.");
-      returnLink.hidden = false;
+      setMessage("제출했습니다. 후기와 워크시트가 저장되었습니다. 이제 이 화면을 닫아 주세요.");
     } catch (error) {
       setMessage("제출하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 눌러 주세요.");
     } finally {
