@@ -1987,7 +1987,7 @@ body[data-screen="admin"] .plain-button {
   border-radius: 18px;
 }
 
-#adminScreen .admin-card-news-group > header {
+#adminScreen .admin-card-news-group > summary {
   display: flex;
   justify-content: space-between;
   gap: 18px;
@@ -1995,27 +1995,33 @@ body[data-screen="admin"] .plain-button {
   min-height: 70px;
   padding: 14px 18px;
   background: var(--blue-light);
+  cursor: pointer;
+  list-style: none;
 }
 
-#adminScreen .admin-card-news-group > header span,
-#adminScreen .admin-card-news-group > header strong,
-#adminScreen .admin-card-news-group > header small {
+#adminScreen .admin-card-news-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+#adminScreen .admin-card-news-group > summary span,
+#adminScreen .admin-card-news-group > summary strong,
+#adminScreen .admin-card-news-group > summary small {
   display: block;
 }
 
-#adminScreen .admin-card-news-group > header strong {
+#adminScreen .admin-card-news-group > summary strong {
   color: var(--blue-dark);
   font-size: 18px;
 }
 
-#adminScreen .admin-card-news-group > header small {
+#adminScreen .admin-card-news-group > summary small {
   margin-top: 2px;
   color: var(--muted);
   font-size: 14px;
   font-weight: 800;
 }
 
-#adminScreen .admin-card-news-group > header b {
+#adminScreen .admin-card-news-group > summary b {
   flex: 0 0 auto;
   padding: 5px 10px;
   color: var(--white);

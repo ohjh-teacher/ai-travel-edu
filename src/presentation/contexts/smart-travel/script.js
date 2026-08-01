@@ -1043,13 +1043,14 @@ async function renderAdminList() {
   cardNewsView.className = "admin-card-news-view";
 
   institutionGroups.forEach(({ courseLabel, institutionName, items }) => {
-    const group = document.createElement("section");
+    const group = document.createElement("details");
+    group.open = Boolean(selectedCourse || selectedInstitution);
     group.className = "admin-card-news-group";
     group.innerHTML = `
-      <header>
+      <summary>
         <span><strong>${escapeHtml(courseLabel)}</strong><small>${escapeHtml(institutionName)}</small></span>
         <b>${items.length}건</b>
-      </header>
+      </summary>
     `;
 
     const grid = document.createElement("div");
