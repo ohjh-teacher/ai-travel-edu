@@ -82,7 +82,7 @@ button, a { font: inherit; }
 .interview-grid div, .practice-fields div { min-height: 2.7em; padding: .45em .2em .65em; border-bottom: .23vw solid var(--line); color: var(--plum); font-size: var(--type-body); font-weight: 800; line-height: 1.5; }
 .wish-row { display: flex; flex-wrap: wrap; gap: 1.25vw; }
 .wish-row span { padding: .58em .8em; color: var(--green); background: #e7f4ef; border-bottom: .25vw solid #82b5a7; border-radius: .25em; font-size: var(--type-body); font-weight: 800; line-height: 1.3; }
-.prompt { margin: 4.2% 0 0; color: var(--red); font-size: var(--type-subtitle); font-weight: 850; line-height: 1.45; }
+.prompt { width: 100%; margin: 4.2% auto 0; color: var(--red); font-size: var(--type-subtitle); font-weight: 850; line-height: 1.45; text-align: center; }
 
 .change-flow { margin-bottom: 3%; padding: .85em 1em; color: var(--green); background: var(--orange-soft); border-radius: .5em; font-size: var(--type-body); font-weight: 800; line-height: 1.4; text-align: center; }
 .example-flow { margin-top: 1.2%; padding: .65em 1em; border-left: .38vw solid var(--plum); font-size: var(--type-caption); font-weight: 750; line-height: 1.4; }
