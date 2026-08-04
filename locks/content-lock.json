@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-04T13:17:42.538Z",
+  "generatedAt": "2026-08-04T16:49:55.717Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -20,12 +20,12 @@
     "src/presentation/contexts/special/career-ai/index.html": {
       "context": "special",
       "output": "special/career-ai/index.html",
-      "visibleTextSha256": "0ce85d2538d5b7cd45c195c6dd74f9d65bcac9335f99d90d0e7deaba955c4891"
+      "visibleTextSha256": "1d6970d1e0f2591c0a71776d396304a406fc163fd7f638f47b5027dad1bdc033"
     },
     "src/presentation/contexts/special/career-ai/review.html": {
       "context": "special",
       "output": "special/career-ai/review.html",
-      "visibleTextSha256": "a50ab1f3765855492044ef306d522b817585cf505742b4489c7100f4c764c17b"
+      "visibleTextSha256": "d153e5f9a9eeb0695f98b0a53068797836fd37c474a79d61ae213c9f5316f50f"
     },
     "src/presentation/contexts/special/custom-travel/index.html": {
       "context": "special",

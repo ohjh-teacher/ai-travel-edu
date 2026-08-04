@@ -215,8 +215,8 @@ async function submitSpecialReview(event) {
     specialReviewForm.reset();
     specialReviewYear.value = String(specialCurrentYear);
     renderSpecialInstitutions();
-    specialReviewMessage.textContent = "제출했습니다. 오늘의 특강 후기가 저장되었습니다.";
-    specialReviewReturn.hidden = false;
+    specialReviewMessage.textContent = "제출했습니다. 오늘의 특강 후기가 저장되었습니다. 이제 이 화면을 닫아 주세요.";
+    if (specialReviewReturn) specialReviewReturn.hidden = false;
   } catch (error) {
     specialReviewMessage.textContent = "제출하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 눌러 주세요.";
   } finally {

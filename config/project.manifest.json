@@ -83,6 +83,18 @@
                                            "output":  "special/career-ai/career-presentation.js"
                                        },
                                        {
+                                           "source":  "career-ai/star-situation-v2.png",
+                                           "output":  "special/career-ai/star-situation-v2.png"
+                                       },
+                                       {
+                                           "source":  "career-ai/star-task-v2.png",
+                                           "output":  "special/career-ai/star-task-v2.png"
+                                       },
+                                       {
+                                           "source":  "career-ai/star-result-v2.png",
+                                           "output":  "special/career-ai/star-result-v2.png"
+                                       },
+                                       {
                                            "source":  "custom-travel/index.html",
                                            "output":  "special/custom-travel/index.html",
                                            "contentLock":  true
