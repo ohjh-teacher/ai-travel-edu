@@ -11,6 +11,7 @@
   let touchStartX = 0;
   let index = 0;
   let typingTimer = 0;
+  let printSnapshot = null;
 
   const hashMatch = window.location.hash.match(/slide=(\d+)/);
   if (hashMatch) index = Math.min(Math.max(Number(hashMatch[1]) - 1, 0), slides.length - 1);
@@ -86,6 +87,53 @@
     slide.dataset.revealIndex = String(steps.length);
   }
 
+  function prepareForPrint() {
+    if (printSnapshot) return;
+    printSnapshot = slides.map((slide) => ({
+      revealIndex: slide.dataset.revealIndex,
+      steps: [...slide.querySelectorAll('.reveal-step')].map((step) => ({
+        text: step.textContent,
+        className: step.className
+      }))
+    }));
+    window.clearTimeout(typingTimer);
+    slides.forEach(showAllSteps);
+    document.body.classList.add('is-printing');
+  }
+
+  function restoreAfterPrint() {
+    if (!printSnapshot) return;
+    slides.forEach((slide, slideIndex) => {
+      const savedSlide = printSnapshot[slideIndex];
+      slide.dataset.revealIndex = savedSlide.revealIndex;
+      [...slide.querySelectorAll('.reveal-step')].forEach((step, stepIndex) => {
+        const savedStep = savedSlide.steps[stepIndex];
+        step.textContent = savedStep.text;
+        step.className = savedStep.className;
+      });
+    });
+    document.body.classList.remove('is-printing');
+    printSnapshot = null;
+  }
+
+  async function waitForPrintImages() {
+    const pendingImages = [...document.images].filter((image) => !image.complete);
+    if (!pendingImages.length) return;
+    await Promise.race([
+      Promise.all(pendingImages.map((image) => new Promise((resolve) => {
+        image.addEventListener('load', resolve, { once: true });
+        image.addEventListener('error', resolve, { once: true });
+      }))),
+      new Promise((resolve) => window.setTimeout(resolve, 4000))
+    ]);
+  }
+
+  async function printDeck() {
+    prepareForPrint();
+    await waitForPrintImages();
+    window.print();
+  }
+
   function showSlide(nextIndex, updateHash = true, showCompleted = false) {
     stopTyping(true);
     index = Math.min(Math.max(nextIndex, 0), slides.length - 1);
@@ -116,7 +164,9 @@
 
   prevButton.addEventListener('click', previous);
   nextButton.addEventListener('click', next);
-  printButton.addEventListener('click', () => window.print());
+  printButton.addEventListener('click', printDeck);
+  window.addEventListener('beforeprint', prepareForPrint);
+  window.addEventListener('afterprint', restoreAfterPrint);
   fullscreenButton.addEventListener('click', async () => {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.();
     else await document.exitFullscreen?.();
