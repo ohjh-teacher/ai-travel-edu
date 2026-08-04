@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-01T22:29:52.660Z",
+  "generatedAt": "2026-08-04T13:17:42.538Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -40,12 +40,17 @@
     "src/presentation/contexts/regular/ai-storybook/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/index.html",
-      "visibleTextSha256": "b7d44a5cf1194cf075c14b2d6927e127743a2f13029f6022d444321989a90fef"
+      "visibleTextSha256": "f3794d69811ca6e62e9f8d0aeed999b46ed525361dce668381e82b93ed279380"
     },
     "src/presentation/contexts/regular/ai-storybook/week-1/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/week-1/index.html",
       "visibleTextSha256": "b889172062ce28100c7a70d8d8b1f8c825e95a549c0ab1b425f560871247afa4"
+    },
+    "src/presentation/contexts/regular/ai-storybook/week-2/index.html": {
+      "context": "regular-ai-storybook",
+      "output": "regular/ai-storybook/week-2/index.html",
+      "visibleTextSha256": "07b11275ce325cc80c6170324b6c9cbf41c83e06b1f460dd66f0a7ec1231b95d"
     },
     "src/presentation/contexts/regular/ai-storybook/review.html": {
       "context": "regular-ai-storybook",

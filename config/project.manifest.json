@@ -126,6 +126,19 @@
                                            "output":  "regular/ai-storybook/week-1/slides.js"
                                        },
                                        {
+                                           "source":  "week-2/index.html",
+                                           "output":  "regular/ai-storybook/week-2/index.html",
+                                           "contentLock":  true
+                                       },
+                                       {
+                                           "source":  "week-2/week-2.css",
+                                           "output":  "regular/ai-storybook/week-2/week-2.css"
+                                       },
+                                       {
+                                           "source":  "week-2/slides.js",
+                                           "output":  "regular/ai-storybook/week-2/slides.js"
+                                       },
+                                       {
                                            "source":  "review.html",
                                            "output":  "regular/ai-storybook/review.html",
                                            "contentLock":  true
@@ -146,6 +159,7 @@
     "catalog":  "content/catalog.json",
     "projectorOutputs":  [
                              "regular/ai-storybook/week-1/index.html",
+                             "regular/ai-storybook/week-2/index.html",
                              "special/career-ai/index.html",
                              "special/custom-travel/index.html"
                          ]
