@@ -128,11 +128,12 @@ body.is-fullscreen .deck-bar { opacity: 0; pointer-events: none; }
 body.is-fullscreen .slide-stage { top: 0; width: min(100vw, calc(100dvh * 16 / 9)); height: min(100dvh, calc(100vw * 9 / 16)); }
 
 /* Week 2 review layout overrides the shared Week 1 QR composition. */
-.projector-deck .review-qr-slide { padding-top: 18%; }
+.projector-deck .review-qr-slide { padding-top: 13.5%; }
 .projector-deck .review-qr-slide > h2 { font-size: clamp(50px, 3.7vw, 60px); }
-.projector-deck .review-qr-layout { grid-template-columns: 24% 1fr; gap: 5%; width: 82%; }
+.projector-deck .review-qr-layout { grid-template-columns: 28% 1fr; gap: 6%; width: 82%; }
 .projector-deck .review-qr-steps { gap: .3em; }
-.projector-deck .review-qr-steps li { padding: .02em 0 .3em 2.05em; }
+.projector-deck .review-qr-steps li { padding: .02em 0 .38em 64px; }
+.projector-deck .review-qr-steps li::before { left: .15em; }
 .projector-deck .review-qr-steps strong { margin-bottom: .06em; font-size: var(--type-body); line-height: 1.2; }
 .projector-deck .review-qr-steps span { font-size: var(--type-caption); line-height: 1.25; }
 
