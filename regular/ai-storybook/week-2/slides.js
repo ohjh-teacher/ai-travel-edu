@@ -20,7 +20,7 @@
     const steps = [...slide.querySelectorAll('.reveal-step')];
     steps.forEach((step) => {
       step.dataset.fullText = step.textContent.trim();
-      step.textContent = '';
+      if (step.dataset.revealMode !== 'card') step.textContent = '';
       step.classList.add('is-pending');
     });
     slide.dataset.revealIndex = '0';
@@ -37,6 +37,11 @@
 
   function typeStep(step) {
     stopTyping(true);
+    if (step.dataset.revealMode === 'card') {
+      step.classList.remove('is-pending');
+      step.classList.add('is-visible');
+      return;
+    }
     const text = step.dataset.fullText;
     let character = 0;
     step.classList.remove('is-pending');
@@ -71,7 +76,7 @@
     stopTyping(false);
     slide.dataset.revealIndex = '0';
     slide.querySelectorAll('.reveal-step').forEach((step) => {
-      step.textContent = '';
+      if (step.dataset.revealMode !== 'card') step.textContent = '';
       step.classList.remove('is-visible', 'is-typing');
       step.classList.add('is-pending');
     });
@@ -80,7 +85,7 @@
   function showAllSteps(slide) {
     const steps = [...slide.querySelectorAll('.reveal-step')];
     steps.forEach((step) => {
-      step.textContent = step.dataset.fullText;
+      if (step.dataset.revealMode !== 'card') step.textContent = step.dataset.fullText;
       step.classList.remove('is-pending', 'is-typing');
       step.classList.add('is-visible');
     });
