@@ -493,6 +493,7 @@ h3 {
 }
 
 .career-presentation-body {
+  scroll-padding-top: 82px;
   scroll-snap-type: y proximity;
 }
 
@@ -502,8 +503,8 @@ h3 {
 }
 
 .career-presentation-body .presentation-slide {
-  min-height: calc(100svh - 150px);
-  scroll-margin-top: 148px;
+  min-height: calc(100svh - 96px);
+  scroll-margin-top: 82px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -514,6 +515,25 @@ h3 {
 
 .quick-nav.career-quick-nav {
   grid-template-columns: repeat(6, 1fr);
+}
+
+.career-presentation-body .special-topbar {
+  gap: 20px;
+}
+
+.career-presentation-body .special-topbar .career-quick-nav {
+  position: static;
+  flex: 1 1 760px;
+  max-width: 900px;
+  margin: 0;
+  border-width: 1px;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+.career-presentation-body .special-topbar .career-quick-nav a {
+  padding: 10px 7px;
+  font-size: 15px;
 }
 
 .career-document-deck {
@@ -642,6 +662,29 @@ h3 {
   .career-presentation-body .timeline li {
     grid-template-columns: 130px 1fr;
     min-height: 122px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .career-presentation-body {
+    scroll-padding-top: 138px;
+  }
+
+  .career-presentation-body .special-topbar {
+    flex-wrap: wrap;
+  }
+
+  .career-presentation-body .special-topbar .career-quick-nav {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+    overflow-x: auto;
+    grid-template-columns: repeat(6, minmax(110px, 1fr));
+  }
+
+  .career-presentation-body .presentation-slide {
+    min-height: calc(100svh - 146px);
+    scroll-margin-top: 138px;
   }
 }
 

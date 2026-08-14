@@ -218,10 +218,11 @@ function showPresentationSlide(index, showCompleted = false) {
   });
 
   if (showCompleted) showAllSteps(presentationSlides[nextIndex]);
-  presentationSlides[nextIndex].scrollIntoView({
-    behavior: "auto",
-    block: "start"
-  });
+  const activeSlide = presentationSlides[nextIndex];
+  const topbar = document.querySelector(".special-topbar");
+  const topbarOffset = (topbar?.getBoundingClientRect().height || 0) + 16;
+  const slideTop = window.scrollY + activeSlide.getBoundingClientRect().top - topbarOffset;
+  window.scrollTo({ top: Math.max(0, slideTop), behavior: "auto" });
   history.replaceState(null, "", `#slide=${nextIndex + 1}`);
   updatePresentationControls(nextIndex);
 }
