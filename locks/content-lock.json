@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-14T04:51:16.176Z",
+  "generatedAt": "2026-08-14T04:54:23.348Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -20,7 +20,7 @@
     "src/presentation/contexts/special/career-ai/index.html": {
       "context": "special",
       "output": "special/career-ai/index.html",
-      "visibleTextSha256": "504c94b4f2aa096ae68c625c778504c6088ee4e22fb7be163ead089341ac9557"
+      "visibleTextSha256": "8e876149d43d01b0872e4956cac36281814e0872db75cbefe99d50b1ee02bde3"
     },
     "src/presentation/contexts/special/career-ai/review.html": {
       "context": "special",
