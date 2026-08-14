@@ -393,6 +393,48 @@ h3 {
   margin-top: 8px;
 }
 
+.learning-objectives-section .lead {
+  margin-bottom: 26px;
+}
+
+.learning-objectives-list {
+  display: grid;
+  gap: 18px;
+}
+
+.learning-objectives-list article {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+  background: var(--sand-50);
+  border: 2px solid var(--sand-100);
+  border-radius: 18px;
+}
+
+.learning-objectives-list strong {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  padding: 20px;
+  color: var(--white);
+  background: var(--teal-800);
+  font-size: 25px;
+}
+
+.learning-objectives-list p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 24px 30px;
+  color: var(--teal-950);
+  font-family: var(--font-serif);
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
 .security-warning {
   padding: 24px 26px;
   color: #6f2d26;
@@ -2024,6 +2066,14 @@ pre:focus-visible {
   .mini-steps,
   .star-grid {
     grid-template-columns: 1fr;
+  }
+
+  .learning-objectives-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-objectives-list strong {
+    min-height: 58px;
   }
 
   .star-grid article {

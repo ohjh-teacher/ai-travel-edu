@@ -10,20 +10,20 @@ function placeSlidesAfter(anchor, ...slides) {
 
 placeSlidesAfter(
   document.getElementById("self-overview"),
-  presentationSlidesInDocument[18],
   presentationSlidesInDocument[19],
-  presentationSlidesInDocument[20]
+  presentationSlidesInDocument[20],
+  presentationSlidesInDocument[21]
 );
-placeSlidesAfter(presentationSlidesInDocument[10], presentationSlidesInDocument[21]);
-placeSlidesAfter(presentationSlidesInDocument[15], presentationSlidesInDocument[22]);
-placeSlidesAfter(presentationSlidesInDocument[16], presentationSlidesInDocument[24]);
+placeSlidesAfter(presentationSlidesInDocument[11], presentationSlidesInDocument[22]);
+placeSlidesAfter(presentationSlidesInDocument[16], presentationSlidesInDocument[23]);
+placeSlidesAfter(presentationSlidesInDocument[17], presentationSlidesInDocument[25]);
 placeSlidesAfter(
-  presentationSlidesInDocument[17],
-  presentationSlidesInDocument[23],
-  presentationSlidesInDocument[25],
+  presentationSlidesInDocument[18],
+  presentationSlidesInDocument[24],
   presentationSlidesInDocument[26],
   presentationSlidesInDocument[27],
-  presentationSlidesInDocument[28]
+  presentationSlidesInDocument[28],
+  presentationSlidesInDocument[29]
 );
 
 const presentationSlides = Array.from(document.querySelectorAll("[data-presentation-slide]"));
@@ -46,7 +46,7 @@ const codeBlockOutputPromptIds = new Set([
   "songLyricsPrompt"
 ]);
 const promptPersonas = {
-  careerAnalysisPrompt: "당신은 전·현직 경찰의 민간 취업을 돕는 전문 커리어 코치입니다.",
+  careerAnalysisPrompt: "당신은 전·현직 경찰의 민간기업·공공기관·공기업 취업을 돕는 전문 커리어 코치입니다.",
   jobMatchPrompt: "당신은 경찰 경력을 기업의 직무역량 언어로 바꾸는 직무 분석 전문가입니다.",
   resumePrompt: "당신은 경찰 경력을 기업이 이해하기 쉬운 성과 중심 이력서로 작성하는 채용 서류 전문가입니다.",
   coverLetterPrompt: "당신은 경찰 경험을 STAR 기법으로 구조화하는 자기소개서 작성 전문가입니다.",
@@ -69,6 +69,7 @@ const revealSelector = [
   ".theory-two-grid article",
   ".star-grid article",
   ".outcome-grid article",
+  ".learning-objectives-list article",
   ".timeline li",
   ".prompt-stage-grid span",
   ".mini-steps li",
