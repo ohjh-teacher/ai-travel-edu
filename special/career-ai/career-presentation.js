@@ -39,7 +39,6 @@ const codeBlockOutputPromptIds = new Set([
   "coverLetterPrompt",
   "documentReviewPrompt",
   "companyTailorPrompt",
-  "achievementPrompt",
   "lengthPrompt",
   "tonePrompt",
   "careerDescriptionPrompt",
