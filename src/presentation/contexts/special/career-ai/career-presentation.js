@@ -1,5 +1,3 @@
-const presentationSlidesInDocument = Array.from(document.querySelectorAll("[data-presentation-slide]"));
-
 function placeSlidesAfter(anchor, ...slides) {
   let cursor = anchor;
   slides.forEach((slide) => {
@@ -10,20 +8,32 @@ function placeSlidesAfter(anchor, ...slides) {
 
 placeSlidesAfter(
   document.getElementById("self-overview"),
-  presentationSlidesInDocument[19],
-  presentationSlidesInDocument[20],
-  presentationSlidesInDocument[21]
+  document.getElementById("document-overview"),
+  document.getElementById("career-analysis-screen")
 );
-placeSlidesAfter(presentationSlidesInDocument[11], presentationSlidesInDocument[22]);
-placeSlidesAfter(presentationSlidesInDocument[16], presentationSlidesInDocument[23]);
-placeSlidesAfter(presentationSlidesInDocument[17], presentationSlidesInDocument[25]);
 placeSlidesAfter(
-  presentationSlidesInDocument[18],
-  presentationSlidesInDocument[24],
-  presentationSlidesInDocument[26],
-  presentationSlidesInDocument[27],
-  presentationSlidesInDocument[28],
-  presentationSlidesInDocument[29]
+  document.getElementById("starTheoryTitle").closest("[data-presentation-slide]"),
+  document.getElementById("achievement-screen")
+);
+placeSlidesAfter(
+  document.getElementById("competencyTitle").closest("[data-presentation-slide]"),
+  document.getElementById("job-match-screen"),
+  document.getElementById("resume-screen")
+);
+placeSlidesAfter(
+  document.getElementById("futurePlanTitle").closest("[data-presentation-slide]"),
+  document.getElementById("cover-letter-screen")
+);
+placeSlidesAfter(
+  document.getElementById("postingTitle").closest("[data-presentation-slide]"),
+  document.getElementById("company-tailor-screen")
+);
+placeSlidesAfter(
+  document.getElementById("proofreadingTitle").closest("[data-presentation-slide]"),
+  document.getElementById("review-screen"),
+  document.getElementById("length-screen"),
+  document.getElementById("tone-screen"),
+  document.getElementById("career-description-screen")
 );
 
 const presentationSlides = Array.from(document.querySelectorAll("[data-presentation-slide]"));
@@ -31,28 +41,15 @@ const presentationPrev = document.getElementById("presentationPrev");
 const presentationNext = document.getElementById("presentationNext");
 const presentationProgress = document.getElementById("presentationProgress");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const outputFormatInstruction = "완성된 결과는 복사하기 쉽도록 하나의 코드 블록 안에 작성해주세요.";
-const multipleOutputFormatInstruction = "완성된 3개의 결과는 복사하기 쉽도록 각각의 코드 블록 안에 작성해주세요.";
-const codeBlockOutputPromptIds = new Set([
-  "careerAnalysisPrompt",
-  "jobMatchPrompt",
-  "resumePrompt",
-  "coverLetterPrompt",
-  "documentReviewPrompt",
-  "companyTailorPrompt",
-  "careerDescriptionPrompt",
-  "songLyricsPrompt"
-]);
-const multipleCodeBlockOutputPromptIds = new Set(["lengthPrompt", "tonePrompt"]);
 const promptPersonas = {
-  careerAnalysisPrompt: "당신은 전·현직 경찰의 민간기업·공공기관·공기업 취업을 돕는 전문 커리어 코치입니다.",
-  jobMatchPrompt: "당신은 경찰 경력을 기업의 직무역량 언어로 바꾸는 직무 분석 전문가입니다.",
-  resumePrompt: "당신은 경찰 경력을 기업이 이해하기 쉬운 성과 중심 이력서로 작성하는 채용 서류 전문가입니다.",
-  coverLetterPrompt: "당신은 경찰 경험을 STAR 기법으로 구조화하는 자기소개서 작성 전문가입니다.",
-  documentReviewPrompt: "당신은 기업 채용담당자의 관점에서 자기소개서를 검토하는 첨삭 전문가입니다.",
-  companyTailorPrompt: "당신은 지원 기업의 인재상과 채용공고에 맞게 지원 서류를 조정하는 채용 컨설턴트입니다.",
-  achievementPrompt: "당신은 경찰 경력에서 검증 가능한 성과를 찾아 기업 언어로 표현하는 성과 분석 전문가입니다.",
-  careerDescriptionPrompt: "당신은 공공기관 경력을 민간기업용 경력기술서로 전환하는 채용 서류 전문가입니다.",
+  careerAnalysisPrompt: "당신은 전·현직 경찰의 취업을 돕는 커리어 코치입니다.",
+  jobMatchPrompt: "당신은 경찰 경력을 보안직 역량으로 바꾸는 직무 분석가입니다.",
+  resumePrompt: "당신은 성과 중심 이력서를 쓰는 채용 서류 전문가입니다.",
+  coverLetterPrompt: "당신은 경찰 경험을 STAR로 구성하는 자기소개서 전문가입니다.",
+  documentReviewPrompt: "당신은 채용담당자 관점의 자기소개서 첨삭 전문가입니다.",
+  companyTailorPrompt: "당신은 지원 기업에 맞게 자기소개서를 다듬는 채용 컨설턴트입니다.",
+  achievementPrompt: "당신은 경찰 경력에서 확인 가능한 성과를 찾는 인터뷰어입니다.",
+  careerDescriptionPrompt: "당신은 경찰 경력을 기업용 경력기술서로 바꾸는 전문가입니다.",
   resumePhotoPrompt: "당신은 중장년 지원자의 전문성과 신뢰감을 표현하는 프로필 이미지 디렉터입니다.",
   fullBodyProfilePrompt: "당신은 취업 목적에 맞는 자연스럽고 전문적인 전신 프로필을 연출하는 이미지 디렉터입니다.",
   profileVariationPrompt: "당신은 인물의 정체성은 유지하면서 의상과 자세를 목적에 맞게 변형하는 이미지 디렉터입니다.",
@@ -86,12 +83,6 @@ document.querySelectorAll(".prompt-screen pre").forEach((prompt) => {
   const persona = promptPersonas[prompt.id];
   if (persona && !prompt.textContent.startsWith(persona)) {
     prompt.textContent = `${persona}\n\n${prompt.textContent.trimStart()}`;
-  }
-  if (codeBlockOutputPromptIds.has(prompt.id) && !prompt.textContent.includes(outputFormatInstruction)) {
-    prompt.textContent = `${prompt.textContent.trimEnd()}\n\n${outputFormatInstruction}`;
-  }
-  if (multipleCodeBlockOutputPromptIds.has(prompt.id) && !prompt.textContent.includes(multipleOutputFormatInstruction)) {
-    prompt.textContent = `${prompt.textContent.trimEnd()}\n\n${multipleOutputFormatInstruction}`;
   }
 });
 
