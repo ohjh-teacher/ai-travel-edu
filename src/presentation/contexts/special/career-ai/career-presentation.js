@@ -32,6 +32,7 @@ const presentationNext = document.getElementById("presentationNext");
 const presentationProgress = document.getElementById("presentationProgress");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const outputFormatInstruction = "완성된 결과는 복사하기 쉽도록 하나의 코드 블록 안에 작성해주세요.";
+const multipleOutputFormatInstruction = "완성된 3개의 결과는 복사하기 쉽도록 각각의 코드 블록 안에 작성해주세요.";
 const codeBlockOutputPromptIds = new Set([
   "careerAnalysisPrompt",
   "jobMatchPrompt",
@@ -39,11 +40,10 @@ const codeBlockOutputPromptIds = new Set([
   "coverLetterPrompt",
   "documentReviewPrompt",
   "companyTailorPrompt",
-  "lengthPrompt",
-  "tonePrompt",
   "careerDescriptionPrompt",
   "songLyricsPrompt"
 ]);
+const multipleCodeBlockOutputPromptIds = new Set(["lengthPrompt", "tonePrompt"]);
 const promptPersonas = {
   careerAnalysisPrompt: "당신은 전·현직 경찰의 민간기업·공공기관·공기업 취업을 돕는 전문 커리어 코치입니다.",
   jobMatchPrompt: "당신은 경찰 경력을 기업의 직무역량 언어로 바꾸는 직무 분석 전문가입니다.",
@@ -89,6 +89,9 @@ document.querySelectorAll(".prompt-screen pre").forEach((prompt) => {
   }
   if (codeBlockOutputPromptIds.has(prompt.id) && !prompt.textContent.includes(outputFormatInstruction)) {
     prompt.textContent = `${prompt.textContent.trimEnd()}\n\n${outputFormatInstruction}`;
+  }
+  if (multipleCodeBlockOutputPromptIds.has(prompt.id) && !prompt.textContent.includes(multipleOutputFormatInstruction)) {
+    prompt.textContent = `${prompt.textContent.trimEnd()}\n\n${multipleOutputFormatInstruction}`;
   }
 });
 
