@@ -502,6 +502,38 @@ h3 {
   padding-bottom: 150px;
 }
 
+.pdf-download-button {
+  position: absolute;
+  top: 28px;
+  right: 30px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  color: var(--teal-950);
+  background: var(--gold);
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(16, 42, 52, 0.2);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pdf-download-button:hover,
+.pdf-download-button:focus-visible {
+  color: var(--teal-950);
+  background: #ffd36a;
+  transform: translateY(-2px);
+}
+
+.pdf-download-button:focus-visible {
+  outline: 4px solid rgba(255, 255, 255, 0.92);
+  outline-offset: 3px;
+}
+
 .career-presentation-body .presentation-slide {
   min-height: calc(100svh - 96px);
   scroll-margin-top: 82px;
@@ -2391,6 +2423,7 @@ pre:focus-visible {
   .special-topbar,
   .quick-nav,
   .copy-button,
+  .pdf-download-button,
   .top-button,
   .special-toast {
     display: none !important;
