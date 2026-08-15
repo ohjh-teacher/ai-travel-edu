@@ -22,10 +22,7 @@ placeSlidesAfter(
 );
 placeSlidesAfter(
   document.getElementById("futurePlanTitle").closest("[data-presentation-slide]"),
-  document.getElementById("cover-letter-screen")
-);
-placeSlidesAfter(
-  document.getElementById("postingTitle").closest("[data-presentation-slide]"),
+  document.getElementById("cover-letter-screen"),
   document.getElementById("company-tailor-screen")
 );
 placeSlidesAfter(
@@ -43,7 +40,7 @@ const presentationProgress = document.getElementById("presentationProgress");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const promptPersonas = {
   careerAnalysisPrompt: "당신은 전·현직 경찰의 취업을 돕는 커리어 코치입니다.",
-  jobMatchPrompt: "당신은 경찰 경력을 보안직 역량으로 바꾸는 직무 분석가입니다.",
+  jobMatchPrompt: "당신은 경찰 경력을 [보안직] 역량으로 바꾸는 직무 분석가입니다.",
   resumePrompt: "당신은 성과 중심 이력서를 쓰는 채용 서류 전문가입니다.",
   coverLetterPrompt: "당신은 경찰 경험을 STAR로 구성하는 자기소개서 전문가입니다.",
   documentReviewPrompt: "당신은 채용담당자 관점의 자기소개서 첨삭 전문가입니다.",
@@ -71,7 +68,7 @@ const revealSelector = [
   ".mini-steps li",
   ".finish-check label",
   ".question-grid span",
-  ".lead:not(.security-lead)",
+  ".lead:not(.security-lead):not(.document-flow-lead)",
   ".security-line",
   ".theory-closing"
 ].join(",");

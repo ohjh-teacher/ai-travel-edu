@@ -70,7 +70,7 @@
         <div class="learning-objectives-list">
           <article><strong>목표 1</strong><p>경찰 경력을 민간기업·공공기관·공기업의 채용 담당자가 이해할 수 있는 직무역량으로 전환합니다.</p></article>
           <article><strong>목표 2</strong><p>ChatGPT를 활용하여 지원 분야에 맞는 이력서와 자기소개서 초안을 효과적으로 작성합니다.</p></article>
-          <article><strong>목표 3</strong><p>AI 초안을 사실에 맞게 검토하고 채용공고와 기관·기업의 인재상에 맞춰 완성합니다.</p></article>
+          <article><strong>목표 3</strong><p>AI 초안을 사실에 맞게 검토하고 지원 직무와 기관·기업의 인재상에 맞춰 완성합니다.</p></article>
         </div>
       </div>
     </section>
@@ -146,7 +146,7 @@
         <div class="theory-mapping-grid">
           <article><h3>경찰 업무</h3><p>사건 처리 및 민원 응대 → 문제해결·고객응대</p><p>순찰 및 교통관리 → 위기관리·현장대응</p><p>수사 및 보고서 작성 → 분석력·문서작성</p><p>팀워크 및 상호협조 → 커뮤니케이션·리더십</p></article>
           <article><h3>기업 언어 예시</h3><p>“현장에서 갈등을 중재하고 상황을 신속히 해결”</p><p>“다양한 민원인의 요구를 파악하고 대응책 수립”</p><p>“데이터 기반 사건 분석 및 체계적 보고서 작성”</p><p>“부서 간 협업을 통한 효율적 업무 처리”</p></article>
-          <article><h3>AI 프롬프트</h3><p>“퇴직 경찰의 교통관리 경력을 보안직 이력서에 맞게 변환해줘”</p><p>“순찰 경험을 보안업무 역량으로 바꿔서 작성해줘”</p><p>“민원 응대 경험을 보안직 고객응대 역량으로 변환해줘”</p></article>
+          <article><h3>AI 프롬프트</h3><p>“퇴직 경찰의 교통관리 경력을 [보안직] 이력서에 맞게 변환해줘”</p><p>“순찰 경험을 보안업무 역량으로 바꿔서 작성해줘”</p><p>“민원 응대 경험을 [보안직] 고객응대 역량으로 변환해줘”</p></article>
           <article><h3>적용 단계</h3><p>① 경찰 경력 3가지 선정</p><p>② 대응 기업 역량 매칭</p><p>③ AI 프롬프트 입력 및 결과 확인</p><p>④ 문장 다듬기 및 개인화</p></article>
         </div>
       </div>
@@ -288,25 +288,13 @@
       </div>
     </section>
 
-    <section class="content-section theory-slide presentation-slide" aria-labelledby="postingTitle" data-presentation-slide>
-      <div class="section-mark">THEORY</div>
-      <div>
-        <h2 id="postingTitle">채용공고 분석</h2>
-        <ul class="theory-key-list">
-          <li>채용공고의 핵심 요구사항과 키워드를 정확히 파악합니다.</li>
-          <li>AI 프롬프트에 활용할 채용공고 분석 방법을 학습합니다.</li>
-          <li>기업 맞춤형 자기소개서·이력서 작성의 출발점을 만듭니다.</li>
-        </ul>
-      </div>
-    </section>
-
     <section class="content-section theory-slide presentation-slide" aria-labelledby="proofreadingTitle" data-presentation-slide>
       <div class="section-mark">THEORY</div>
       <div>
         <h2 id="proofreadingTitle">AI 첨삭 활용</h2>
         <div class="theory-two-grid">
           <article><h3>어색한 표현 수정</h3><p>AI가 제안한 문장을 자연스럽게 다듬어 경쟁력을 높입니다.</p></article>
-          <article><h3>분량 조절·키워드 보완</h3><p>공고 맞춤 키워드를 반영하고 적정 분량으로 맞춤 수정합니다.</p></article>
+          <article><h3>분량 조절·키워드 보완</h3><p>지원 직무와 기업 인재상에 맞는 표현을 반영하고 적정 분량으로 수정합니다.</p></article>
         </div>
         <p class="theory-closing">Before/After 문장 비교를 통해 AI 첨삭의 효과를 확인하고, 경찰 경력을 기업 언어로 완성합니다.</p>
       </div>
@@ -317,10 +305,11 @@
       <div>
         <p class="section-number">14:30~15:10 · 15:20~16:00</p>
         <h2 id="documentTitle">한 대화방에서 차근차근 완성합니다</h2>
-        <p class="lead">새 채팅을 열지 않고 AI의 질문에 하나씩 답하며, 앞에서 찾은 경력과 성과를 다음 단계에 이어서 사용합니다.</p>
+        <p class="lead document-flow-lead">새 채팅을 열지 않고 AI의 질문에 하나씩 답하며, 앞에서 찾은 경력과 성과를 다음 단계에 이어서 사용합니다.</p>
 
         <aside class="blank-guide" aria-label="프롬프트 입력 방법">
           <strong>AI의 질문에 한 번에 하나씩 답해주세요</strong>
+          <p><code>[보안직]</code>은 예시입니다. 대괄호 안을 내가 원하는 지원 직군으로 바꿔주세요.</p>
           <p>개인정보와 보안정보는 빼고, 확인된 사실과 숫자만 이야기합니다.</p>
         </aside>
 
@@ -346,7 +335,7 @@
             <div><span>01 · 단계별 실습</span><h3>경찰 경력 분석 프롬프트</h3></div>
             <button class="copy-button" type="button" data-copy-target="careerAnalysisPrompt">프롬프트 복사</button>
           </div>
-          <pre id="careerAnalysisPrompt" tabindex="0">보안직 지원에 활용할 내 경찰 경력을 정리하고 싶습니다.
+          <pre id="careerAnalysisPrompt" tabindex="0">[보안직] 지원에 활용할 내 경찰 경력을 정리하고 싶습니다.
 
 근무 기관·기간, 부서·직급, 주요 업무를 한 번에 하나씩 질문해주세요.
 내가 답하면 다음 질문을 해주세요.
@@ -361,7 +350,7 @@
             <div><span>03 · 단계별 실습</span><h3>직무 매칭 프롬프트</h3></div>
             <button class="copy-button" type="button" data-copy-target="jobMatchPrompt">프롬프트 복사</button>
           </div>
-          <pre id="jobMatchPrompt" tabindex="0">앞에서 정리한 경력과 성과를 보안직 업무와 연결해주세요.
+          <pre id="jobMatchPrompt" tabindex="0">앞에서 정리한 경력과 성과를 [보안직] 업무와 연결해주세요.
 
 어울리는 경험 3개와 연결 이유를 설명하고,
 자기소개서에 가장 적합한 경험 1개를 추천해주세요.
@@ -375,10 +364,10 @@
             <div><span>04 · 단계별 실습</span><h3>이력서 작성 프롬프트</h3></div>
             <button class="copy-button" type="button" data-copy-target="resumePrompt">프롬프트 복사</button>
           </div>
-          <pre id="resumePrompt" tabindex="0">앞에서 정리한 내 경력과 성과로 보안직 이력서용 경력 요약을 작성해주세요.
+          <pre id="resumePrompt" tabindex="0">앞에서 정리한 내 경력과 성과로 [보안직] 이력서용 경력 요약을 작성해주세요.
 
 경찰 용어는 기업이 이해하기 쉽게 바꾸고,
-보안직과 관련된 경력과 확인된 성과를 먼저 보여주세요.
+[보안직]과 관련된 경력과 확인된 성과를 먼저 보여주세요.
 
 이력서에 바로 붙여 넣을 최종 문장만 코드 블록 안에 작성하고,
 작성 이유와 설명은 코드 블록에 넣지 마세요.</pre>
@@ -389,14 +378,23 @@
             <div><span>05 · 단계별 실습</span><h3>자기소개서 작성 프롬프트</h3></div>
             <button class="copy-button" type="button" data-copy-target="coverLetterPrompt">프롬프트 복사</button>
           </div>
-          <pre id="coverLetterPrompt" tabindex="0">앞 대화에서 찾은 경력과 성과로 보안직 자기소개서를 작성하고 싶습니다.
+          <pre id="coverLetterPrompt" tabindex="0">앞 대화에서 찾은 경력과 성과로 자기소개서를 작성하고 싶습니다.
 
-먼저 가장 적합한 경험 1개를 추천하고, 사용할지 물어보세요.
-내가 답하면 지원 기업, 자기소개서 문항, 글자 수를 한 번에 하나씩 질문해주세요.
+지원 기관, 정확한 지원 직무, 자기소개서 문항, 글자 수를
+한 번에 하나씩 질문해주세요.
+답변이 끝나면 지원 직무에 가장 적합한 경험 1개를 추천하고,
+그 경험을 사용할지 물어본 뒤 내 답을 기다려주세요.
 
-답변이 끝난 뒤 STAR 기법으로 자연스럽게 작성해주세요.
+[작성 구조]
+1문단: 전체 경력 요약과 지원 직무에 연결되는 핵심역량
+2문단: 대표 경험의 상황·과제·행동·결과를 담은 STAR 사례
+3문단: 경험을 통해 배운 점과 지원 직무에서의 기여·포부
+
+세 문단의 내용이 반복되지 않도록 자연스럽게 연결해주세요.
+내가 말하지 않은 경력·경험·성과는 새로 만들지 마세요.
+코드 블록 안에서는 문장마다 줄을 바꾸고, 문단 사이에는 빈 줄을 넣어주세요.
 최종 자기소개서 본문만 코드 블록 안에 작성하고,
-제목·작성 과정·설명·주의사항은 코드 블록에 넣지 마세요.</pre>
+문단 제목·작성 과정·설명·주의사항은 코드 블록에 넣지 마세요.</pre>
         </article>
 
         <article class="prompt-card presentation-slide prompt-screen" id="review-screen" data-presentation-slide>
@@ -413,6 +411,7 @@
 평가와 수정 이유는 코드 블록 밖에 작성해주세요.
 확인되지 않은 경력이나 성과는 새로 만들지 마세요.
 
+코드 블록 안에서는 문장마다 줄을 바꾸고, 문단 사이에는 빈 줄을 넣어주세요.
 수정된 최종 자기소개서 본문만 코드 블록 안에 작성하고,
 제목·평가·설명은 코드 블록에 넣지 마세요.</pre>
         </article>
@@ -426,7 +425,7 @@
 
 [입력 정보]
 기업명: 한빛유통
-지원 직무: 보안직
+지원 직무: [보안직]
 기업 인재상:
 - 맡은 업무에 책임을 다하는 사람
 - 원칙과 신뢰를 중요하게 생각하는 사람
@@ -437,6 +436,7 @@
 관련 경험이 잘 드러나도록 다듬어주세요.
 
 수정 이유는 코드 블록 밖에 간단히 설명해주세요.
+코드 블록 안에서는 문장마다 줄을 바꾸고, 문단 사이에는 빈 줄을 넣어주세요.
 최종 자기소개서 본문만 코드 블록 안에 작성하고,
 제목·설명·평가 문장은 코드 블록에 넣지 마세요.</pre>
         </article>
@@ -446,7 +446,7 @@
             <div><span>02 · 단계별 실습</span><h3>성과 인터뷰 프롬프트</h3></div>
             <button class="copy-button" type="button" data-copy-target="achievementPrompt">프롬프트 복사</button>
           </div>
-          <pre id="achievementPrompt" tabindex="0">앞에서 정리한 경찰 경력에서 보안직에 활용할 성과를 찾아주세요.
+          <pre id="achievementPrompt" tabindex="0">앞에서 정리한 경찰 경력에서 [보안직]에 활용할 성과를 찾아주세요.
 
 [진행 방법]
 - 질문은 한 번에 하나만 해주세요.
@@ -455,7 +455,7 @@
 - 상황·과제·행동·결과를 차례로 확인해주세요.
 - 날짜·건수·수치는 확인된 내용만 사용하고 추측하지 마세요.
 
-인터뷰가 끝나면 핵심 성과와 보안직 역량의 연결을 설명해주세요.
+인터뷰가 끝나면 핵심 성과와 [보안직] 역량의 연결을 설명해주세요.
 자기소개서에 사용할 최종 성과 문장 3개만 하나의 코드 블록 안에 작성하고,
 질문·설명·제목·주의사항은 코드 블록에 넣지 마세요.</pre>
         </article>
@@ -476,6 +476,7 @@
 
 각 버전의 이름과 글자 수는 코드 블록 밖에 표시해주세요.
 각 코드 블록 안에는 자기소개서 본문만 작성하고,
+문장마다 줄을 바꾸고 문단 사이에는 빈 줄을 넣어주세요.
 설명·평가·주의사항은 넣지 마세요.</pre>
         </article>
 
@@ -494,6 +495,7 @@
 
 각 버전의 이름은 코드 블록 밖에 표시해주세요.
 각 코드 블록 안에는 자기소개서 본문만 작성하고,
+문장마다 줄을 바꾸고 문단 사이에는 빈 줄을 넣어주세요.
 설명·평가·주의사항은 넣지 마세요.</pre>
         </article>
 
@@ -673,7 +675,7 @@
           <label><input type="checkbox"> 내가 중요하게 생각하는 가치와 앞으로 살펴볼 분야를 정리했습니다.</label>
           <label><input type="checkbox"> 경험을 구체적으로 말할수록 AI의 문서 초안이 좋아진다는 점을 이해했습니다.</label>
           <label><input type="checkbox"> AI가 만든 문장의 사실과 숫자를 직접 확인하고 고치는 법을 익혔습니다.</label>
-          <label><input type="checkbox"> 채용공고의 요구와 내 경험을 연결해 문서 하나를 완성했습니다.</label>
+          <label><input type="checkbox"> 지원 직무와 기업 인재상에 내 경험을 연결해 문서 하나를 완성했습니다.</label>
           <label><input type="checkbox"> 셀카를 이력서 사진과 전신 프로필로 바꾸고, 의상·자세와 포스터로 확장했습니다.</label>
           <label><input type="checkbox"> 개인정보와 보안정보를 제외하고 안전하게 AI를 사용하는 원칙을 알았습니다.</label>
         </div>

@@ -1033,9 +1033,10 @@ h3 {
 }
 
 .theory-five-grid small {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
-  line-height: 1.65;
+  line-height: 1.7;
+  letter-spacing: -0.03em;
 }
 
 .theory-two-grid {
