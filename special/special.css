@@ -695,6 +695,40 @@ h3 {
     grid-template-columns: 130px 1fr;
     min-height: 122px;
   }
+
+  .career-presentation-body .flow-section {
+    padding-block: 38px;
+  }
+
+  .career-presentation-body .flow-section h2 {
+    margin-bottom: 18px;
+  }
+
+  .career-presentation-body .flow-section .timeline {
+    gap: 10px 12px;
+  }
+
+  .career-presentation-body .flow-section .timeline li {
+    grid-template-columns: 118px 1fr;
+    gap: 14px;
+    min-height: 104px;
+    padding: 14px 18px;
+  }
+
+  .career-presentation-body .flow-section .timeline time {
+    font-size: 18px;
+  }
+
+  .career-presentation-body .flow-section .timeline strong {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .career-presentation-body .flow-section .timeline p {
+    margin-top: 3px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
 }
 
 @media (max-width: 1180px) {
