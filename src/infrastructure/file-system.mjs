@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
 
@@ -10,7 +10,8 @@ export async function writeUtf8(file, value) {
   await writeFile(file, value, "utf8");
 }
 export async function copyTextFile(source, output) {
-  await writeUtf8(output, await readUtf8(source));
+  await mkdir(path.dirname(output), { recursive: true });
+  await copyFile(source, output);
 }
 export function sha256(value) {
   return createHash("sha256").update(value).digest("hex");

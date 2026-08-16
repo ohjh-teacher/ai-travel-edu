@@ -95,6 +95,14 @@
                                            "output":  "special/career-ai/star-result-v2.png"
                                        },
                                        {
+                                           "source":  "career-ai/career-description-example-1.png",
+                                           "output":  "special/career-ai/career-description-example-1.png"
+                                       },
+                                       {
+                                           "source":  "career-ai/career-description-example-2.png",
+                                           "output":  "special/career-ai/career-description-example-2.png"
+                                       },
+                                       {
                                            "source":  "custom-travel/index.html",
                                            "output":  "special/custom-travel/index.html",
                                            "contentLock":  true

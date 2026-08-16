@@ -8,29 +8,30 @@ function placeSlidesAfter(anchor, ...slides) {
 
 placeSlidesAfter(
   document.getElementById("self-overview"),
+  document.getElementById("careerStrengthTitle").closest("[data-presentation-slide]"),
+  document.getElementById("talentTitle").closest("[data-presentation-slide]"),
+  document.getElementById("mappingTitle").closest("[data-presentation-slide]"),
   document.getElementById("document-overview"),
-  document.getElementById("career-analysis-screen")
-);
-placeSlidesAfter(
-  document.getElementById("starTheoryTitle").closest("[data-presentation-slide]"),
-  document.getElementById("achievement-screen")
-);
-placeSlidesAfter(
-  document.getElementById("competencyTitle").closest("[data-presentation-slide]"),
+  document.getElementById("career-analysis-screen"),
+  document.getElementById("career-analysis-example-screen"),
+  document.getElementById("achievement-screen"),
+  document.getElementById("achievement-example-screen"),
   document.getElementById("job-match-screen"),
-  document.getElementById("resume-screen")
-);
-placeSlidesAfter(
+  document.getElementById("resumeStepsTitle").closest("[data-presentation-slide]"),
+  document.getElementById("resumePracticeTitle").closest("[data-presentation-slide]"),
+  document.getElementById("resume-screen"),
+  document.getElementById("coverStructureTitle").closest("[data-presentation-slide]"),
+  document.getElementById("motivationTitle").closest("[data-presentation-slide]"),
+  document.getElementById("starTheoryTitle").closest("[data-presentation-slide]"),
   document.getElementById("futurePlanTitle").closest("[data-presentation-slide]"),
   document.getElementById("cover-letter-screen"),
-  document.getElementById("company-tailor-screen")
-);
-placeSlidesAfter(
+  document.getElementById("company-tailor-screen"),
   document.getElementById("proofreadingTitle").closest("[data-presentation-slide]"),
   document.getElementById("review-screen"),
   document.getElementById("length-screen"),
   document.getElementById("tone-screen"),
-  document.getElementById("career-description-screen")
+  document.getElementById("career-description-screen"),
+  document.getElementById("career-description-example-screen")
 );
 
 const presentationSlides = Array.from(document.querySelectorAll("[data-presentation-slide]"));
@@ -64,7 +65,8 @@ const revealSelector = [
   ".outcome-grid article",
   ".learning-objectives-list article",
   ".timeline li",
-  ".prompt-stage-grid span",
+  ".prompt-stage-grid:not(.document-stage-grid) span",
+  ".document-stage-grid .prompt-stage-row",
   ".mini-steps li",
   ".finish-check label",
   ".question-grid span",
@@ -86,7 +88,7 @@ document.querySelectorAll(".prompt-screen pre").forEach((prompt) => {
 presentationSlides.forEach((slide) => {
   const steps = Array.from(slide.querySelectorAll(revealSelector));
   steps.forEach((step) => {
-    const isCard = step.matches("article, li, label, .prompt-stage-grid span, .question-grid span");
+    const isCard = step.matches("article, li, label, .prompt-stage-grid span, .prompt-stage-row, .question-grid span");
     step.classList.add("career-reveal-step", "is-pending");
     step.dataset.revealMode = isCard ? "card" : "type";
     if (!isCard) {
