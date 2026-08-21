@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-21T12:45:04.933Z",
+  "generatedAt": "2026-08-21T14:48:06.361Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -55,7 +55,7 @@
     "src/presentation/contexts/regular/ai-storybook/week-3/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/week-3/index.html",
-      "visibleTextSha256": "29be87d9707e2b008c5997077c11fe1612b9be01934f7979b6274db66b6271d9"
+      "visibleTextSha256": "9ce696ad6807d26c8877bbef8416bf3cd6869b7aa0b436033c0fb5109a45a903"
     },
     "src/presentation/contexts/regular/ai-storybook/review.html": {
       "context": "regular-ai-storybook",

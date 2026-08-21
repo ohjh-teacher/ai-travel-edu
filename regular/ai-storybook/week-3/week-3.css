@@ -41,10 +41,10 @@
 /* Week 3 refinement: match Week 2 hierarchy and preserve Korean phrase boundaries. */
 .projector-deck .slide { word-break: keep-all; overflow-wrap: normal; }
 .projector-deck .lead { font-size: var(--type-subtitle); line-height: 1.55; }
-.review-grid { gap: 2.3vw 4.2vw; margin-top: 1.6%; }
-.review-grid div { min-height: 4.8em; padding: .55em .2em .72em; }
+.review-grid { gap: 1.25vw 4.2vw; margin-top: .4%; }
+.review-grid div { min-height: 0; padding: .35em .2em .5em; }
 .review-grid b { margin-bottom: .45em; font-size: var(--type-caption); }
-.review-grid span { color: var(--ink); font-size: clamp(22px, 1.9vw, 30px); line-height: 1.45; }
+.review-grid span { color: var(--ink); font-size: clamp(21px, 1.75vw, 28px); line-height: 1.35; }
 
 .money-scene { grid-template-columns: 24% 1fr; gap: 5%; max-width: 1100px; align-items: center; }
 .money-scene .wallet-art { min-height: 176px; }
@@ -86,3 +86,39 @@
 .practice-cards { gap: 1.7vw; }
 .practice-cards div { min-height: 9.4em; padding: 1.1em 1.15em; }
 .practice-cards b { font-size: var(--type-caption); }.practice-cards strong { margin: .55em 0 .5em; font-size: clamp(23px, 1.85vw, 30px); }.practice-cards span { font-size: clamp(19px, 1.5vw, 24px); line-height: 1.45; }
+
+.prompt-slide { justify-content: flex-start; padding-top: 6.5%; padding-bottom: 8.8%; }
+.prompt-slide h2 { margin-bottom: 1.15%; }
+.prompt-slide .lead { margin: 0 0 2.2%; }
+.prompt-guide { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4vw; }
+.prompt-guide div { display: grid; grid-template-columns: 2.3em 1fr; gap: .6em; align-items: center; min-height: 4.1em; padding: .7em .8em; background: #eef7f6; border-left: .38vw solid var(--green); }
+.prompt-guide b { display: grid; place-items: center; width: 1.8em; aspect-ratio: 1; color: #fff; background: var(--plum); border-radius: 50%; font-size: var(--type-caption); }
+.prompt-guide span { font-size: var(--type-caption); font-weight: 750; line-height: 1.4; }
+.prompt-guide strong { color: var(--plum); }
+.copy-prompt-button { align-self: center; margin: 3.1% auto 1.4%; padding: .76em 1.35em; color: #fff; background: var(--plum); border: 0; border-radius: .45em; box-shadow: 0 .22em 0 #512a48; font: 850 var(--type-subtitle)/1.35 var(--sans); cursor: pointer; }
+.copy-prompt-button:focus-visible { outline: .18em solid var(--orange); outline-offset: .16em; }
+.prompt-note { margin: 0; color: var(--muted); font-size: var(--type-caption); text-align: center; }
+.prompt-slide .prompt-guide,.prompt-slide .copy-prompt-button,.prompt-slide .prompt-note { display: none; }
+.prompt-copy-action { align-self: flex-start; margin: 0 0 1.15%; padding: .4em .72em; color: #fff; background: var(--plum); border: 0; border-radius: .36em; box-shadow: 0 .14em 0 #512a48; font: 850 clamp(16px, 1.25vw, 20px)/1.25 var(--sans); cursor: pointer; }
+.prompt-full { overflow: hidden; border: .22vw solid #30464d; border-radius: .65em; background: #fffefa; box-shadow: .24vw .2vw 0 rgba(48,70,77,.16); }
+.prompt-full::before { content: "CHATGPT PROMPT  ·  아래 내용을 그대로 입력하세요"; display: block; margin: 0 0 .55em; padding: .52em .72em; color: #fff0d8; background: #30464d; font: 850 clamp(15px, 1.12vw, 18px)/1.2 var(--sans); letter-spacing: .02em; }
+.prompt-page .prompt-full::before { content: "CHATGPT PROMPT  ·  이어서 보기"; }
+.prompt-full > :not(:first-child), .prompt-full > :first-child { margin-left: .72em; margin-right: .72em; }
+.prompt-slide .prompt-full { flex: 0 0 48%; min-height: 0; padding: 0; color: var(--ink); font-size: clamp(14px, 1.1vw, 18px); font-weight: 650; line-height: 1.28; }
+.prompt-full > p { margin: 0 0 .42em; }.prompt-full > b { color: var(--plum); font-size: 1.07em; }
+.prompt-interview ol { display: grid; grid-template-columns: 1fr 1fr; gap: .28em 1.1em; margin: .38em 0; padding: 0; list-style: none; counter-reset: none; }
+.prompt-interview li { display: grid; grid-template-columns: 4.15em 1fr; gap: .42em; padding: .26em .38em; background: #fff8ed; border-left: .22vw solid var(--orange); }
+.prompt-interview li strong { color: var(--plum); }.prompt-interview li span { word-break: keep-all; }
+.prompt-page { justify-content: flex-start; padding-top: 6.5%; }.prompt-page h2 { margin-bottom: 1.15%; }
+.prompt-rules { display: grid; gap: .36em; }.prompt-rules > p { margin: 0; }.prompt-rules > div:not(.prompt-steps) { display: grid; grid-template-columns: 7.5em 1fr; gap: .45em; padding: .45em .55em; background: #eef7f6; border-left: .3vw solid var(--green); }.prompt-rules > div b { color: var(--plum); }.prompt-rules > div span { line-height: 1.3; }
+.prompt-steps { display: flex; flex-wrap: wrap; gap: .3em; }.prompt-steps b { padding: .22em .4em; color: var(--plum); background: #f3eaf0; }
+.prompt-manuscript { max-width: 1050px; }.prompt-manuscript > b { display: block; margin-bottom: .42em; color: var(--plum); font-size: 1.12em; }.prompt-manuscript ul { display: grid; grid-template-columns: 1fr 1fr; gap: .28em 1.1em; margin: 0 0 .6em; padding: 0; list-style: none; }.prompt-manuscript li { position: relative; padding-left: 1em; }.prompt-manuscript li::before { content: "•"; position: absolute; left: 0; color: var(--orange); }.prompt-manuscript p { margin: 0 0 .55em; }.prompt-final { padding: .48em .65em; background: #fff3df; border-left: .35vw solid var(--orange); }.prompt-final strong { color: var(--red); }
+.prompt-code-screen { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 1.05em 1.25em; overflow: hidden; color: #fff; background: #0f172a; border: .22vw solid #30464d; border-radius: .65em; box-shadow: .24vw .2vw 0 rgba(48,70,77,.16); column-count: 2; column-gap: 2.4em; column-fill: auto; font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; font-size: clamp(10px, .78vw, 13px); font-weight: 700; line-height: 1.26; letter-spacing: 0; text-shadow: 0 1px 0 rgba(0,0,0,.35); white-space: pre-wrap; word-break: keep-all; }
+.prompt-code-screen:focus-visible { outline: .18em solid var(--orange); outline-offset: .18em; }
+.scene-composition-prompt .prompt-code-screen { column-count: 2; column-fill: balance; column-gap: 2.3em; font-size: clamp(11px, .85vw, 14px); line-height: 1.25; }
+.scene-plan-slide { justify-content: flex-start; padding-top: 6.4%; }.scene-plan-slide h2 { margin-bottom: 1.6%; }
+.scene-plan-grid { display: grid; gap: .7em; }.scene-plan-grid article { display: grid; grid-template-columns: 10.5em 1fr 1.8fr; gap: .7em; align-items: start; padding: .65em .8em; background: #fffaf1; border-left: .35vw solid var(--orange); }.scene-plan-grid article > b { color: var(--plum); font-size: clamp(17px, 1.32vw, 22px); line-height: 1.3; }.scene-plan-grid strong { display: block; margin-bottom: .2em; color: var(--green); font-size: clamp(14px, 1.05vw, 17px); }.scene-plan-grid p { margin: 0; font-size: clamp(14px, 1.02vw, 17px); font-weight: 650; line-height: 1.35; }
+.scene-check-slide { justify-content: flex-start; padding-top: 6.5%; }.scene-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7em 1.2em; }.scene-check-grid span { padding: .65em .85em; background: #eef7f6; border-left: .35vw solid var(--green); font-size: clamp(17px, 1.3vw, 21px); font-weight: 750; line-height: 1.35; }.scene-check-note { margin: 2.5% 0 0; color: var(--plum); font-size: var(--type-subtitle); font-weight: 800; line-height: 1.45; text-align: center; }
+.scene-text-plan-slide { justify-content: flex-start; padding-top: 6.4%; }.scene-text-plan-slide h2 { margin-bottom: 1.5%; }.scene-text-grid { display: grid; gap: 1.1em; }.scene-text-grid article { display: grid; grid-template-columns: 10.5em 1fr 1.45fr; gap: .8em; align-items: start; min-height: 10.5em; padding: .9em 1em; background: #fffaf1; border-left: .38vw solid var(--orange); }.scene-text-grid b,.scene-text-grid strong { display: block; }.scene-text-grid b { color: var(--plum); font-size: clamp(18px, 1.42vw, 23px); line-height: 1.32; }.scene-text-grid strong { margin-bottom: .3em; color: var(--green); font-size: clamp(15px, 1.12vw, 18px); }.scene-text-grid p { margin: 0; font-family: var(--serif); font-size: clamp(17px, 1.35vw, 22px); font-weight: 750; line-height: 1.42; white-space: pre-line; }.scene-text-grid small { display: block; margin-top: .45em; color: var(--muted); font-size: clamp(14px, 1.05vw, 17px); line-height: 1.35; }
+.next-class-description { max-width: 1100px; margin: 1.8% 0 0; padding: .95em 1.05em; color: var(--ink); background: #eef7f6; border-left: .4vw solid var(--green); font-size: clamp(21px, 1.7vw, 27px); font-weight: 700; line-height: 1.55; }
+.image-prompt-example-slide { justify-content: flex-start; padding-top: 6.4%; }.image-prompt-example-slide h2 { margin-bottom: 1.5%; }.image-prompt-grid { display: grid; gap: 1em; }.image-prompt-grid article { min-height: 14em; padding: .9em 1em; background: #0f172a; border-left: .38vw solid var(--orange); }.image-prompt-grid b,.image-prompt-grid strong { display: block; }.image-prompt-grid b { margin-bottom: .32em; color: #fff0d8; font-size: clamp(18px, 1.4vw, 23px); }.image-prompt-grid strong { margin-bottom: .34em; color: #f2b566; font-size: clamp(15px, 1.08vw, 18px); }.image-prompt-grid p { margin: 0; color: #fff; font-size: clamp(14px, 1.05vw, 17px); font-weight: 650; line-height: 1.43; }
