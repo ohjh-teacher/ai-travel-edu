@@ -37,3 +37,52 @@
 .practice-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5vw; }.practice-cards div { min-height:8em; padding:1em; background:#fff8ed; border-top:.45vw solid var(--orange); }.practice-cards b,.practice-cards strong,.practice-cards span { display:block; }.practice-cards b { color:var(--plum); font-size:var(--type-caption); }.practice-cards strong { margin:.7em 0 .5em; font-size:var(--type-caption); }.practice-cards span { color:var(--muted); font-size:var(--type-label); line-height:1.45; }
 .scene-list { display:grid; gap:1.15em; }.scene-list div { display:grid; grid-template-columns:28% 1fr; gap:2%; padding:.85em 1em; background:#fffdf8; border-left:.4vw solid var(--green); }.scene-list b { color:var(--plum); font-size:var(--type-caption); }.scene-list span { font-size:var(--type-body); font-weight:750; line-height:1.45; }.scene-list small { color:var(--muted); font-size:var(--type-label); }
 .homework-flow { padding:.9em; color:var(--plum); background:#f3eaf0; border-radius:.45em; font-size:var(--type-subtitle); font-weight:850; text-align:center; }.synopsis-slide { justify-content:center; }.synopsis-slide h2 { margin-bottom:3%; }.synopsis-copy { max-width:1050px; margin:0; padding:1.15em 1.35em; color:var(--plum); background:#fff3df; border-top:.35vw solid var(--orange); font-size:var(--type-subtitle); font-weight:800; line-height:1.65; }.question-slide h2 { max-width:1070px; font-size:clamp(38px,3.9vw,62px); line-height:1.5; }.answer-slide { justify-content:center; }.answer-copy { display:grid; gap:1.2em; }.answer-copy p { margin:0; padding:1em 1.15em; background:#fff3df; border-left:.42vw solid var(--orange); font-size:var(--type-subtitle); font-weight:750; line-height:1.55; }.answer-copy strong { color:var(--red); }
+
+/* Week 3 refinement: match Week 2 hierarchy and preserve Korean phrase boundaries. */
+.projector-deck .slide { word-break: keep-all; overflow-wrap: normal; }
+.projector-deck .lead { font-size: var(--type-subtitle); line-height: 1.55; }
+.review-grid { gap: 2.3vw 4.2vw; margin-top: 1.6%; }
+.review-grid div { min-height: 4.8em; padding: .55em .2em .72em; }
+.review-grid b { margin-bottom: .45em; font-size: var(--type-caption); }
+.review-grid span { color: var(--ink); font-size: clamp(22px, 1.9vw, 30px); line-height: 1.45; }
+
+.money-scene { grid-template-columns: 24% 1fr; gap: 5%; max-width: 1100px; align-items: center; }
+.money-scene .wallet-art { min-height: 176px; }
+.scene-sentence { display: grid; gap: .2em; font-size: clamp(32px, 2.8vw, 44px) !important; line-height: 1.42 !important; }
+.scene-sentence span { display: block; white-space: nowrap; }
+.scene-detail { grid-template-columns: 30% 1fr; align-items: start; }
+.scene-detail .wallet-art { margin-top: 1.2em; }
+.scene-copy-lines { display: grid; gap: 1.05em; }
+.scene-copy-lines p { margin: 0; padding: .48em 0 .58em .85em; border-left: .36vw solid var(--orange); font-size: clamp(26px, 2.25vw, 36px); line-height: 1.45; }
+.scene-copy-lines p:nth-child(2) { border-color: var(--green); }
+.scene-copy-lines p:last-child { border-color: var(--plum); font-family: var(--serif); }
+
+.change-steps { display: grid; grid-template-columns: 1.1fr .95fr .85fr 1.45fr 1.15fr; gap: 1.1vw; }
+.change-steps div { min-height: 4.6em; padding: .78em .85em; font-size: clamp(21px, 1.7vw, 28px); line-height: 1.35; text-align: left; }
+
+.story-lines,.dialogue { gap: 1.15em; max-width: 1110px; }
+.story-lines p,.dialogue p { padding: .6em .9em .72em 1em; font-size: clamp(27px, 2.2vw, 36px); line-height: 1.46; }
+
+.quiet-slide { padding-top: 7%; }
+.quiet-slide h2 { font-size: clamp(40px, 3.7vw, 60px); }
+.final-scene { position: relative; width: min(62%, 720px); height: 230px; margin: 3% auto 0; }
+.final-scene .empty-sofa { position: absolute; inset: 8px 0 auto; width: 100%; height: 122px; margin: 0; border-radius: 34px 34px 14px 14px; box-shadow: 0 14px 0 #718184; }
+.empty-sofa::before,.empty-sofa::after { top: 46px; width: 45px; height: 78px; }
+.final-scene .mimi-back { position: absolute; left: 50%; bottom: 0; width: 104px; height: 130px; background: #76606c; border-radius: 44px 44px 13px 13px; transform: translateX(-50%); }
+.final-scene .mimi-back::before,.final-scene .mimi-back::after { content: ""; position: absolute; top: -15px; width: 44px; height: 44px; background: #76606c; transform: rotate(45deg); }
+.final-scene .mimi-back::before { left: 5px; }.final-scene .mimi-back::after { right: 5px; }
+.final-scene .mimi-back i { position: absolute; z-index: 2; left: 50%; bottom: 27px; width: 34px; height: 21px; background: #edf1c5; border: 1px solid #698264; transform: translateX(-50%) rotate(-8deg); }
+.final-scene .mimi-back b { position: absolute; z-index: 3; left: 50%; bottom: 33px; width: 24px; height: 2px; background: #698264; transform: translateX(-50%) rotate(-8deg); }
+.quiet-caption { margin: 1.2% 0 0; font-size: clamp(21px, 1.7vw, 27px); line-height: 1.4; }
+
+.compare-slide { justify-content: flex-start; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4vw; margin-top: 1.7%; }
+.compare-grid article { min-height: 9.3em; padding: 1.05em 1.2em; background: #f6f1f1; border-left: .45vw solid var(--plum); }
+.compare-grid article:last-child { background: #fff3df; border-color: var(--orange); }
+.compare-grid b { display: block; margin-bottom: .7em; color: var(--plum); font-size: var(--type-caption); }
+.compare-grid p { margin: 0; font-size: clamp(25px, 2.05vw, 33px); font-weight: 750; line-height: 1.55; }
+.compare-note { margin: 2.2% 0 0; color: var(--muted); font-size: var(--type-body); }
+
+.practice-cards { gap: 1.7vw; }
+.practice-cards div { min-height: 9.4em; padding: 1.1em 1.15em; }
+.practice-cards b { font-size: var(--type-caption); }.practice-cards strong { margin: .55em 0 .5em; font-size: clamp(23px, 1.85vw, 30px); }.practice-cards span { font-size: clamp(19px, 1.5vw, 24px); line-height: 1.45; }
