@@ -19,7 +19,6 @@ const specialReviewFiles = document.getElementById("specialReviewFiles");
 const specialReviewPrivacy = document.getElementById("specialReviewPrivacy");
 const specialReviewMessage = document.getElementById("specialReviewMessage");
 const specialReviewSubmit = document.getElementById("specialReviewSubmit");
-const specialReviewReturn = document.getElementById("specialReviewReturn");
 const specialCurrentYear = new Date().getFullYear();
 let specialFirebasePromise = null;
 
@@ -147,7 +146,6 @@ async function submitSpecialReview(event) {
   const name = document.getElementById("specialReviewName").value.trim();
   const phoneLast4 = document.getElementById("specialReviewPhone").value.trim();
   const review = document.getElementById("specialReviewText").value.trim();
-  const completedItems = Array.from(document.querySelectorAll('input[name="specialCompleted"]:checked')).map((item) => item.value);
   const files = Array.from(specialReviewFiles.files || []);
   const institution = getSelectedSpecialInstitution();
 
@@ -157,10 +155,6 @@ async function submitSpecialReview(event) {
   }
   if (!/^\d{4}$/.test(phoneLast4)) {
     specialReviewMessage.textContent = "휴대전화 뒷번호 4자리를 숫자로 입력해 주세요.";
-    return;
-  }
-  if (completedItems.length === 0) {
-    specialReviewMessage.textContent = "오늘 해낸 것을 한 가지 이상 선택해 주세요.";
     return;
   }
   if (!review) {
@@ -191,7 +185,7 @@ async function submitSpecialReview(event) {
     lectureId: SPECIAL_LECTURE_ID,
     lectureTitle: SPECIAL_LECTURE_TITLE,
     attendanceStatus: "출석",
-    completedItems,
+    completedItems: [],
     review,
     nextAttendance: "해당 없음",
     absenceReason: "",
@@ -216,7 +210,6 @@ async function submitSpecialReview(event) {
     specialReviewYear.value = String(specialCurrentYear);
     renderSpecialInstitutions();
     specialReviewMessage.textContent = "제출했습니다. 오늘의 특강 후기가 저장되었습니다. 이제 이 화면을 닫아 주세요.";
-    if (specialReviewReturn) specialReviewReturn.hidden = false;
   } catch (error) {
     specialReviewMessage.textContent = "제출하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 눌러 주세요.";
   } finally {
