@@ -181,6 +181,24 @@
                                            "output":  "regular/ai-storybook/review.js"
                                        }
                                    ]
+                     },
+                     {
+                         "id": "regular-yongsan-gemini",
+                         "sourceRoot": "src/presentation/contexts/regular/yongsan-gemini",
+                         "files": [
+                             { "source": "index.html", "output": "regular/yongsan-gemini/index.html", "contentLock": true },
+                             { "source": "course.css", "output": "regular/yongsan-gemini/course.css" },
+                             { "source": "week-1/index.html", "output": "regular/yongsan-gemini/week-1/index.html", "contentLock": true },
+                             { "source": "week-1/week-1.css", "output": "regular/yongsan-gemini/week-1/week-1.css" },
+                             { "source": "week-1/slides.js", "output": "regular/yongsan-gemini/week-1/slides.js" },
+                             { "source": "week-1/assets/octopus-soccer.webp", "output": "regular/yongsan-gemini/week-1/assets/octopus-soccer.webp" },
+                             { "source": "week-1/assets/imagined-scene.webp", "output": "regular/yongsan-gemini/week-1/assets/imagined-scene.webp" },
+                             { "source": "week-1/assets/ai-first-result.webp", "output": "regular/yongsan-gemini/week-1/assets/ai-first-result.webp" },
+                             { "source": "week-1/assets/astronaut-example.webp", "output": "regular/yongsan-gemini/week-1/assets/astronaut-example.webp" },
+                             { "source": "week-1/assets/review-qr.png", "output": "regular/yongsan-gemini/week-1/assets/review-qr.png" },
+                             { "source": "review.html", "output": "regular/yongsan-gemini/review.html", "contentLock": true },
+                             { "source": "review.css", "output": "regular/yongsan-gemini/review.css" }
+                         ]
                      }
                  ],
     "protectedInfrastructure":  [
@@ -195,6 +213,7 @@
                              "regular/ai-storybook/week-2/index.html",
                              "regular/ai-storybook/week-3/index.html",
                              "special/career-ai/index.html",
-                             "special/custom-travel/index.html"
+                             "special/custom-travel/index.html",
+                             "regular/yongsan-gemini/week-1/index.html"
                          ]
 }

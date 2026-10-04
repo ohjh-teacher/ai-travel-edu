@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-21T15:03:48.059Z",
+  "generatedAt": "2026-10-04T08:55:54.522Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "32e5bcf8979ae8f779f7e2fadd041a153ee588bab2cae54c6b8914ea5c488877"
+      "visibleTextSha256": "6953c403382663d050145d8f6136bf52b7c5a6d63b244cc21cbc60fb2faab3f8"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
@@ -61,6 +61,21 @@
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/review.html",
       "visibleTextSha256": "54f84f08f2d4469894d7d517a02deded6b03e6eef1f5d22badebdcf81a83acd6"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/index.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/index.html",
+      "visibleTextSha256": "089ea6e18b7cb0f80e715b8b42680ff6bc30a7749e7dcfce0d189bd974aae4df"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/week-1/index.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/week-1/index.html",
+      "visibleTextSha256": "19906c5d26cef2ef091e8ec812fcc20ccca032035969802ec3103eac9cb956aa"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/review.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/review.html",
+      "visibleTextSha256": "70b83a04f25a2a8910fa2370a0ab0c1525bb157ded6e5e2cbf023ff2cd3a9e08"
     }
   }
 }

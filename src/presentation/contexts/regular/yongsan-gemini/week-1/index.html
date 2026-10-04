@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="용산청소년센터 Gemini와 함께하는 생성형 AI 놀이터 1주차 수업 화면">
+  <title>1주차 · 내가 상상한 걸 AI가 만들어 주네?</title>
+  <link rel="stylesheet" href="week-1.css">
+  <link rel="stylesheet" href="../../../shared/styles/projector.css">
+</head>
+<body class="projector-deck">
+  <header class="deck-bar">
+    <a href="../index.html">← 7주 과정</a>
+    <strong>Gemini 생성형 AI 놀이터 · 1주차</strong>
+    <div class="bar-actions"><button id="fullscreenButton" type="button">전체화면</button></div>
+  </header>
+
+  <main class="slide-stage" aria-live="polite">
+    <section class="slide cover is-active" data-slide="1" aria-labelledby="s1">
+      <div class="cover-copy">
+        <p class="overline">용산청소년센터 · 1주차</p>
+        <h1 id="s1">내가 상상한 걸<br>AI가 만들어 주네?</h1>
+        <p class="lead">상상하고 → 말하고 → 만들고 → 고쳐 보기</p>
+      </div>
+      <img class="cover-image" src="assets/octopus-soccer.webp" alt="초등학교 운동장에서 축구하는 보라색 문어">
+    </section>
+
+    <section class="slide centered" data-slide="2" aria-labelledby="s2">
+      <p class="overline">먼저 생각해 봐요</p>
+      <h2 id="s2">이 그림을 만들려면<br>AI에게 뭐라고 말해야 할까요?</h2>
+      <img class="hero-example" src="assets/octopus-soccer.webp" alt="학교 운동장에서 축구하는 보라색 문어 예시 그림">
+    </section>
+
+    <section class="slide" data-slide="3" aria-labelledby="s3">
+      <p class="overline">첫 번째 말</p>
+      <h2 id="s3">짧게 말해 볼까요?</h2>
+      <div class="prompt-line">“축구하는 문어를 그려 줘.”</div>
+      <div class="image-note">
+        <img src="assets/ai-first-result.webp" alt="바닷속에서 축구공을 잡고 있는 문어 그림">
+        <div><strong>어떤 그림이 나올까요?</strong><p>장소와 모습은 AI가 다르게 채울 수도 있어요.</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="4" aria-labelledby="s4">
+      <p class="overline">내 생각과 AI의 그림 비교</p>
+      <h2 id="s4">어디가 달랐나요?</h2>
+      <div class="comparison">
+        <figure><img src="assets/imagined-scene.webp" alt="운동장에서 친구들과 축구하는 문어를 상상한 그림"><figcaption>내가 상상한 모습</figcaption></figure>
+        <figure><img src="assets/ai-first-result.webp" alt="AI가 바닷속 문어를 그린 예시"><figcaption>AI가 만든 모습</figcaption></figure>
+      </div>
+      <p class="slide-takeaway">내가 말하지 않은 것은 AI가 정확히 알 수 없어요.</p>
+    </section>
+
+    <section class="slide" data-slide="5" aria-labelledby="s5">
+      <p class="overline">조금 더 알려 주자</p>
+      <h2 id="s5">그림을 설명하는 다섯 가지</h2>
+      <ol class="five-parts">
+        <li><b>누가?</b><span>보라색 문어</span></li>
+        <li><b>어디서?</b><span>학교 운동장</span></li>
+        <li><b>무엇을?</b><span>축구를 해요</span></li>
+        <li><b>어떤 모습?</b><span>골을 넣고 팔을 흔들어요</span></li>
+        <li><b>어떤 느낌?</b><span>밝은 만화처럼</span></li>
+      </ol>
+    </section>
+
+    <section class="slide" data-slide="6" aria-labelledby="s6">
+      <p class="overline">다시 말해 보기</p>
+      <h2 id="s6">이렇게 말하면 어떨까요?</h2>
+      <blockquote class="example-prompt">“보라색 문어가 초등학교 운동장에서 축구를 하고 있어. 골을 넣고 여덟 개의 팔을 흔들며 신나 하는 모습을 밝은 만화로 그려 줘.”</blockquote>
+      <p class="slide-takeaway">장소·행동·느낌을 더하면 원하는 그림에 가까워져요.</p>
+    </section>
+
+    <section class="slide centered" data-slide="7" aria-labelledby="s7">
+      <p class="overline">오늘의 새 말</p>
+      <h2 id="s7">프롬프트</h2>
+      <p class="big-definition">AI에게 무엇을 해 달라고 알려 주는 말</p>
+      <p class="slide-takeaway">질문도, 부탁도, 설명도 프롬프트가 될 수 있어요.</p>
+    </section>
+
+    <section class="slide centered" data-slide="8" aria-labelledby="s8">
+      <p class="overline">꼭 기억해요</p>
+      <h2 id="s8">AI는 내 머릿속을 볼 수 없어요.</h2>
+      <p class="big-definition">원하는 장면을 말로 알려 줘야 해요.</p>
+      <div class="two-steps"><span>상상하기</span><b>→</b><span>말로 설명하기</span></div>
+    </section>
+
+    <section class="slide" data-slide="9" aria-labelledby="s9">
+      <p class="overline">그림을 만들기 전</p>
+      <h2 id="s9">3초 안전 점검</h2>
+      <ul class="safety-list">
+        <li><div class="safety-choice safe"><b>O</b><span>내 정보 없이 그림을 설명해요.</span></div><div class="safety-choice unsafe"><b>X</b><span>이름·학교·비밀번호를 넣어요.</span></div></li>
+        <li><div class="safety-choice safe"><b>O</b><span>친구를 존중하는 그림을 만들어요.</span></div><div class="safety-choice unsafe"><b>X</b><span>친구를 놀리거나 얼굴을 허락 없이 써요.</span></div></li>
+        <li><div class="safety-choice safe"><b>O</b><span>AI가 만든 그림이라고 알려 줘요.</span></div><div class="safety-choice unsafe"><b>X</b><span>가짜 그림을 진짜 사진처럼 속여요.</span></div></li>
+      </ul>
+      <p class="slide-takeaway">O는 해요, X는 멈춰요. 헷갈리면 선생님께 물어봐요.</p>
+    </section>
+
+    <section class="slide" data-slide="10" aria-labelledby="s10">
+      <p class="overline">미션 1</p>
+      <h2 id="s10">세상에 아직 없는 장면을 만들어 보자!</h2>
+      <ol class="mission-steps"><li><b>1</b> 머릿속으로 상상해요.</li><li><b>2</b> 한 문장으로 설명해요.</li><li><b>3</b> Gemini에게 그림을 부탁해요.</li></ol>
+      <p class="idea-line">생각이 안 나면: 구름 위 · 바닷속 · 100년 뒤 · 우주에서</p>
+    </section>
+
+    <section class="slide" data-slide="11" aria-labelledby="s11">
+      <p class="overline">프롬프트 만들기 예시</p>
+      <h2 id="s11">다섯 조각을 이어 볼까요?</h2>
+      <div class="example-split">
+        <img src="assets/astronaut-example.webp" alt="달에서 피자를 먹는 웃는 우주비행사 예시 그림">
+        <div><p><b>누가</b> 우주비행사가</p><p><b>어디서</b> 달에서</p><p><b>무엇을</b> 피자를 먹어요</p><p><b>모습·느낌</b> 웃고 있는 즐거운 그림</p></div>
+      </div>
+    </section>
+
+    <section class="slide centered" data-slide="12" aria-labelledby="s12">
+      <p class="overline">그림이 나오면</p>
+      <p class="condition-line">만약 상상하던 그림이 아니라면</p>
+      <h2 id="s12">“AI야, 그게 아니야!”</h2>
+      <p class="big-definition">내가 상상한 것과 다른 부분을 찾아보세요.</p>
+      <div class="check-row"><span>장소</span><span>모습</span><span>행동</span><span>색·느낌</span></div>
+    </section>
+
+    <section class="slide" data-slide="13" aria-labelledby="s13">
+      <p class="overline">미션 2</p>
+      <h2 id="s13">AI에게 다시 말해 보자!</h2>
+      <div class="revision-list"><p><b>더하기</b> “안경 쓴 모습을 추가해 줘.”</p><p><b>빼기</b> “배경의 나무는 빼 줘.”</p><p><b>한 부분만 바꾸기</b> “문어는 그대로 두고 낮을 밤으로 바꿔 줘.”</p></div>
+      <p class="slide-takeaway">처음부터 다시 쓰지 않아도 돼요. 한 가지씩 고쳐 봐요.</p>
+    </section>
+
+    <section class="slide" data-slide="14" aria-labelledby="s14">
+      <p class="overline">말 하나 바꾸기 실험</p>
+      <h2 id="s14">어떤 그림이 될까요?</h2>
+      <div class="word-changes"><p><span>낮</span><b>→</b><strong>밤</strong></p><p><span>학교</span><b>→</b><strong>우주</strong></p><p><span>만화</span><b>→</b><strong>종이공예</strong></p></div>
+      <p class="slide-takeaway">바꾼 말과 달라진 그림을 함께 살펴보세요.</p>
+    </section>
+
+    <section class="slide centered" data-slide="15" aria-labelledby="s15">
+      <p class="overline">오늘 우리가 해낸 것</p>
+      <h2 id="s15">상상하고 → 말하고 → 만들고 → 고쳤다!</h2>
+      <ul class="summary-list"><li>AI는 말하지 않은 내 생각을 알 수 없어요.</li><li>첫 그림이 끝은 아니에요. 다시 말해 고칠 수 있어요.</li><li>안전한 그림인지 만들기 전에 확인해요.</li></ul>
+    </section>
+
+    <section class="slide review-slide" data-slide="16" aria-labelledby="s16">
+      <p class="overline">오늘 수업 마무리</p>
+      <h2 id="s16">한 줄 후기를 남겨 주세요!</h2>
+      <div class="review-layout">
+        <div class="qr-column">
+          <a href="../review.html" target="_blank" rel="noopener" aria-label="1주차 후기 작성 화면 열기">
+            <img src="assets/review-qr.png" alt="1주차 후기 작성 QR코드">
+          </a>
+          <p>후기 기능 연결 후 사용해요.<br><a href="../review.html" target="_blank" rel="noopener">후기 화면 미리보기 →</a></p>
+        </div>
+        <ol class="review-questions">
+          <li><b>1</b><span>AI에게 처음 어떤 그림을 만들어 달라고 말했나요?</span></li>
+          <li><b>2</b><span>AI가 만든 그림에서 내 생각과 달랐던 부분은 무엇인가요?</span></li>
+          <li><b>3</b><span>그 부분을 고치려고 AI에게 어떤 말을 했나요?</span></li>
+          <li><b>4</b><span>오늘 수업은 어땠나요? <small>5단계 중 하나 선택</small></span></li>
+          <li><b>5</b><span>가장 재미있었던 것이나 다음 시간에 더 해보고 싶은 것을 써 주세요.</span></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <nav class="deck-controls" aria-label="슬라이드 이동">
+    <button id="prevButton" type="button" aria-label="이전 슬라이드">←</button>
+    <span><b id="currentSlide">1</b> / <span id="totalSlides">16</span></span>
+    <button id="nextButton" type="button" aria-label="다음 슬라이드">→</button>
+  </nav>
+  <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
+  <script src="slides.js"></script>
+</body>
+</html>

@@ -17,6 +17,14 @@
       "delivery": "projector"
     },
     {
+      "id": "yongsan-gemini",
+      "category": "regular",
+      "title": "Gemini와 함께하는 생성형 AI 놀이터",
+      "route": "regular/yongsan-gemini/index.html",
+      "sourceContext": "regular-yongsan-gemini",
+      "delivery": "projector"
+    },
+    {
       "id": "custom-travel",
       "category": "special",
       "title": "AI 가이드와 함께 떠나는 맞춤 여행",
