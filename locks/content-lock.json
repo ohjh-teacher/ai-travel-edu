@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-04T08:55:54.522Z",
+  "generatedAt": "2026-10-04T22:06:08.134Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -70,7 +70,7 @@
     "src/presentation/contexts/regular/yongsan-gemini/week-1/index.html": {
       "context": "regular-yongsan-gemini",
       "output": "regular/yongsan-gemini/week-1/index.html",
-      "visibleTextSha256": "19906c5d26cef2ef091e8ec812fcc20ccca032035969802ec3103eac9cb956aa"
+      "visibleTextSha256": "9adcadcd11a627a2bb22abf575ab20f302852a130be97e9dfcfcd3ab8f926179"
     },
     "src/presentation/contexts/regular/yongsan-gemini/review.html": {
       "context": "regular-yongsan-gemini",

@@ -26,8 +26,17 @@
     if (updateHash) history.replaceState(null, "", `#slide=${index + 1}`);
   }
 
+  function advance() {
+    const nextStep = slides[index].querySelector(".reveal-step:not(.is-revealed)");
+    if (nextStep) {
+      nextStep.classList.add("is-revealed");
+      return;
+    }
+    showSlide(index + 1);
+  }
+
   previousButton.addEventListener("click", () => showSlide(index - 1));
-  nextButton.addEventListener("click", () => showSlide(index + 1));
+  nextButton.addEventListener("click", advance);
   fullscreenButton.addEventListener("click", async () => {
     if (document.fullscreenElement) await document.exitFullscreen();
     else await document.documentElement.requestFullscreen?.();
@@ -38,7 +47,7 @@
   document.addEventListener("keydown", (event) => {
     if (["ArrowRight", "PageDown", " "].includes(event.key)) {
       event.preventDefault();
-      showSlide(index + 1);
+      advance();
     } else if (["ArrowLeft", "PageUp", "Backspace"].includes(event.key)) {
       event.preventDefault();
       showSlide(index - 1);
@@ -56,7 +65,8 @@
   document.addEventListener("touchend", (event) => {
     const distance = event.changedTouches[0].screenX - touchStartX;
     if (Math.abs(distance) < 50) return;
-    showSlide(index + (distance < 0 ? 1 : -1));
+    if (distance < 0) advance();
+    else showSlide(index - 1);
   }, { passive:true });
   window.addEventListener("hashchange", () => {
     const value = Number(new URLSearchParams(location.hash.slice(1)).get("slide"));
