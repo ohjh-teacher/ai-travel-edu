@@ -113,10 +113,12 @@ p,li { font-size:clamp(21px,min(2vw,3.5vh),31px); line-height:1.3; }
   .slide { position:relative; display:flex!important; width:100%; height:56.25vw; break-after:page; }
 }
 
-/* 90분 수업: 학생 화면은 짧은 문장과 실제 관찰 기준에 집중한다. */
-.slide.cover,.slide.cover.is-active { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; background:linear-gradient(130deg,#fffdf9 0 67%,#e8f1ff 67%); }
-.cover h1 { max-width:90%; }
-.cover .lead { max-width:78%; line-height:1.38; }
+/* 90분 보강안에서도 기존 표지 그림과 화면 구성을 유지한다. */
+.slide.cover.is-active { display:grid; }
+.cover h1 { max-width:100%; }
+.cover .lead { line-height:1.38; }
+.cover-subtitle { margin:.7em 0 0; color:var(--muted); font-size:clamp(19px,min(1.65vw,2.9vh),27px); font-weight:700; line-height:1.35; }
+.term-description { max-width:90%; color:var(--muted); font-size:clamp(20px,min(1.8vw,3.1vh),28px); font-weight:700; }
 .cover-symbol { display:flex; align-items:center; gap:.6em; margin-top:4%; color:var(--blue); font-size:clamp(22px,min(2vw,3.5vh),32px); font-weight:900; }
 .cover-symbol span { padding:.24em .65em; border-bottom:4px solid #a8c6ed; }
 .cover-symbol b { color:var(--coral); }
@@ -172,8 +174,7 @@ p,li { font-size:clamp(21px,min(2vw,3.5vh),31px); line-height:1.3; }
 .challenge-layout div p { margin:.13em 0; padding:.12em 0; border-bottom:2px solid var(--line); color:var(--blue); font-weight:900; }
 .break-slide { background:#eaf1ff; }
 .review-slide .review-questions li { font-size:clamp(18px,min(1.65vw,2.85vh),26px); }
-.slide[data-slide="break"]::after { content:""; }
-.slide[data-slide="review"]::after { content:"34"; }
+.break-slide::after { content:""; }
 @media (max-height:640px) {
   .slide { padding-block:2.8%; }
   .slide h2 { margin-bottom:.3em; }

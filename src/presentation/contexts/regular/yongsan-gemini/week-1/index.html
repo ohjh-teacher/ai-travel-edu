@@ -17,10 +17,12 @@
 
   <main class="slide-stage" aria-live="polite">
     <section class="slide cover is-active" data-slide="1" aria-labelledby="s1">
-      <p class="overline">용산청소년센터 · 1주차</p>
-      <h1 id="s1">내가 상상한 걸<br>AI가 진짜 만들어 주네?</h1>
-      <p class="lead">내가 생각한 장면을 말로 설명하고<br>AI가 어떻게 그림으로 만드는지 알아봅니다.</p>
-      <div class="cover-symbol" aria-hidden="true"><span>생각</span><b>→</b><span>말</span><b>→</b><span>그림</span></div>
+      <div class="cover-copy">
+        <p class="overline">용산청소년센터 · 1주차</p>
+        <h1 id="s1">내가 상상한 걸<br>AI가 만들어 주네?</h1>
+        <p class="lead">상상하고 → 말하고 → 만들고 → 고쳐 보기</p><p class="cover-subtitle">내가 생각한 장면을 말로 설명하고<br>AI가 어떻게 그림으로 만드는지 알아봅니다.</p>
+      </div>
+      <img class="cover-image" src="assets/octopus-soccer.webp" alt="초등학교 운동장에서 축구하는 보라색 문어">
     </section>
 
     <section class="slide centered" data-slide="2" aria-labelledby="s2">
@@ -65,17 +67,17 @@
     </section>
 
     <section class="slide centered" data-slide="7" aria-labelledby="s7">
-      <p class="overline">다른 생각, 다른 그림</p>
-      <h2 id="s7">AI는 내 머릿속을 볼 수 있을까?</h2>
-      <p class="big-question">내가 생각한 축구하는 문어와<br>친구가 생각한 문어는 같을까요?</p>
-      <p class="slide-takeaway">AI도 내가 말하지 않은 생각까지 정확히 알 수는 없어요.</p>
+      <p class="overline">꼭 기억해요</p>
+      <h2 id="s7">AI는 내 머릿속을 볼 수 없어요.</h2>
+      <p class="big-definition">원하는 장면을 말로 알려 줘야 해요.</p>
+      <p class="big-question">내가 생각한 축구하는 문어와 친구가 생각한 문어는 같을까요?</p><div class="two-steps"><span>상상하기</span><b>→</b><span>말로 설명하기</span></div>
     </section>
 
     <section class="slide centered" data-slide="8" aria-labelledby="s8">
       <p class="overline">오늘의 새 말</p>
-      <h2 id="s8">어떻게 알려줄까?</h2>
-      <p class="big-definition">AI에게 원하는 것을<br>말이나 글로 알려줘야 해요.</p>
-      <div class="term-line"><strong>프롬프트(Prompt)</strong><span>AI에게 원하는 것을 알려주는 말이나 글</span></div>
+      <h2 id="s8">프롬프트</h2>
+      <p class="big-definition">AI에게 무엇을 해 달라고 알려 주는 말</p><p class="term-description">프롬프트(Prompt): AI에게 내가 원하는 것을 알려주는 말이나 글</p>
+      <p class="slide-takeaway">질문도, 부탁도, 설명도 프롬프트가 될 수 있어요.</p>
     </section>
 
     <section class="slide" data-slide="9" aria-labelledby="s9">
@@ -85,179 +87,293 @@
       <p class="slide-takeaway">잠깐 눈을 감고 내 그림을 떠올려 봐요.</p>
     </section>
 
-    <section class="slide demo-slide" data-slide="10" aria-labelledby="s10">
+    <section class="slide" data-slide="10" aria-labelledby="s10">
+      <p class="overline">그림을 만들기 전</p>
+      <h2 id="s10">3초 안전 점검</h2>
+      <ul class="safety-list">
+        <li><div class="safety-choice safe"><b>O</b><span>내 정보 없이 그림을 설명해요.</span></div><div class="safety-choice unsafe"><b>X</b><span>이름·학교·비밀번호를 넣어요.</span></div></li>
+        <li><div class="safety-choice safe"><b>O</b><span>친구를 존중하는 그림을 만들어요.</span></div><div class="safety-choice unsafe"><b>X</b><span>친구를 놀리거나 얼굴을 허락 없이 써요.</span></div></li>
+        <li><div class="safety-choice safe"><b>O</b><span>AI가 만든 그림이라고 알려 줘요.</span></div><div class="safety-choice unsafe"><b>X</b><span>가짜 그림을 진짜 사진처럼 속여요.</span></div></li>
+      </ul>
+      <p class="slide-takeaway">O는 해요, X는 멈춰요. 헷갈리면 선생님께 물어봐요.</p>
+    </section>
+
+    <section class="slide demo-slide" data-slide="11" aria-labelledby="s11">
       <p class="overline">현장 Gemini 시연 ①</p>
-      <h2 id="s10">첫 그림을 만들어 볼게요</h2>
+      <h2 id="s11">첫 그림을 만들어 볼게요</h2>
       <blockquote class="example-prompt">축구하는 문어를 그려줘.</blockquote>
       <p class="demo-label">지금 Gemini에서 직접 생성합니다</p>
       <p class="slide-takeaway">생성되는 동안 내가 예상한 그림을 떠올려요.</p>
       <p class="safety-reminder">이름·학교·비밀번호는 입력하지 않아요.</p>
     </section>
 
-    <section class="slide" data-slide="11" aria-labelledby="s11">
+    <section class="slide" data-slide="12" aria-labelledby="s12">
       <p class="overline">첫 번째 결과 · 관찰</p>
-      <h2 id="s11">내 생각과 같았을까?</h2>
+      <h2 id="s12">내 생각과 같았을까?</h2>
       <div class="observation-list"><span>문어의 색은?</span><span>장소는?</span><span>표정은?</span><span>축구공은?</span><span>예상하지 못한 것은?</span></div>
       <p class="demo-label">방금 만든 그림을 보며 말해요</p>
     </section>
 
-    <section class="slide" data-slide="12" aria-labelledby="s12">
+    <section class="slide" data-slide="13" aria-labelledby="s13">
       <p class="overline">첫 번째 결과 · 구분</p>
-      <h2 id="s12">내가 말한 것? AI가 만든 것?</h2>
+      <h2 id="s13">내가 말한 것? AI가 만든 것?</h2>
       <div class="compare-columns"><div><h3>내가 말한 것</h3><p>문어 · 축구</p></div><div><h3>말하지 않았는데 생긴 것</h3><p>실제 그림에서 직접 찾아봐요</p></div></div>
       <p class="slide-takeaway">색·장소·표정 등을 그림에서 확인해요.</p>
     </section>
 
-    <section class="slide centered" data-slide="13" aria-labelledby="s13">
+    <section class="slide centered" data-slide="14" aria-labelledby="s14">
       <p class="overline">왜 다르게 나왔을까?</p>
-      <h2 id="s13">AI는 말한 것을 바탕으로 그림을 완성해요</h2>
+      <h2 id="s14">AI는 말한 것을 바탕으로 그림을 완성해요</h2>
       <p class="big-definition">내가 말하지 않은 부분까지<br>내 생각 그대로 만들지는 못해요.</p>
     </section>
 
-    <section class="slide" data-slide="14" aria-labelledby="s14">
+    <section class="slide centered" data-slide="15" aria-labelledby="s15">
+      <p class="overline">미리 준비한 상상 그림 예시</p>
+      <h2 id="s15">이 그림을 만들려면<br>AI에게 뭐라고 말해야 할까요?</h2>
+      <img class="hero-example" src="assets/octopus-soccer.webp" alt="학교 운동장에서 축구하는 보라색 문어 예시 그림">
+    </section>
+
+    <section class="slide" data-slide="16" aria-labelledby="s16">
+      <p class="overline">기존 예시 그림 · 현장 결과와는 달라요</p>
+      <h2 id="s16">짧게 말해 볼까요?</h2>
+      <div class="prompt-line">“축구하는 문어를 그려 줘.”</div>
+      <div class="image-note">
+        <img src="assets/ai-first-result.webp" alt="바닷속에서 축구공을 잡고 있는 문어 그림">
+        <div><strong>어떤 그림이 나올까요?</strong><p>장소와 모습은 AI가 다르게 채울 수도 있어요.</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="17" aria-labelledby="s17">
+      <p class="overline">미리 준비한 비교 예시 · 현장 결과와는 달라요</p>
+      <h2 id="s17">어디가 달랐나요?</h2>
+      <div class="comparison">
+        <figure><img src="assets/imagined-scene.webp" alt="운동장에서 친구들과 축구하는 문어를 상상한 그림"><figcaption>내가 상상한 모습</figcaption></figure>
+        <figure><img src="assets/ai-first-result.webp" alt="AI가 바닷속 문어를 그린 예시"><figcaption>AI가 만든 모습</figcaption></figure>
+      </div>
+      <p class="slide-takeaway">내가 말하지 않은 것은 AI가 정확히 알 수 없어요.</p>
+    </section>
+
+    <section class="slide" data-slide="18" aria-labelledby="s18">
       <p class="overline">조건 더하기</p>
-      <h2 id="s14">이번에는 더 자세히 말해 보자</h2>
+      <h2 id="s18">이번에는 더 자세히 말해 보자</h2>
       <div class="five-parts"><p><b>누가?</b> 보라색 문어</p><p><b>어디서?</b> 학교 운동장</p><p><b>무엇을?</b> 축구</p><p><b>어떤 모습?</b> 골을 넣고 팔을 흔들어요</p><p><b>어떤 느낌?</b> 밝고 신나는 만화</p></div>
     </section>
 
-    <section class="slide" data-slide="15" aria-labelledby="s15">
+    <section class="slide" data-slide="19" aria-labelledby="s19">
+      <p class="overline">조금 더 알려 주자</p>
+      <h2 id="s19">그림을 설명하는 다섯 가지</h2>
+      <ol class="five-parts">
+        <li><b>누가?</b><span>보라색 문어</span></li>
+        <li><b>어디서?</b><span>학교 운동장</span></li>
+        <li><b>무엇을?</b><span>축구를 해요</span></li>
+        <li><b>어떤 모습?</b><span>골을 넣고 팔을 흔들어요</span></li>
+        <li><b>어떤 느낌?</b><span>밝은 만화처럼</span></li>
+      </ol>
+    </section>
+
+    <section class="slide" data-slide="20" aria-labelledby="s20">
       <p class="overline">프롬프트 비교</p>
-      <h2 id="s15">어느 쪽이 더 자세히 떠오르나요?</h2>
+      <h2 id="s20">어느 쪽이 더 자세히 떠오르나요?</h2>
       <div class="prompt-compare"><div><b>첫 번째</b><p>축구하는 문어를 그려줘.</p></div><div><b>두 번째</b><p>보라색 문어가 초등학교 운동장에서 축구를 하고 있어. 골을 넣고 여덟 개의 팔을 흔들며 신나 하는 밝은 만화로 그려줘.</p></div></div>
     </section>
 
-    <section class="slide demo-slide" data-slide="16" aria-labelledby="s16">
+    <section class="slide" data-slide="21" aria-labelledby="s21">
+      <p class="overline">다시 말해 보기</p>
+      <h2 id="s21">이렇게 말하면 어떨까요?</h2>
+      <blockquote class="example-prompt">“보라색 문어가 초등학교 운동장에서 축구를 하고 있어. 골을 넣고 여덟 개의 팔을 흔들며 신나 하는 모습을 밝은 만화로 그려 줘.”</blockquote>
+      <p class="slide-takeaway">장소·행동·느낌을 더하면 원하는 그림에 가까워져요.</p>
+    </section>
+
+    <section class="slide demo-slide" data-slide="22" aria-labelledby="s22">
       <p class="overline">현장 Gemini 시연 ②</p>
-      <h2 id="s16">더 자세히 말하면 어떨까요?</h2>
+      <h2 id="s22">더 자세히 말하면 어떨까요?</h2>
       <blockquote class="example-prompt">보라색 문어가 초등학교 운동장에서 축구를 하고 있어. 골을 넣고 여덟 개의 팔을 흔들며 신나 하는 밝은 만화로 그려줘.</blockquote>
       <p class="demo-label">지금 Gemini에서 다시 생성합니다</p>
       <p class="slide-takeaway">이번에는 어떤 모습이 나올지 먼저 예상해요.</p>
     </section>
 
-    <section class="slide" data-slide="17" aria-labelledby="s17">
+    <section class="slide" data-slide="23" aria-labelledby="s23">
       <p class="overline">두 결과 · 비교</p>
-      <h2 id="s17">두 그림을 비교해 봅시다</h2>
+      <h2 id="s23">두 그림을 비교해 봅시다</h2>
       <div class="observation-list"><span>무엇이 달라졌나요?</span><span>추가한 조건이 들어갔나요?</span><span>생각과 다른 부분은?</span><span>말하지 않았는데 생긴 것은?</span></div>
       <p class="slide-takeaway">설명을 바꾸면 결과도 달라질 수 있어요.</p>
     </section>
 
-    <section class="slide centered" data-slide="18" aria-labelledby="s18">
+    <section class="slide centered" data-slide="24" aria-labelledby="s24">
       <p class="overline">첫 번째 발견</p>
-      <h2 id="s18">오늘 무엇을 발견했나요?</h2>
+      <h2 id="s24">오늘 무엇을 발견했나요?</h2>
       <div data-reveal-group><p class="reveal-step big-definition">설명하는 방법에 따라<br>결과가 달라질 수 있어요.</p><p class="reveal-step slide-takeaway">그래도 언제나 상상한 그대로 나오지는 않아요.</p></div>
     </section>
 
-    <section class="slide centered break-slide" data-slide="break" aria-labelledby="sbreak">
+    <section class="slide centered break-slide" data-slide="25" aria-labelledby="s25">
       <p class="overline">쉬는 시간</p>
-      <h2 id="sbreak">10분 쉬는 시간</h2>
+      <h2 id="s25">10분 쉬는 시간</h2>
       <p class="big-definition">잠시 화면에서 눈을 떼어요.</p>
     </section>
 
-    <section class="slide" data-slide="19" aria-labelledby="s19">
+    <section class="slide" data-slide="26" aria-labelledby="s26">
       <p class="overline">두 번째 실험 · 예상</p>
-      <h2 id="s19">이번에는 하나만 바꿔볼까?</h2>
+      <h2 id="s26">이번에는 하나만 바꿔볼까?</h2>
       <div class="change-pair"><span>낮</span><b>→</b><span>밤</span></div>
       <p class="slide-takeaway">무엇이 바뀌고, 무엇이 남을까요?</p>
     </section>
 
-    <section class="slide demo-slide" data-slide="20" aria-labelledby="s20">
+    <section class="slide demo-slide" data-slide="27" aria-labelledby="s27">
       <p class="overline">현장 Gemini 시연 ③</p>
-      <h2 id="s20">밤으로 바꿔 달라고 해 볼게요</h2>
+      <h2 id="s27">밤으로 바꿔 달라고 해 볼게요</h2>
       <blockquote class="example-prompt">문어의 보라색과 축구하는 모습은 그대로 두고, 낮이었던 운동장 배경을 밤으로 바꿔줘.</blockquote>
       <p class="demo-label">기존 문어 대화에서 직접 수정합니다</p>
     </section>
 
-    <section class="slide" data-slide="21" aria-labelledby="s21">
+    <section class="slide" data-slide="28" aria-labelledby="s28">
       <p class="overline">수정 결과 · 관찰</p>
-      <h2 id="s21">밤만 바뀌었나요?</h2>
+      <h2 id="s28">밤만 바뀌었나요?</h2>
       <div class="compare-columns"><div><h3>바뀌라고 한 것</h3><p>낮 → 밤</p></div><div><h3>말하지 않았는데 달라진 것</h3><p>문어 · 공 · 자세 · 구도를 살펴봐요</p></div></div>
       <p class="slide-takeaway">한 가지만 부탁해도 다른 부분이 달라질 수 있어요.</p>
     </section>
 
-    <section class="slide" data-slide="22" aria-labelledby="s22">
+    <section class="slide" data-slide="29" aria-labelledby="s29">
       <p class="overline">내 그림 수정하기</p>
-      <h2 id="s22">이번에는 내가 다시 요청해요</h2>
+      <h2 id="s29">이번에는 내가 다시 요청해요</h2>
       <p class="fill-line">나는 <strong>__________</strong>을 바꾸고 싶어.</p>
       <p class="prompt-line">“________은 그대로 두고,<br>________을 ________으로 바꿔줘.”</p>
       <p class="slide-takeaway">남길 것과 바꿀 것을 함께 알려줘요.</p>
     </section>
 
-    <section class="slide" data-slide="23" aria-labelledby="s23">
+    <section class="slide" data-slide="30" aria-labelledby="s30">
       <p class="overline">내 결과 · 비교</p>
-      <h2 id="s23">처음 그림과 수정한 그림을 비교해요</h2>
+      <h2 id="s30">처음 그림과 수정한 그림을 비교해요</h2>
       <ul class="checklist"><li>바꾸라고 한 것이 바뀌었나요?</li><li>남겨 달라고 한 것은 남았나요?</li><li>말하지 않은 부분도 달라졌나요?</li><li>결과가 마음에 드나요?</li></ul>
     </section>
 
-    <section class="slide" data-slide="24" aria-labelledby="s24">
+    <section class="slide" data-slide="31" aria-labelledby="s31">
       <p class="overline">낮과 밤 비교 실험</p>
-      <h2 id="s24">이번에는 정말 한 조건만 바꿔봐요</h2>
+      <h2 id="s31">이번에는 정말 한 조건만 바꿔봐요</h2>
       <div class="prompt-compare"><div><b>A · 낮</b><p>보라색 문어가 <strong>낮에</strong> 운동장에서 축구하는 모습을 신나는 만화로 그려줘.</p></div><div><b>B · 밤</b><p>보라색 문어가 <strong>밤에</strong> 운동장에서 축구하는 모습을 신나는 만화로 그려줘.</p></div></div>
       <p class="slide-takeaway">다른 말은 그대로, ‘낮 / 밤’만 달라요.</p>
     </section>
 
-    <section class="slide demo-slide" data-slide="25" aria-labelledby="s25">
+    <section class="slide demo-slide" data-slide="32" aria-labelledby="s32">
       <p class="overline">현장 Gemini 시연 ④</p>
-      <h2 id="s25">낮과 밤, 어떻게 달라질까요?</h2>
+      <h2 id="s32">낮과 밤, 어떻게 달라질까요?</h2>
       <div class="change-pair"><span>☀ 낮</span><b>↔</b><span>☾ 밤</span></div>
       <p class="demo-label">A와 B를 현장에서 각각 생성합니다</p>
       <p class="slide-takeaway">빛과 색, 문어, 축구공, 예상 밖 변화를 찾아요.</p>
     </section>
 
-    <section class="slide image-challenge" data-slide="26" aria-labelledby="s26">
+    <section class="slide" data-slide="33" aria-labelledby="s33">
+      <p class="overline">말 하나 바꾸기 실험</p>
+      <h2 id="s33">어떤 그림이 될까요?</h2>
+      <div class="word-changes"><p><span>낮</span><b>→</b><strong>밤</strong></p><p><span>학교</span><b>→</b><strong>우주</strong></p><p><span>만화</span><b>→</b><strong>종이공예</strong></p></div>
+      <p class="slide-takeaway">바꾼 말과 달라진 그림을 함께 살펴보세요.</p>
+    </section>
+
+    <section class="slide image-challenge" data-slide="34" aria-labelledby="s34">
       <p class="overline">짝 활동 · 프롬프트를 맞혀라!</p>
-      <h2 id="s26">이 그림은 어떻게 설명할까요?</h2>
+      <h2 id="s34">이 그림은 어떻게 설명할까요?</h2>
       <div class="challenge-layout"><figure><img src="assets/astronaut-example.webp" alt="달에서 웃으며 피자를 먹는 우주비행사 그림"><figcaption>미리 준비한 연습 그림</figcaption></figure><div><p>누가?</p><p>어디서?</p><p>무엇을?</p><p>어떤 모습?</p><p>어떤 느낌?</p></div></div>
       <p class="slide-takeaway">짝과 함께 한 문장으로 만들어 봐요.</p>
     </section>
 
-    <section class="slide" data-slide="27" aria-labelledby="s27">
+    <section class="slide" data-slide="35" aria-labelledby="s35">
+      <p class="overline">프롬프트 만들기 예시</p>
+      <h2 id="s35">다섯 조각을 이어 볼까요?</h2>
+      <div class="example-split">
+        <img src="assets/astronaut-example.webp" alt="달에서 피자를 먹는 웃는 우주비행사 예시 그림">
+        <div><p><b>누가</b> 우주비행사가</p><p><b>어디서</b> 달에서</p><p><b>무엇을</b> 피자를 먹어요</p><p><b>모습·느낌</b> 웃고 있는 즐거운 그림</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="36" aria-labelledby="s36">
+      <p class="overline">미션 1</p>
+      <h2 id="s36">세상에 아직 없는 장면을 만들어 보자!</h2>
+      <ol class="mission-steps"><li><b>1</b> 머릿속으로 상상해요.</li><li><b>2</b> 한 문장으로 설명해요.</li><li><b>3</b> Gemini에게 그림을 부탁해요.</li></ol>
+      <p class="idea-line">생각이 안 나면: 구름 위 · 바닷속 · 100년 뒤 · 우주에서</p>
+    </section>
+
+    <section class="slide" data-slide="37" aria-labelledby="s37">
       <p class="overline">나만의 상상</p>
-      <h2 id="s27">이번에는 내가 만든다</h2>
+      <h2 id="s37">이번에는 내가 만든다</h2>
       <div class="five-parts fill-parts"><p><b>누가?</b> __________</p><p><b>어디서?</b> __________</p><p><b>무엇을?</b> __________</p><p><b>어떤 모습?</b> __________</p><p><b>어떤 느낌?</b> __________</p></div>
     </section>
 
-    <section class="slide" data-slide="28" aria-labelledby="s28">
+    <section class="slide" data-slide="38" aria-labelledby="s38">
       <p class="overline">나만의 그림 · 생성과 관찰</p>
-      <h2 id="s28">Gemini에 내 프롬프트를 입력해요</h2>
+      <h2 id="s38">Gemini에 내 프롬프트를 입력해요</h2>
       <ul class="checklist"><li>내가 원한 것이 들어갔나요?</li><li>빠진 것은 없나요?</li><li>말하지 않은 것이 생겼나요?</li><li>마음에 들지 않는 부분은?</li></ul>
     </section>
 
-    <section class="slide" data-slide="29" aria-labelledby="s29">
+    <section class="slide centered" data-slide="39" aria-labelledby="s39">
+      <p class="overline">그림이 나오면</p>
+      <p class="condition-line">만약 상상하던 그림이 아니라면</p>
+      <h2 id="s39">“AI야, 그게 아니야!”</h2>
+      <p class="big-definition">내가 상상한 것과 다른 부분을 찾아보세요.</p>
+      <div class="check-row"><span>장소</span><span>모습</span><span>행동</span><span>색·느낌</span></div>
+    </section>
+
+    <section class="slide" data-slide="40" aria-labelledby="s40">
       <p class="overline">나만의 그림 · 다시 수정</p>
-      <h2 id="s29">한 번 더 고쳐보자</h2>
+      <h2 id="s40">한 번 더 고쳐보자</h2>
       <div class="revision-list"><p>“________은 그대로 두고, ________을 바꿔줘.”</p><p>“여기에 ________을 추가해줘.”</p></div>
       <p class="slide-takeaway">처음 결과와 수정 결과를 비교해요.</p>
     </section>
 
-    <section class="slide safety-slide" data-slide="30" aria-labelledby="s30">
+    <section class="slide" data-slide="41" aria-labelledby="s41">
+      <p class="overline">미션 2</p>
+      <h2 id="s41">AI에게 다시 말해 보자!</h2>
+      <div class="revision-list"><p><b>더하기</b> “안경 쓴 모습을 추가해 줘.”</p><p><b>빼기</b> “배경의 나무는 빼 줘.”</p><p><b>한 부분만 바꾸기</b> “문어는 그대로 두고 낮을 밤으로 바꿔 줘.”</p></div>
+      <p class="slide-takeaway">처음부터 다시 쓰지 않아도 돼요. 한 가지씩 고쳐 봐요.</p>
+    </section>
+
+    <section class="slide safety-slide" data-slide="42" aria-labelledby="s42">
       <p class="overline">AI 그림 안전 약속</p>
-      <h2 id="s30">재미있어도 이것은 하지 않아요</h2>
+      <h2 id="s42">재미있어도 이것은 하지 않아요</h2>
       <p class="allowed-rule"><b>O</b> 내 정보 없이, 서로 존중하는 그림을 만들어요.</p>
       <ul class="safety-rules"><li>친구·선생님 얼굴로 이상한 합성 그림 만들기</li><li>유명인이 하지 않은 일을 한 것처럼 꾸미기</li><li>다른 사람을 놀리거나 괴롭히는 그림 만들기</li><li>잔인하거나 성적인 그림 만들기</li><li>이름·학교·전화번호·비밀번호 입력하기</li></ul>
       <p class="slide-takeaway">AI로 할 수 있어도 해도 되는 것은 아니에요.</p>
     </section>
 
-    <section class="slide" data-slide="31" aria-labelledby="s31">
+    <section class="slide" data-slide="43" aria-labelledby="s43">
       <p class="overline">오늘 우리가 발견한 것</p>
-      <h2 id="s31">Gemini로 그림을 만들며 무엇을 발견했나요?</h2>
+      <h2 id="s43">Gemini로 그림을 만들며 무엇을 발견했나요?</h2>
       <ol class="discovery-list" data-reveal-group><li class="reveal-step">원하는 것을 말이나 글로 알려줄 수 있어요.</li><li class="reveal-step">설명에 따라 결과가 달라질 수 있어요.</li><li class="reveal-step">AI는 말하지 않은 모습도 만들 수 있어요.</li><li class="reveal-step">마음에 들지 않으면 다시 요청할 수 있어요.</li><li class="reveal-step">결과는 내가 직접 보고 판단해요.</li></ol>
     </section>
 
-    <section class="slide centered" data-slide="32" aria-labelledby="s32">
+    <section class="slide centered" data-slide="44" aria-labelledby="s44">
+      <p class="overline">오늘 우리가 해낸 것</p>
+      <h2 id="s44">상상하고 → 말하고 → 만들고 → 고쳤다!</h2>
+      <ul class="summary-list"><li>AI는 말하지 않은 내 생각을 알 수 없어요.</li><li>첫 그림이 끝은 아니에요. 다시 말해 고칠 수 있어요.</li><li>안전한 그림인지 만들기 전에 확인해요.</li></ul>
+    </section>
+
+    <section class="slide centered" data-slide="45" aria-labelledby="s45">
       <p class="overline">다음 시간에는?</p>
-      <h2 id="s32">그림 말고 AI와 계속 대화하면?</h2>
+      <h2 id="s45">그림 말고 AI와 계속 대화하면?</h2>
       <p class="big-question">내가 말하고 선택할 때마다<br>다음 이야기도 달라질까요?</p>
       <p class="slide-takeaway">다음 주: AI랑 대화하니까 내가 생각지도 못한 일이 벌어지네?</p>
     </section>
 
-    <section class="slide review-slide" data-slide="review" aria-labelledby="sreview">
+    <section class="slide review-slide" data-slide="46" aria-labelledby="s46">
       <p class="overline">오늘 수업 마무리</p>
-      <h2 id="sreview">한 줄 후기를 남겨 주세요!</h2>
-      <div class="review-layout"><div class="qr-column"><a href="../review.html" target="_blank" rel="noopener" aria-label="1주차 후기 화면 미리보기 열기"><img src="assets/review-qr.png" alt="1주차 후기 화면 QR코드"></a><p>제출 기능 연결 후 사용<br><a href="../review.html" target="_blank" rel="noopener">후기 화면 미리보기 →</a></p></div><ol class="review-questions"><li><b>1</b><span>AI에게 처음 어떤 그림을 부탁했나요?</span></li><li><b>2</b><span>AI 그림에서 내 생각과 달랐던 부분은?</span></li><li><b>3</b><span>그 부분을 고치려고 어떤 말을 했나요?</span></li><li><b>4</b><span>오늘 수업은 어땠나요?</span></li><li><b>5</b><span>재미있었던 것 또는 다음에 해보고 싶은 것은?</span></li></ol></div>
+      <h2 id="s46">한 줄 후기를 남겨 주세요!</h2>
+      <div class="review-layout">
+        <div class="qr-column">
+          <a href="../review.html" target="_blank" rel="noopener" aria-label="1주차 후기 작성 화면 열기">
+            <img src="assets/review-qr.png" alt="1주차 후기 작성 QR코드">
+          </a>
+          <p>QR로 후기 작성 화면을 열어요.<br><a href="../review.html" target="_blank" rel="noopener">후기 작성 화면 열기 →</a></p>
+        </div>
+        <ol class="review-questions">
+          <li><b>1</b><span>AI에게 처음 어떤 그림을 만들어 달라고 말했나요?</span></li>
+          <li><b>2</b><span>AI가 만든 그림에서 내 생각과 달랐던 부분은 무엇인가요?</span></li>
+          <li><b>3</b><span>그 부분을 고치려고 AI에게 어떤 말을 했나요?</span></li>
+          <li><b>4</b><span>오늘 수업은 어땠나요? <small>5단계 중 하나 선택</small></span></li>
+          <li><b>5</b><span>가장 재미있었던 것이나 다음 시간에 더 해보고 싶은 것을 써 주세요.</span></li>
+        </ol>
+      </div>
     </section>
   </main>
 
-  <nav class="deck-controls" aria-label="슬라이드 이동"><button id="prevButton" type="button" aria-label="이전 슬라이드">←</button><span><b id="currentSlide">1</b> / <span id="totalSlides">34</span></span><button id="nextButton" type="button" aria-label="다음 슬라이드">→</button></nav>
+  <nav class="deck-controls" aria-label="슬라이드 이동"><button id="prevButton" type="button" aria-label="이전 슬라이드">←</button><span><b id="currentSlide">1</b> / <span id="totalSlides">46</span></span><button id="nextButton" type="button" aria-label="다음 슬라이드">→</button></nav>
   <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
   <script src="slides.js"></script>
 </body>

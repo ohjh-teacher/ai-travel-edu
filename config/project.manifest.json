@@ -197,7 +197,8 @@
                              { "source": "week-1/assets/astronaut-example.webp", "output": "regular/yongsan-gemini/week-1/assets/astronaut-example.webp" },
                              { "source": "week-1/assets/review-qr.png", "output": "regular/yongsan-gemini/week-1/assets/review-qr.png" },
                              { "source": "review.html", "output": "regular/yongsan-gemini/review.html", "contentLock": true },
-                             { "source": "review.css", "output": "regular/yongsan-gemini/review.css" }
+                             { "source": "review.css", "output": "regular/yongsan-gemini/review.css" },
+                             { "source": "review.js", "output": "regular/yongsan-gemini/review.js" }
                          ]
                      }
                  ],
