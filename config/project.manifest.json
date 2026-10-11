@@ -188,7 +188,9 @@
                          "files": [
                              { "source": "index.html", "output": "regular/youth-generative-ai/index.html", "contentLock": true },
                              { "source": "course.css", "output": "regular/youth-generative-ai/course.css" },
-                             { "source": "week-1.js", "output": "regular/youth-generative-ai/week-1.js" }
+                             { "source": "week-1/index.html", "output": "regular/youth-generative-ai/week-1/index.html", "contentLock": true },
+                             { "source": "week-1/week-1.css", "output": "regular/youth-generative-ai/week-1/week-1.css" },
+                             { "source": "week-1/slides.js", "output": "regular/youth-generative-ai/week-1/slides.js" }
                          ]
                      }
                  ],
@@ -204,6 +206,7 @@
                              "regular/ai-storybook/week-2/index.html",
                              "regular/ai-storybook/week-3/index.html",
                              "special/career-ai/index.html",
-                             "special/custom-travel/index.html"
+                             "special/custom-travel/index.html",
+                             "regular/youth-generative-ai/week-1/index.html"
                          ]
 }
