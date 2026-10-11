@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11T17:46:59.624Z",
+  "generatedAt": "2026-10-11T17:50:33.698Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "32b9215a2a30668442bac6a8d7e4340e67f9f223feb6f9ad260538ad561a67b6"
+      "visibleTextSha256": "14649210911fed25f71be096b552004d8040f40088a9ec96cd0df922a8b8a665"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
@@ -65,22 +65,7 @@
     "src/presentation/contexts/regular/youth-generative-ai/index.html": {
       "context": "regular-youth-generative-ai",
       "output": "regular/youth-generative-ai/index.html",
-      "visibleTextSha256": "49ff84bafe3cca31b421326bd25504f477457f5790a6bd52712421dffecad50c"
-    },
-    "src/presentation/contexts/regular/youth-generative-ai/lesson.html": {
-      "context": "regular-youth-generative-ai",
-      "output": "regular/youth-generative-ai/lesson.html",
-      "visibleTextSha256": "cc588a45a0898dee3209188db8001e18064a379cf96ccc0431f6c9d8353940bc"
-    },
-    "src/presentation/contexts/regular/youth-generative-ai/lesson.js": {
-      "context": "regular-youth-generative-ai",
-      "output": "regular/youth-generative-ai/lesson.js",
-      "visibleTextSha256": "1dfcaec75a5acd39db32e4fab5646d57af18062e91b4ddc6bbf5d7229e1d19d0"
-    },
-    "src/presentation/contexts/regular/youth-generative-ai/review.html": {
-      "context": "regular-youth-generative-ai",
-      "output": "regular/youth-generative-ai/review.html",
-      "visibleTextSha256": "ca149cf774c3703f7982174b75a491ec4fbf3158e0884cb5014f2ce3d2156ccd"
+      "visibleTextSha256": "906fabe5b6a49e7335d1b64d770442ba534bf979e354711603ef59fe1ace649a"
     }
   }
 }
