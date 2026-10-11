@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11T17:50:33.698Z",
+  "generatedAt": "2026-10-11T23:15:28.487Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "14649210911fed25f71be096b552004d8040f40088a9ec96cd0df922a8b8a665"
+      "visibleTextSha256": "1981f74ebd956ece71a337f65e9f6712d6c991784327d5029aa1812556ccd316"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
@@ -65,7 +65,7 @@
     "src/presentation/contexts/regular/youth-generative-ai/index.html": {
       "context": "regular-youth-generative-ai",
       "output": "regular/youth-generative-ai/index.html",
-      "visibleTextSha256": "906fabe5b6a49e7335d1b64d770442ba534bf979e354711603ef59fe1ace649a"
+      "visibleTextSha256": "9f44157e487ae301eed84a39e192706d9a56f3e5da1e8e7f8206d89a8ed6937c"
     }
   }
 }

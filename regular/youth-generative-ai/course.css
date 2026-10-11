@@ -11,6 +11,19 @@ h1 { margin: 16px 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.16; wor
 .lead { max-width: 760px; font-size: clamp(1.25rem, 2.3vw, 1.8rem); font-weight: 700; word-break: keep-all; }
 .facts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .facts span { padding: 9px 18px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 800; }
-.notice { margin: 0 0 72px; padding: 24px 32px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); font-size: 1.1rem; }
-.notice p { margin: 0; }
+.overview, .purpose, .curriculum, .operations { margin: 0 0 48px; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line); border-radius: 22px; background: var(--paper); }
+.overview h2, .purpose h2, .curriculum h2, .operations h2 { margin: 6px 0 26px; font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.25; word-break: keep-all; }
+.overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0; }
+.overview-grid div { padding: 18px; border-radius: 14px; background: #fff2e3; }
+.overview-grid dt { margin-bottom: 6px; color: var(--orange); font-weight: 900; }
+.overview-grid dd { margin: 0; font-size: 1.1rem; word-break: keep-all; }
+.purpose > p:last-child { max-width: 860px; font-size: 1.15rem; }
+.week-list { display: grid; gap: 14px; padding: 0; margin: 0; list-style: none; }
+.week-list li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: #fff8ef; }
+.week { color: var(--orange); font-weight: 900; }
+.week-list h3 { margin: 0 0 6px; font-size: 1.25rem; line-height: 1.35; word-break: keep-all; }
+.week-list p { margin: 0; word-break: keep-all; }
+.operations ul { margin: 0; padding-left: 1.4em; }
+.operations li { margin: 0 0 10px; font-size: 1.1rem; word-break: keep-all; }
 @media (max-width: 720px) { .top-bar, footer { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 720px) { .overview-grid { grid-template-columns: 1fr; } .week-list li { grid-template-columns: 1fr; gap: 6px; } }
