@@ -187,7 +187,8 @@
                          "sourceRoot": "src/presentation/contexts/regular/youth-generative-ai",
                          "files": [
                              { "source": "index.html", "output": "regular/youth-generative-ai/index.html", "contentLock": true },
-                             { "source": "course.css", "output": "regular/youth-generative-ai/course.css" }
+                             { "source": "course.css", "output": "regular/youth-generative-ai/course.css" },
+                             { "source": "week-1.js", "output": "regular/youth-generative-ai/week-1.js" }
                          ]
                      }
                  ],
