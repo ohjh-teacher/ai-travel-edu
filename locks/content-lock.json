@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13T15:57:08.679Z",
+  "generatedAt": "2026-10-13T15:59:20.352Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -70,7 +70,7 @@
     "src/presentation/contexts/regular/youth-generative-ai/week-1/index.html": {
       "context": "regular-youth-generative-ai",
       "output": "regular/youth-generative-ai/week-1/index.html",
-      "visibleTextSha256": "98d491f96bd4255aee61b45c68aa38a08c14bfd7c9e2a5840a3c695bf0decc1d"
+      "visibleTextSha256": "26dc08ad98ab34b7fe104ff59047f93ee48e7bd8a1d0f1c82983ee91ed5ee7c2"
     }
   }
 }
