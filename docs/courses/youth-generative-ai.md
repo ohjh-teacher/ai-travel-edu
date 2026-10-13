@@ -7,8 +7,8 @@
 - 일정: 2026-10-14~2026-11-25, 매주 수요일 19:00~21:00 (7회, 총 14시간)
 - 교육 환경·방식: PC 실습 · 강사 시연, 개별 실습, 결과 비교 및 공유
 - 도구: ChatGPT, Gemini, NotebookLM, Google Flow, VLLO
-- 상태: `draft`
-- 공개 경로 예정: `regular/youth-generative-ai/index.html`
+- 상태: `published` (과정 소개와 1주차 수업 공개, 2~7주차 수업은 순차 추가)
+- 공개 경로: `regular/youth-generative-ai/index.html`
 
 ## 작업 범위
 
