@@ -188,6 +188,7 @@
                          "files": [
                              { "source": "index.html", "output": "regular/yongsan-gemini/index.html", "contentLock": true },
                              { "source": "course.css", "output": "regular/yongsan-gemini/course.css" },
+                             { "source": "assets/satisfaction-poster.png", "output": "regular/yongsan-gemini/assets/satisfaction-poster.png" },
                              { "source": "week-1/index.html", "output": "regular/yongsan-gemini/week-1/index.html", "contentLock": true },
                              { "source": "week-1/week-1.css", "output": "regular/yongsan-gemini/week-1/week-1.css" },
                              { "source": "week-1/slides.js", "output": "regular/yongsan-gemini/week-1/slides.js" },
