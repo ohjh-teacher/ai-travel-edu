@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-13T15:59:20.352Z",
+  "generatedAt": "2026-10-27T18:13:05.057Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "1981f74ebd956ece71a337f65e9f6712d6c991784327d5029aa1812556ccd316"
+      "visibleTextSha256": "509640947f3e4a4956300fc3efb1a5d4b3ad1d1c2a6155183bf1acf571db9beb"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
       "output": "course.html",
-      "visibleTextSha256": "80638cacb636d9f1c221f5d1cd24469cbdc72d736f891caaad5c0412b54521b1"
+      "visibleTextSha256": "ce09660b3a7c2e8d4ef0e8dd18ed8d81dc14ea11483dd22ba62594539b73741d"
     },
     "src/presentation/contexts/special/index.html": {
       "context": "special",
       "output": "special/index.html",
-      "visibleTextSha256": "707e2fb174aff643a9cd5240c4ce70ba94466250ac5bcd1f8f85a6f8d5045ece"
+      "visibleTextSha256": "72108e280cce5aa79650302ba1d3bc4c6b85f6b459d4765f62841e1615068e87"
     },
     "src/presentation/contexts/special/career-ai/index.html": {
       "context": "special",
@@ -30,17 +30,32 @@
     "src/presentation/contexts/special/custom-travel/index.html": {
       "context": "special",
       "output": "special/custom-travel/index.html",
-      "visibleTextSha256": "9fb3670301a3bfb3edaa2abee1d3b021fc1bcc0a80fdd6beaeb31740c8761b6b"
+      "visibleTextSha256": "fdb3e68dcc7c4f24564f90b918abb5f96b4b2e287452df9558b55ee4a3852b9b"
     },
     "src/presentation/contexts/special/custom-travel/review.html": {
       "context": "special",
       "output": "special/custom-travel/review.html",
-      "visibleTextSha256": "2a2d925295d1f5f3d28572b6645475af06c696c7ecabd76bdd271dce2de7ac00"
+      "visibleTextSha256": "327bafb1b23ad03c8520eb83486f688bc9e5f043729e4e685c09e40da077116b"
+    },
+    "src/presentation/contexts/special/dongjak-employment-ai/index.html": {
+      "context": "special",
+      "output": "special/dongjak-employment-ai/index.html",
+      "visibleTextSha256": "f42f630fc5b15f5ce6f251d636979a687af49ece9c722463c4f965af5d5999c6"
+    },
+    "src/presentation/contexts/special/dongjak-employment-ai/review.html": {
+      "context": "special",
+      "output": "special/dongjak-employment-ai/review.html",
+      "visibleTextSha256": "0a4e1081125095b2b1aa1f211a8e5b6a9ef02d81cc0f23f04007d70626c45298"
+    },
+    "src/presentation/contexts/special/dongjak-employment-ai/pdf-content.js": {
+      "context": "special",
+      "output": "special/dongjak-employment-ai/pdf-content.js",
+      "visibleTextSha256": "3ad1d93528fa43b800d6e837ed8064c584cb4d22077ecc5b2206ff700f872f27"
     },
     "src/presentation/contexts/regular/ai-storybook/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/index.html",
-      "visibleTextSha256": "f2b4c40103acbc2fa7b5fc16daf187e64eb06efda0597e09d12e6ab5a03c930e"
+      "visibleTextSha256": "88dc5783432d3abf264ef94d6bb6cbbb27ea851fc8d2b7924308e9521beabd1d"
     },
     "src/presentation/contexts/regular/ai-storybook/week-1/index.html": {
       "context": "regular-ai-storybook",
@@ -55,17 +70,27 @@
     "src/presentation/contexts/regular/ai-storybook/week-3/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/week-3/index.html",
-      "visibleTextSha256": "aacb00e6f3f89f4be1d481aaad3739cc54684103aa20d742535683fdefef20ed"
-    },
-    "src/presentation/contexts/regular/ai-storybook/week-4/index.html": {
-      "context": "regular-ai-storybook",
-      "output": "regular/ai-storybook/week-4/index.html",
-      "visibleTextSha256": "99599b2df0f85033c7dc5d4d3d6fa35e8ae49a65fa12aa89ef1040a8e7eb772c"
+      "visibleTextSha256": "9ce696ad6807d26c8877bbef8416bf3cd6869b7aa0b436033c0fb5109a45a903"
     },
     "src/presentation/contexts/regular/ai-storybook/review.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/review.html",
       "visibleTextSha256": "54f84f08f2d4469894d7d517a02deded6b03e6eef1f5d22badebdcf81a83acd6"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/index.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/index.html",
+      "visibleTextSha256": "089ea6e18b7cb0f80e715b8b42680ff6bc30a7749e7dcfce0d189bd974aae4df"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/week-1/index.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/week-1/index.html",
+      "visibleTextSha256": "5e489e791626b8f14bf76a301b7d9befe4dbdb3a505877f9f0550fc05e01d9c9"
+    },
+    "src/presentation/contexts/regular/yongsan-gemini/review.html": {
+      "context": "regular-yongsan-gemini",
+      "output": "regular/yongsan-gemini/review.html",
+      "visibleTextSha256": "0e9f65496b821cbe24ec64b1cac401b2d8ac202ecc5076b287cb129accb3b387"
     },
     "src/presentation/contexts/regular/youth-generative-ai/index.html": {
       "context": "regular-youth-generative-ai",

@@ -3,6 +3,7 @@
   "courses": [
     {
       "id": "smart-travel",
+      "status": "published",
       "category": "regular",
       "title": "AI와 함께 떠나는 스마트 여행 생활",
       "route": "course.html",
@@ -10,11 +11,20 @@
     },
     {
       "id": "ai-storybook",
+      "status": "published",
       "category": "regular",
       "title": "AI 그림동화책 만들기",
       "route": "regular/ai-storybook/index.html",
       "sourceContext": "regular-ai-storybook",
       "delivery": "projector"
+    },
+    {
+      "id": "yongsan-gemini",
+      "status": "published",
+      "category": "regular",
+      "title": "Gemini와 함께하는 생성형 AI 놀이터",
+      "route": "regular/yongsan-gemini/index.html",
+      "sourceContext": "regular-yongsan-gemini"
     },
     {
       "id": "youth-generative-ai",
@@ -27,6 +37,7 @@
     },
     {
       "id": "custom-travel",
+      "status": "published",
       "category": "special",
       "title": "AI 가이드와 함께 떠나는 맞춤 여행",
       "route": "special/custom-travel/index.html",
@@ -35,11 +46,20 @@
     },
     {
       "id": "career-ai",
+      "status": "published",
       "category": "special",
       "title": "AI를 활용한 디지털 역량강화",
       "route": "special/career-ai/index.html",
       "sourceContext": "special",
       "delivery": "projector"
+    },
+    {
+      "route": "special/dongjak-employment-ai/index.html",
+      "sourceContext": "special",
+      "category": "special",
+      "id": "dongjak-employment-ai",
+      "status": "published",
+      "title": "생성형 AI를 활용한 취업지원 실무"
     }
   ]
 }

@@ -10,6 +10,9 @@
 </head>
 <body>
   <main class="portal-page">
+    <div class="portal-admin-entry">
+      <a class="portal-admin-link" href="course.html?view=admin">관리자 보기</a>
+    </div>
     <section class="portal-hero" aria-labelledby="portalTitle">
       <div class="hero-copy">
         <p class="eyebrow">AI SMART TRAVEL CLASS</p>
@@ -41,7 +44,7 @@
           </div>
 
           <div class="path-children regular-children">
-            <a class="path-button regular-button" href="course.html">
+            <a class="path-button regular-button" data-course-id="smart-travel" href="course.html">
               <span class="path-icon">13</span>
               <span class="path-copy">
                 <small>기존 수업 그대로 이어집니다</small>
@@ -51,12 +54,22 @@
               <span class="path-action">과정 열기 <b>→</b></span>
             </a>
 
-            <a class="path-button regular-button storybook-button" href="regular/ai-storybook/index.html">
+            <a class="path-button regular-button storybook-button" data-course-id="ai-storybook" href="regular/ai-storybook/index.html">
               <span class="path-icon">8</span>
               <span class="path-copy">
                 <small>8주 · 창작 실습형 정규과정</small>
                 <strong>AI 그림동화책 만들기</strong>
                 <em>나만의 이야기를 쓰고 그림을 만들어 한 권의 동화책으로 완성하기</em>
+              </span>
+              <span class="path-action">과정 열기 <b>→</b></span>
+            </a>
+
+            <a class="path-button regular-button" data-course-id="yongsan-gemini" href="regular/yongsan-gemini/index.html">
+              <span class="path-icon">7</span>
+              <span class="path-copy">
+                <small>7주 · 용산청소년센터 · 초등 5~6학년</small>
+                <strong>Gemini와 함께하는 생성형 AI 놀이터</strong>
+                <em>상상한 그림부터 질문·대화·확인·안전한 사용까지</em>
               </span>
               <span class="path-action">과정 열기 <b>→</b></span>
             </a>
@@ -83,7 +96,7 @@
           </div>
 
           <div class="path-children special-children">
-            <a class="path-button special-button" href="special/custom-travel/">
+            <a class="path-button special-button" data-course-id="custom-travel" href="special/custom-travel/">
               <span class="path-icon">AI</span>
               <span class="path-copy">
                 <small>90분 · 실습형</small>
@@ -93,7 +106,7 @@
               <span class="path-action">특강 열기 <b>→</b></span>
             </a>
 
-            <a class="path-button special-button" href="special/career-ai/">
+            <a class="path-button special-button" data-course-id="career-ai" href="special/career-ai/">
               <span class="path-icon">AI</span>
               <span class="path-copy">
                 <small>180분 · 서울경찰전직지원센터</small>
@@ -102,7 +115,15 @@
               </span>
               <span class="path-action">특강 열기 <b>→</b></span>
             </a>
-
+            <a class="path-button special-button" data-course-id="dongjak-employment-ai" href="special/dongjak-employment-ai/">
+              <span class="path-icon">AI</span>
+              <span class="path-copy">
+                <small>2026년 10월 28일 · 14:00~15:45</small>
+                <strong>생성형 AI를 활용한 취업지원 실무</strong>
+                <em>동작취업지원센터</em>
+              </span>
+              <span class="path-action">특강 열기 <b>→</b></span>
+            </a>
             <div class="path-button is-coming" aria-label="AI 번역으로 해외여행 준비하기, 준비 중">
               <span class="path-icon">03</span>
               <span class="path-copy">
