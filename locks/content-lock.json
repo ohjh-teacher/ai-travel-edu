@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T18:29:56.417Z",
+  "generatedAt": "2026-10-27T18:40:25.959Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -40,7 +40,7 @@
     "src/presentation/contexts/special/dongjak-employment-ai/index.html": {
       "context": "special",
       "output": "special/dongjak-employment-ai/index.html",
-      "visibleTextSha256": "f42f630fc5b15f5ce6f251d636979a687af49ece9c722463c4f965af5d5999c6"
+      "visibleTextSha256": "dd57e5b33dc6fa1be90fc796e3f282892ccb73bb0c6f5cea4693f52689af166d"
     },
     "src/presentation/contexts/special/dongjak-employment-ai/review.html": {
       "context": "special",
