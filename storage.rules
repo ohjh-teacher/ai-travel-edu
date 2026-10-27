@@ -2,12 +2,17 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+
     match /submissions/{allPaths=**} {
-      allow read: if true;
-      allow write: if request.resource != null
+      allow create: if request.resource != null
         && request.resource.size <= 5 * 1024 * 1024
         && request.resource.contentType.matches('image/.*');
-      allow delete: if true;
+      allow read, delete: if isAdmin();
+      allow update: if false;
     }
   }
 }

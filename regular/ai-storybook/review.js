@@ -79,7 +79,6 @@
           getDocs: firestoreModule.getDocs,
           collection: firestoreModule.collection,
           serverTimestamp: firestoreModule.serverTimestamp,
-          getDownloadURL: storageModule.getDownloadURL,
           ref: storageModule.ref,
           uploadBytes: storageModule.uploadBytes
         };
@@ -124,8 +123,7 @@
         name: file.name,
         size: file.size,
         type: file.type,
-        path,
-        url: await services.getDownloadURL(fileRef)
+        path
       };
     }));
   }
@@ -157,6 +155,8 @@
       institutionName: selectedInstitution?.dataset.name || selectedInstitution?.textContent || "",
       institutionStartWeek: Number(selectedInstitution?.dataset.startWeek) || 1,
       weekNumber: 1,
+      courseId: "ai-storybook",
+      questionVersion: 1,
       courseType: "regular",
       lectureId: "ai-storybook-week-1",
       lectureTitle: "AI 그림동화책 1주차",

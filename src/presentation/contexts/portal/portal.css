@@ -36,6 +36,32 @@ body {
   padding: 44px 0 52px;
 }
 
+.portal-admin-entry {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.portal-admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 18px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--paper);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.portal-admin-link:hover,
+.portal-admin-link:focus-visible {
+  border-color: var(--orange-dark);
+  outline-offset: 3px;
+}
+
 .portal-hero {
   position: relative;
   overflow: hidden;

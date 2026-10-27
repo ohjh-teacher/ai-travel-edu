@@ -10,7 +10,6 @@
   <header class="top-bar">
     <a class="plain-button portal-button" href="index.html">전체 과정으로</a>
     <button class="plain-button" id="homeButton" type="button">처음으로</button>
-    <button class="plain-button" id="adminButton" type="button">관리자 보기</button>
   </header>
 
   <main>
@@ -2117,10 +2116,15 @@ ________
     <form class="admin-access-form" id="adminAccessForm">
       <p class="admin-access-label">관리자 전용</p>
       <h2 id="adminAccessTitle">관리자 비밀번호</h2>
-      <p>수업 후기와 기관 정보를 확인하려면 비밀번호를 입력해 주세요.</p>
-
+      <p>수업 후기와 기관 정보를 확인하려면 관리자 비밀번호를 입력해 주세요.</p>
+      <details id="adminAccountSettings">
+        <summary>관리자 이메일 설정·변경</summary>
+        <label for="adminEmailInput">관리자 이메일</label>
+        <input id="adminEmailInput" type="email" autocomplete="username" placeholder="처음 사용할 때 입력">
+      </details>
       <label for="adminPasscodeInput">비밀번호</label>
-      <input id="adminPasscodeInput" type="password" inputmode="numeric" autocomplete="current-password" maxlength="10" placeholder="비밀번호 입력">
+      <input id="adminPasscodeInput" type="password" autocomplete="current-password" placeholder="관리자 비밀번호">
+      <button class="admin-password-reset" id="adminPasswordReset" type="button" disabled>이메일로 비밀번호 변경</button>
       <p class="admin-access-message" id="adminAccessMessage" role="alert"></p>
 
       <div class="admin-access-actions">
@@ -2132,6 +2136,6 @@ ________
 
   <div class="toast" id="toast" role="status"></div>
   <script src="shared/scripts/firebase-config.js"></script>
-  <script src="script.js?v=20260802-3"></script>
+  <script src="script.js?v=20261019-1"></script>
 </body>
 </html>

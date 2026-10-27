@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "heldCourseIds": [],
+  "legacyPublicPaths": [
+    "assets/week2-illustrations",
+    "assets/week3-gallery",
+    "regular/ai-storybook/assets",
+    "output/pdf/AI-digital-competency-career-class-720x480.pdf",
+    "output/pdf/ai-storybook-week-2-worksheet.pdf"
+  ]
+}

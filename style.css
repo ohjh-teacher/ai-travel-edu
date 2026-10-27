@@ -1640,6 +1640,24 @@ input[type="radio"] {
   outline: 4px solid rgba(200, 88, 82, 0.16);
 }
 
+.admin-password-reset {
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 4px 0;
+  color: var(--blue-dark);
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.admin-password-reset:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 .admin-access-message {
   min-height: 26px;
   margin: 7px 0 0;
@@ -1711,6 +1729,10 @@ body[data-screen="submit"] main {
 
 body[data-screen="admin"] .top-bar {
   padding: 8px 18px;
+}
+
+body[data-screen="admin"] #homeButton {
+  display: none;
 }
 
 body[data-screen="admin"] .plain-button {

@@ -1,7 +1,6 @@
 const STORAGE_KEY = "smartTravelClassSubmissions";
 const INSTITUTIONS_KEY = "smartTravelClassInstitutions";
-const ADMIN_UNLOCK_KEY = "smartTravelAdminUnlocked";
-const ADMIN_PASSCODE = "2026";
+const ADMIN_EMAIL_KEY = "smartTravelAdminEmail";
 const FIREBASE_CONFIG = window.AI_TRAVEL_FIREBASE_CONFIG;
 const FIREBASE_COLLECTION = "week1Submissions";
 const FIREBASE_INSTITUTIONS_COLLECTION = "institutions";
@@ -65,13 +64,19 @@ const submitFilesInput = document.getElementById("submitFiles");
 const adminViewButtons = document.querySelectorAll("[data-admin-view]");
 const adminAccessDialog = document.getElementById("adminAccessDialog");
 const adminAccessForm = document.getElementById("adminAccessForm");
+const adminAccountSettings = document.getElementById("adminAccountSettings");
+const adminEmailInput = document.getElementById("adminEmailInput");
 const adminPasscodeInput = document.getElementById("adminPasscodeInput");
+const adminPasswordReset = document.getElementById("adminPasswordReset");
 const adminAccessMessage = document.getElementById("adminAccessMessage");
 const adminAccessCancel = document.getElementById("adminAccessCancel");
 let firebaseServicesPromise = null;
 let institutionsCache = [];
 let activeSubmitWeek = 1;
 let adminViewMode = "list";
+let adminVerified = false;
+let adminSubmissionsCache = null;
+let adminAuthContext = null;
 
 const currentYear = new Date().getFullYear();
 const MAX_UPLOAD_FILES = 3;
@@ -187,11 +192,7 @@ function showToast(message) {
 }
 
 function hasAdminAccess() {
-  if (sessionStorage.getItem(ADMIN_UNLOCK_KEY) === "true") {
-    return true;
-  }
-
-  return false;
+  return adminVerified;
 }
 
 function openAdminScreen() {
@@ -200,30 +201,116 @@ function openAdminScreen() {
     return;
   }
 
-  if (!adminAccessDialog || !adminPasscodeInput) {
-    showToast("관리자 비밀번호 창을 열지 못했습니다.");
+  if (!adminAccessDialog || !adminAccessForm || !adminPasscodeInput) {
+    showToast("관리자 로그인 창을 열지 못했습니다.");
     return;
   }
 
+  const submitButton = adminAccessForm.querySelector('button[type="submit"]');
+  const savedEmail = localStorage.getItem(ADMIN_EMAIL_KEY) || "";
+  if (adminEmailInput) adminEmailInput.value = savedEmail;
+  if (adminAccountSettings) {
+    adminAccountSettings.hidden = Boolean(savedEmail);
+    adminAccountSettings.open = !savedEmail;
+  }
   adminPasscodeInput.value = "";
-  adminAccessMessage.textContent = "";
+  if (submitButton) submitButton.disabled = true;
+  if (adminPasswordReset) adminPasswordReset.disabled = true;
+  adminAccessMessage.textContent = "관리자 로그인을 준비하고 있습니다.";
   adminAccessDialog.showModal();
-  window.setTimeout(() => adminPasscodeInput.focus(), 0);
+  Promise.all([
+    getFirebaseServices(),
+    import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js")
+  ]).then(async ([services, authModule]) => {
+    if (!services) throw new Error("Firebase is unavailable.");
+    const auth = authModule.getAuth(services.app);
+    await authModule.setPersistence(auth, authModule.inMemoryPersistence);
+    adminAuthContext = { services, authModule, auth };
+    adminAccessMessage.textContent = "";
+    if (submitButton) submitButton.disabled = false;
+    if (adminPasswordReset) adminPasswordReset.disabled = false;
+    adminPasscodeInput.focus();
+  }).catch(() => {
+    adminAccessMessage.textContent = "로그인을 준비하지 못했습니다. 잠시 후 다시 열어 주세요.";
+  });
 }
 
-function submitAdminAccess(event) {
-  event.preventDefault();
+async function requestAdminPasswordReset() {
+  const adminEmail = adminEmailInput?.value.trim() || "";
+  if (!adminEmail || !adminEmailInput.checkValidity()) {
+    if (adminAccountSettings) {
+      adminAccountSettings.hidden = false;
+      adminAccountSettings.open = true;
+    }
+    adminAccessMessage.textContent = "비밀번호를 변경할 관리자 이메일을 입력해 주세요.";
+    adminEmailInput?.focus();
+    return;
+  }
+  if (!adminAuthContext) {
+    adminAccessMessage.textContent = "로그인을 준비하지 못했습니다. 잠시 후 다시 열어 주세요.";
+    return;
+  }
 
-  if (adminPasscodeInput?.value === ADMIN_PASSCODE) {
-    sessionStorage.setItem(ADMIN_UNLOCK_KEY, "true");
+  adminPasswordReset.disabled = true;
+  adminAccessMessage.textContent = "비밀번호 변경 이메일을 요청하고 있습니다.";
+  try {
+    const { authModule, auth } = adminAuthContext;
+    auth.languageCode = "ko";
+    await authModule.sendPasswordResetEmail(auth, adminEmail);
+    adminAccessMessage.textContent = "비밀번호 변경 이메일을 요청했습니다. 받은편지함을 확인해 주세요.";
+  } catch (error) {
+    adminAccessMessage.textContent = "이메일을 보내지 못했습니다. 주소와 인터넷 연결을 확인한 뒤 다시 시도해 주세요.";
+  } finally {
+    adminPasswordReset.disabled = false;
+  }
+}
+
+async function submitAdminAccess(event) {
+  event.preventDefault();
+  const submitButton = adminAccessForm?.querySelector('button[type="submit"]');
+  if (submitButton) submitButton.disabled = true;
+  adminAccessMessage.textContent = "관리자 권한을 확인하고 있습니다.";
+  try {
+    if (!adminAuthContext) throw new Error("Administrator login is unavailable.");
+    const { services, authModule, auth } = adminAuthContext;
+    const adminEmail = adminEmailInput?.value.trim() || "";
+    if (!adminEmail || !adminPasscodeInput?.value) {
+      adminAccessMessage.textContent = "관리자 이메일과 비밀번호를 입력해 주세요.";
+      if (adminAccountSettings) {
+        adminAccountSettings.hidden = false;
+        adminAccountSettings.open = !adminEmail;
+      }
+      return;
+    }
+    const credential = await authModule.signInWithEmailAndPassword(auth, adminEmail, adminPasscodeInput.value);
+    localStorage.setItem(ADMIN_EMAIL_KEY, adminEmail);
+    let adminRecord;
+    try {
+      adminRecord = await services.getDoc(services.doc(services.db, "admins", credential.user.uid));
+    } catch (error) {
+      if (error?.code !== "permission-denied") throw error;
+      await authModule.signOut(auth);
+      adminAccessMessage.textContent = "로그인은 확인됐습니다. 저장소 권한 규칙 적용이 아직 필요합니다.";
+      return;
+    }
+    if (!adminRecord.exists()) {
+      await authModule.signOut(auth);
+      adminAccessMessage.textContent = "관리자 계정의 UID와 관리자 문서를 확인해 주세요.";
+      return;
+    }
+    adminVerified = true;
+    adminSubmissionsCache = null;
+    adminPasscodeInput.value = "";
     adminAccessMessage.textContent = "";
     adminAccessDialog?.close();
     showScreen("admin");
-    return;
+  } catch (error) {
+    adminAccessMessage.textContent = "관리자 비밀번호 또는 권한을 확인하지 못했습니다.";
+    if (adminAccountSettings) adminAccountSettings.hidden = false;
+    adminPasscodeInput.value = "";
+  } finally {
+    if (submitButton) submitButton.disabled = false;
   }
-
-  adminAccessMessage.textContent = "비밀번호가 맞지 않습니다. 다시 입력해 주세요.";
-  adminPasscodeInput?.select();
 }
 
 function getSubmissions() {
@@ -254,6 +341,7 @@ async function getFirebaseServices() {
       const db = firestoreModule.getFirestore(app);
       const storage = storageModule.getStorage(app);
       return {
+        app,
         db,
         storage,
         addDoc: firestoreModule.addDoc,
@@ -261,6 +349,7 @@ async function getFirebaseServices() {
         deleteDoc: firestoreModule.deleteDoc,
         doc: firestoreModule.doc,
         getDocs: firestoreModule.getDocs,
+        getDoc: firestoreModule.getDoc,
         orderBy: firestoreModule.orderBy,
         query: firestoreModule.query,
         serverTimestamp: firestoreModule.serverTimestamp,
@@ -289,6 +378,12 @@ async function submitToFirebase(data) {
 }
 
 async function getFirebaseSubmissions() {
+  if (!hasAdminAccess()) {
+    throw new Error("Administrator authentication required.");
+  }
+  if (adminSubmissionsCache) {
+    return adminSubmissionsCache;
+  }
   const services = await getFirebaseServices();
   if (!services) {
     return null;
@@ -301,10 +396,19 @@ async function getFirebaseSubmissions() {
     )
   );
 
-  return snapshot.docs.map((doc) => ({
-    firebaseId: doc.id,
-    ...doc.data()
+  adminSubmissionsCache = await Promise.all(snapshot.docs.map(async (document) => {
+    const data = document.data();
+    const attachments = await Promise.all((data.attachments || []).map(async (attachment) => {
+      if (!attachment.path) return attachment;
+      try {
+        return { ...attachment, url: await services.getDownloadURL(services.ref(services.storage, attachment.path)) };
+      } catch (error) {
+        return { ...attachment, url: "" };
+      }
+    }));
+    return { firebaseId: document.id, ...data, attachments };
   }));
+  return adminSubmissionsCache;
 }
 
 function normalizeInstitution(institution) {
@@ -752,14 +856,11 @@ async function uploadSubmissionFiles(files, data) {
         weekNumber: String(data.weekNumber || "")
       }
     });
-    const url = await services.getDownloadURL(fileRef);
-
     return {
       name: file.name,
       size: file.size,
       type: file.type,
-      path,
-      url
+      path
     };
   });
 
@@ -771,6 +872,8 @@ async function submitStudentReview() {
   const phoneLast4 = document.getElementById("submitPhoneLast4")?.value.trim() || "";
   const submittedAt = new Date().toLocaleString("ko-KR");
   const data = {
+    courseId: "smart-travel",
+    questionVersion: 1,
     name: document.getElementById("submitStudentName")?.value.trim() || "",
     phoneLast4,
     classYear: Number(submitClassYearSelect?.value) || currentYear,
@@ -852,6 +955,8 @@ async function submitReview() {
   const phoneLast4 = document.getElementById("phoneLast4").value.trim();
   const submittedAt = new Date().toLocaleString("ko-KR");
   const data = {
+    courseId: "smart-travel",
+    questionVersion: 1,
     name: document.getElementById("studentName").value.trim(),
     phoneLast4,
     classYear: Number(classYearSelect?.value) || currentYear,
@@ -887,6 +992,12 @@ async function submitReview() {
 }
 
 function getSubmissionCourseKey(item) {
+  if (item.courseId) {
+    return String(item.courseId);
+  }
+  if (item.lectureId === "ai-storybook-week-1") {
+    return "ai-storybook";
+  }
   if (item.lectureId) {
     return String(item.lectureId);
   }
@@ -897,13 +1008,26 @@ function getSubmissionCourseKey(item) {
 }
 
 function getSubmissionCourseLabel(item) {
-  if (item.lectureId === "ai-storybook-week-1") {
+  if (getSubmissionCourseKey(item) === "ai-storybook") {
     return "AI 그림동화책 정규과정";
+  }
+  if (item.lectureTitle) {
+    return String(item.lectureTitle);
   }
   if (item.courseType === "special") {
     return item.lectureTitle || "단기특강";
   }
   return "스마트폰 디지털여행 정규과정";
+}
+
+function renderQuestionAnswers(item) {
+  if (!Array.isArray(item.questionAnswers)) {
+    return "";
+  }
+  return item.questionAnswers
+    .filter((entry) => entry && typeof entry.question === "string" && typeof entry.answer === "string")
+    .map((entry) => `<dt>${escapeHtml(entry.question)}</dt><dd>${escapeHtml(entry.answer)}</dd>`)
+    .join("");
 }
 
 function renderAdminCourseOptions(submissions) {
@@ -945,7 +1069,8 @@ async function renderAdminList() {
       submissions = firebaseSubmissions;
     }
   } catch (error) {
-    showToast("기기 저장 기록을 보여드립니다.");
+    adminList.innerHTML = '<p class="empty-text">온라인 후기를 불러오지 못했습니다. 관리자 로그인을 다시 확인해 주세요.</p>';
+    return;
   }
 
   renderAdminCourseOptions(submissions);
@@ -1018,6 +1143,7 @@ async function renderAdminList() {
           <dd>${item.completedItems?.length ? escapeHtml(item.completedItems.join(" / ")) : "체크 없음"}</dd>
           <dt>후기</dt>
           <dd>${item.review ? escapeHtml(item.review) : "후기 없음"}</dd>
+          ${renderQuestionAnswers(item)}
           <dt>첨부 사진</dt>
           <dd>${renderAttachments(item.attachments)}</dd>
           <dt>다음 수업 참여 여부</dt>
@@ -1060,7 +1186,7 @@ async function renderAdminList() {
       const card = document.createElement("article");
       card.className = "review-card-news";
       const attachments = item.attachments || [];
-      const primaryAttachment = attachments[0];
+      const primaryAttachment = attachments.find((attachment) => attachment.url);
       const deleteKey = item.firebaseId || item.submissionId || `${item.name}-${item.phoneLast4}-${item.submittedAt}`;
       const mediaMarkup = primaryAttachment
         ? `
@@ -1085,6 +1211,7 @@ async function renderAdminList() {
             <span>${item.courseType === "special" ? "단기특강" : `${escapeHtml(item.weekNumber || 1)}주차`}</span>
           </div>
           <blockquote>${item.review ? escapeHtml(item.review) : "오늘의 여행 수업을 완료했습니다."}</blockquote>
+          ${renderQuestionAnswers(item) ? `<details><summary>문항별 답변</summary><dl>${renderQuestionAnswers(item)}</dl></details>` : ""}
           <div class="review-card-person">
             <strong>${escapeHtml(item.name || "이름 미기록")} 수강생</strong>
             <span>${escapeHtml(item.submittedAt || "제출 시간 미기록")}</span>
@@ -1133,6 +1260,7 @@ async function deleteFirebaseSubmission(firebaseId) {
   }
 
   await services.deleteDoc(services.doc(services.db, FIREBASE_COLLECTION, firebaseId));
+  adminSubmissionsCache = null;
 }
 
 async function deleteSubmissionFiles(attachments = []) {
@@ -1145,7 +1273,7 @@ async function deleteSubmissionFiles(attachments = []) {
     return;
   }
 
-  await Promise.allSettled(
+  await Promise.all(
     attachments
       .filter((attachment) => attachment.path)
       .map((attachment) => services.deleteObject(services.ref(services.storage, attachment.path)))
@@ -1236,11 +1364,11 @@ function renderAttachments(attachments = []) {
     <div class="attachment-list">
       ${attachments.map((attachment) => `
         <figure class="attachment-item">
-          <img src="${escapeHtml(attachment.url)}" alt="${escapeHtml(attachment.name || "첨부 사진")}">
+          ${attachment.url ? `<img src="${escapeHtml(attachment.url)}" alt="${escapeHtml(attachment.name || "첨부 사진")}">` : ""}
           <figcaption>
             <span>${escapeHtml(attachment.name || "사진")}</span>
             <small>${escapeHtml(formatFileSize(attachment.size))}</small>
-            <a href="${escapeHtml(attachment.url)}" download>다운로드</a>
+            ${attachment.url ? `<a href="${escapeHtml(attachment.url)}" download>다운로드</a>` : "사진을 열 수 없습니다"}
           </figcaption>
         </figure>
       `).join("")}
@@ -1457,8 +1585,8 @@ function showKioskPracticeResult(button) {
 
 function bindEvents() {
   document.getElementById("homeButton")?.addEventListener("click", () => showScreen("home"));
-  document.getElementById("adminButton")?.addEventListener("click", openAdminScreen);
   adminAccessForm?.addEventListener("submit", submitAdminAccess);
+  adminPasswordReset?.addEventListener("click", requestAdminPasswordReset);
   adminAccessCancel?.addEventListener("click", () => adminAccessDialog?.close());
   document.getElementById("submitButton")?.addEventListener("click", submitReview);
   document.getElementById("studentSubmitButton")?.addEventListener("click", submitStudentReview);
@@ -1516,6 +1644,10 @@ function bindEvents() {
 
 function openInitialScreen() {
   const params = new URLSearchParams(window.location.search);
+  if (params.get("view") === "admin") {
+    openAdminScreen();
+    return;
+  }
   if (params.get("view") === "submit") {
     activeSubmitWeek = Math.min(Math.max(Number(params.get("week")) || 1, 1), 13);
     showScreen("submit");

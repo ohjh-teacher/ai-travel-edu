@@ -1,5 +1,9 @@
 .netlify/
 node_modules/
 .firebase/
+/tmp/material-intake-cache/
+/dist/
+/.dist-build-*/
+/.dist-backup-*/
 firebase-debug.log
 *.local

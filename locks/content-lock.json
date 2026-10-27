@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T18:13:05.057Z",
+  "generatedAt": "2026-10-27T18:29:56.417Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
@@ -30,12 +30,12 @@
     "src/presentation/contexts/special/custom-travel/index.html": {
       "context": "special",
       "output": "special/custom-travel/index.html",
-      "visibleTextSha256": "fdb3e68dcc7c4f24564f90b918abb5f96b4b2e287452df9558b55ee4a3852b9b"
+      "visibleTextSha256": "9fb3670301a3bfb3edaa2abee1d3b021fc1bcc0a80fdd6beaeb31740c8761b6b"
     },
     "src/presentation/contexts/special/custom-travel/review.html": {
       "context": "special",
       "output": "special/custom-travel/review.html",
-      "visibleTextSha256": "327bafb1b23ad03c8520eb83486f688bc9e5f043729e4e685c09e40da077116b"
+      "visibleTextSha256": "2a2d925295d1f5f3d28572b6645475af06c696c7ecabd76bdd271dce2de7ac00"
     },
     "src/presentation/contexts/special/dongjak-employment-ai/index.html": {
       "context": "special",
@@ -55,7 +55,7 @@
     "src/presentation/contexts/regular/ai-storybook/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/index.html",
-      "visibleTextSha256": "88dc5783432d3abf264ef94d6bb6cbbb27ea851fc8d2b7924308e9521beabd1d"
+      "visibleTextSha256": "f2b4c40103acbc2fa7b5fc16daf187e64eb06efda0597e09d12e6ab5a03c930e"
     },
     "src/presentation/contexts/regular/ai-storybook/week-1/index.html": {
       "context": "regular-ai-storybook",
@@ -70,7 +70,12 @@
     "src/presentation/contexts/regular/ai-storybook/week-3/index.html": {
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/week-3/index.html",
-      "visibleTextSha256": "9ce696ad6807d26c8877bbef8416bf3cd6869b7aa0b436033c0fb5109a45a903"
+      "visibleTextSha256": "aacb00e6f3f89f4be1d481aaad3739cc54684103aa20d742535683fdefef20ed"
+    },
+    "src/presentation/contexts/regular/ai-storybook/week-4/index.html": {
+      "context": "regular-ai-storybook",
+      "output": "regular/ai-storybook/week-4/index.html",
+      "visibleTextSha256": "99599b2df0f85033c7dc5d4d3d6fa35e8ae49a65fa12aa89ef1040a8e7eb772c"
     },
     "src/presentation/contexts/regular/ai-storybook/review.html": {
       "context": "regular-ai-storybook",

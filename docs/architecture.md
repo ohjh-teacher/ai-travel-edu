@@ -17,11 +17,13 @@
 ## 소스 오브 트루스
 
 - 과정 탐색: `content/catalog.json`
+- 게시 상태: `content/catalog.json`의 `status`; `published` 과정만 `tools/release.mjs`가 `dist`에 포함
 - 출력 매핑: `config/project.manifest.json`
 - 화면 소스: `src/presentation/contexts/**`
 - 공통 화면 규칙: `src/presentation/shared/**`
 - 원문 기준선: `locks/content-lock.json`
 - 공개 결과물: 기존 URL 위치의 HTML/CSS/JS
+- Firebase Hosting 게시물: 검증 후 생성된 `dist`; 강의별 배포는 Hosting만 대상으로 함
 
 공개 결과물은 직접 수정하지 않는다. 화면 또는 문구 변경은 해당 컨텍스트의 소스에서만 수행하고 빌드한다.
 

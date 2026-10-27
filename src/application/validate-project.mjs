@@ -1,6 +1,7 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import { loadManifest } from "./build-project.mjs";
+import { validateCourseCatalog, validateCourseCards } from "../domain/course-catalog.mjs";
 import { readContentLocks } from "./content-lock.mjs";
 import { fromRoot, readJson, readUtf8, sha256, visibleText } from "../infrastructure/file-system.mjs";
 
@@ -34,6 +35,9 @@ export async function validateProject(root) {
     try { await access(fromRoot(root, file)); } catch { errors.push(`Missing protected infrastructure file: ${file}`); }
   }
   const catalog = await readJson(fromRoot(root, manifest.catalog));
+  const courses = validateCourseCatalog(catalog, manifest);
+  validateCourseCards(await readUtf8(fromRoot(root, "src/presentation/contexts/portal/index.html")), "index.html", courses, true);
+  validateCourseCards(await readUtf8(fromRoot(root, "src/presentation/contexts/special/index.html")), "special/index.html", courses);
   for (const course of catalog.courses || []) {
     try { await access(fromRoot(root, course.route)); } catch { errors.push(`Catalog route is missing: ${course.route}`); }
   }

@@ -6,6 +6,8 @@
     "build": "node tools/project.mjs build",
     "lock:content": "node tools/project.mjs lock",
     "validate": "node tools/project.mjs validate",
+    "release:build": "node tools/release.mjs build",
+    "release:validate": "node tools/release.mjs validate",
     "check": "npm run build && npm run validate"
   }
 }
