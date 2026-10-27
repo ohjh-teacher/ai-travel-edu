@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-25T22:15:14.935Z",
+  "generatedAt": "2026-10-13T15:59:20.352Z",
   "files": {
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "32e5bcf8979ae8f779f7e2fadd041a153ee588bab2cae54c6b8914ea5c488877"
+      "visibleTextSha256": "1981f74ebd956ece71a337f65e9f6712d6c991784327d5029aa1812556ccd316"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
@@ -66,6 +66,16 @@
       "context": "regular-ai-storybook",
       "output": "regular/ai-storybook/review.html",
       "visibleTextSha256": "54f84f08f2d4469894d7d517a02deded6b03e6eef1f5d22badebdcf81a83acd6"
+    },
+    "src/presentation/contexts/regular/youth-generative-ai/index.html": {
+      "context": "regular-youth-generative-ai",
+      "output": "regular/youth-generative-ai/index.html",
+      "visibleTextSha256": "4a24300304eac48e15ac7f2a90c665f2277fca997d1e7124a206a650a3221e60"
+    },
+    "src/presentation/contexts/regular/youth-generative-ai/week-1/index.html": {
+      "context": "regular-youth-generative-ai",
+      "output": "regular/youth-generative-ai/week-1/index.html",
+      "visibleTextSha256": "26dc08ad98ab34b7fe104ff59047f93ee48e7bd8a1d0f1c82983ee91ed5ee7c2"
     }
   }
 }

@@ -194,6 +194,17 @@
                                            "output":  "regular/ai-storybook/review.js"
                                        }
                                    ]
+                     },
+                     {
+                         "id": "regular-youth-generative-ai",
+                         "sourceRoot": "src/presentation/contexts/regular/youth-generative-ai",
+                         "files": [
+                             { "source": "index.html", "output": "regular/youth-generative-ai/index.html", "contentLock": true },
+                             { "source": "course.css", "output": "regular/youth-generative-ai/course.css" },
+                             { "source": "week-1/index.html", "output": "regular/youth-generative-ai/week-1/index.html", "contentLock": true },
+                             { "source": "week-1/week-1.css", "output": "regular/youth-generative-ai/week-1/week-1.css" },
+                             { "source": "week-1/slides.js", "output": "regular/youth-generative-ai/week-1/slides.js" }
+                         ]
                      }
                  ],
     "protectedInfrastructure":  [
@@ -209,6 +220,7 @@
                              "regular/ai-storybook/week-3/index.html",
                              "regular/ai-storybook/week-4/index.html",
                              "special/career-ai/index.html",
-                             "special/custom-travel/index.html"
+                             "special/custom-travel/index.html",
+                             "regular/youth-generative-ai/week-1/index.html"
                          ]
 }
