@@ -5,7 +5,7 @@
     "src/presentation/contexts/portal/index.html": {
       "context": "portal",
       "output": "index.html",
-      "visibleTextSha256": "32e5bcf8979ae8f779f7e2fadd041a153ee588bab2cae54c6b8914ea5c488877"
+      "visibleTextSha256": "5fb8c556b9ccfe50cf795c58eb17abd56879636276901ce85c2db17beee27d58"
     },
     "src/presentation/contexts/smart-travel/course.html": {
       "context": "smart-travel",
