@@ -3,6 +3,7 @@
   "courses": [
     {
       "id": "smart-travel",
+      "status": "published",
       "category": "regular",
       "title": "AI와 함께 떠나는 스마트 여행 생활",
       "route": "course.html",
@@ -10,6 +11,7 @@
     },
     {
       "id": "ai-storybook",
+      "status": "published",
       "category": "regular",
       "title": "AI 그림동화책 만들기",
       "route": "regular/ai-storybook/index.html",
@@ -17,7 +19,29 @@
       "delivery": "projector"
     },
     {
+      "id": "yongsan-generative-ai",
+      "status": "published",
+      "category": "regular",
+      "title": "생성형 AI 활용 4주 정규강의",
+      "route": "regular/yongsan-generative-ai/index.html",
+      "sourceContext": "regular-yongsan-generative-ai",
+      "delivery": "web-course",
+      "institution": "용산청소년센터"
+    },
+    {
+      "id": "yongsan-elementary-ai",
+      "status": "published",
+      "category": "regular",
+      "title": "AI 창작 놀이터",
+      "route": "regular/yongsan-elementary-ai/index.html",
+      "sourceContext": "regular-yongsan-elementary-ai",
+      "delivery": "web-course",
+      "institution": "용산청소년센터",
+      "audience": "초등학교 저학년"
+    },
+    {
       "id": "custom-travel",
+      "status": "published",
       "category": "special",
       "title": "AI 가이드와 함께 떠나는 맞춤 여행",
       "route": "special/custom-travel/index.html",
@@ -26,11 +50,20 @@
     },
     {
       "id": "career-ai",
+      "status": "published",
       "category": "special",
       "title": "AI를 활용한 디지털 역량강화",
       "route": "special/career-ai/index.html",
       "sourceContext": "special",
       "delivery": "projector"
+    },
+    {
+      "route": "special/dongjak-employment-ai/index.html",
+      "sourceContext": "special",
+      "category": "special",
+      "id": "dongjak-employment-ai",
+      "status": "published",
+      "title": "생성형 AI를 활용한 취업지원 실무"
     }
   ]
 }

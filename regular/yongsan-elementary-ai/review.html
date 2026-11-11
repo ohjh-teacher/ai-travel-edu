@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <script src="../../shared/scripts/firebase-config.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>수업 후기 제출 | AI 창작 놀이터</title>
+  <link rel="stylesheet" href="../../special/special.css">
+</head>
+<body>
+  <header class="special-topbar"><span class="brand-link">AI 창작 놀이터 · 수업 후기 제출</span></header>
+  <main class="review-page">
+    <section class="review-page-hero" aria-labelledby="reviewPageTitle">
+      <p class="eyebrow">CLASS REVIEW</p>
+      <h1 id="reviewPageTitle">AI 창작 놀이터<br><span id="weekHeading">수업 후기 남기기</span></h1>
+      <p>오늘 만든 작품과 수업에서 느낀 점을 기록해 주세요.</p>
+    </section>
+    <form class="special-review-form" id="yongsanElementaryReviewForm">
+      <div class="review-form-heading"><p class="section-number">기본 정보</p><h2>누가 참여했나요?</h2></div>
+      <div class="review-field-grid">
+        <label><span>수업 연도</span><select id="reviewYear"></select></label>
+        <label><span>기관명</span><select id="reviewInstitution"><option value="yongsan-youth-center-elementary" data-name="용산청소년센터_초등" data-start-week="1" selected>용산청소년센터_초등</option></select></label>
+        <label class="review-course-fixed"><span>참여 과정</span><input type="text" value="AI 창작 놀이터 4주 정규과정" readonly></label>
+        <label><span>이름</span><input id="reviewName" type="text" autocomplete="name" placeholder="이름을 입력해 주세요"></label>
+        <label><span>휴대전화 뒷번호 4자리</span><input id="reviewPhone" type="text" inputmode="numeric" maxlength="4" placeholder="예: 1234"></label>
+      </div>
+      <section class="review-checklist" aria-labelledby="reviewChecklistTitle">
+        <h3 id="reviewChecklistTitle">오늘 해낸 것</h3>
+        <div class="review-checklist-items">
+          <label><input type="checkbox" name="completed" value="내 아이디어를 정했습니다."> <span>내 아이디어를 정했습니다.</span></label>
+          <label><input type="checkbox" name="completed" value="AI에게 질문하고 답했습니다."> <span>AI에게 질문하고 답했습니다.</span></label>
+          <label><input type="checkbox" name="completed" value="첫 결과와 두 번째 결과를 비교했습니다."> <span>첫 결과와 두 번째 결과를 비교했습니다.</span></label>
+          <label><input type="checkbox" name="completed" value="만든 작품을 친구들과 나누었습니다."> <span>만든 작품을 친구들과 나누었습니다.</span></label>
+        </div>
+      </section>
+      <label class="review-wide-field"><span>오늘 수업에서 가장 기억에 남은 점</span><textarea id="reviewText" rows="5" placeholder="오늘 만든 작품이나 재미있었던 점을 적어 주세요."></textarea></label>
+      <div class="special-review-privacy"><label><input id="reviewPrivacy" type="checkbox"> 후기 저장을 위한 개인정보 수집에 동의합니다.</label><p>이름, 휴대전화 뒷번호, 과정명과 후기를 수업 기록 관리에 사용합니다.</p></div>
+      <button class="review-submit-button" id="reviewSubmit" type="submit">후기 제출하기</button>
+      <p class="review-submit-message" id="reviewMessage" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <script src="review.js"></script>
+</body>
+</html>

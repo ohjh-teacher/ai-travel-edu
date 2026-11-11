@@ -6,10 +6,15 @@
   <meta name="description" content="AI 스마트 여행 교육의 정규과정과 단기특강을 선택합니다.">
   <title>과정 선택 | AI와 함께 떠나는 스마트 여행 생활</title>
   <link rel="stylesheet" href="portal.css">
+  <script src="shared/scripts/firebase-config.js"></script>
+  <script src="shared/scripts/access-gate.js"></script>
   <script src="portal.js"></script>
 </head>
 <body>
   <main class="portal-page">
+    <div class="portal-admin-entry">
+      <a class="portal-admin-link" href="course.html?view=admin">관리자 보기</a>
+    </div>
     <section class="portal-hero" aria-labelledby="portalTitle">
       <div class="hero-copy">
         <p class="eyebrow">AI SMART TRAVEL CLASS</p>
@@ -41,7 +46,7 @@
           </div>
 
           <div class="path-children regular-children">
-            <a class="path-button regular-button" href="course.html">
+            <a class="path-button regular-button" data-course-id="smart-travel" href="course.html">
               <span class="path-icon">13</span>
               <span class="path-copy">
                 <small>기존 수업 그대로 이어집니다</small>
@@ -51,7 +56,7 @@
               <span class="path-action">과정 열기 <b>→</b></span>
             </a>
 
-            <a class="path-button regular-button storybook-button" href="regular/ai-storybook/index.html">
+            <a class="path-button regular-button storybook-button" data-course-id="ai-storybook" href="regular/ai-storybook/index.html">
               <span class="path-icon">8</span>
               <span class="path-copy">
                 <small>8주 · 창작 실습형 정규과정</small>
@@ -59,6 +64,36 @@
                 <em>나만의 이야기를 쓰고 그림을 만들어 한 권의 동화책으로 완성하기</em>
               </span>
               <span class="path-action">과정 열기 <b>→</b></span>
+            </a>
+
+            <a class="path-button regular-button" data-course-id="yongsan-generative-ai" href="regular/yongsan-generative-ai/index.html">
+              <span class="path-icon">4</span>
+              <span class="path-copy">
+                <small>용산청소년센터 · 4주 · 실습형 정규과정</small>
+                <strong>생성형 AI 활용 정규강의</strong>
+                <em>AI 대화·자료 조사·웹사이트·영상 만들기</em>
+              </span>
+              <span class="path-action">과정 열기 <b>→</b></span>
+            </a>
+
+            <a class="path-button regular-button" data-course-id="yongsan-elementary-ai" href="regular/yongsan-elementary-ai/index.html">
+              <span class="path-icon">4</span>
+              <span class="path-copy">
+                <small>용산청소년센터 · 초등 저학년 · 4주</small>
+                <strong>AI 창작 놀이터</strong>
+                <em>그림·동화·음악·게임을 만들며 AI에게 잘 부탁하기</em>
+              </span>
+              <span class="path-action">과정 열기 <b>→</b></span>
+            </a>
+
+            <a class="path-button regular-button" href="https://earth-ai-classroom-oh.ohjh.chatgpt.site/classroom#dashboard" target="_blank" rel="noopener noreferrer">
+              <span class="path-icon">AI</span>
+              <span class="path-copy">
+                <small>외부 게시 · 별도 사이트</small>
+                <strong>4주차 강의 · 지구를 살리는 AI 콘텐츠 제작소</strong>
+                <em>환경을 배우고, 콘텐츠를 만들고, 세상과 나누다</em>
+              </span>
+              <span class="path-action">외부 강의 열기 <b>↗</b></span>
             </a>
           </div>
         </section>
@@ -74,7 +109,7 @@
           </div>
 
           <div class="path-children special-children">
-            <a class="path-button special-button" href="special/custom-travel/">
+            <a class="path-button special-button" data-course-id="custom-travel" href="special/custom-travel/">
               <span class="path-icon">AI</span>
               <span class="path-copy">
                 <small>90분 · 실습형</small>
@@ -84,7 +119,7 @@
               <span class="path-action">특강 열기 <b>→</b></span>
             </a>
 
-            <a class="path-button special-button" href="special/career-ai/">
+            <a class="path-button special-button" data-course-id="career-ai" href="special/career-ai/">
               <span class="path-icon">AI</span>
               <span class="path-copy">
                 <small>180분 · 서울경찰전직지원센터</small>
@@ -93,7 +128,15 @@
               </span>
               <span class="path-action">특강 열기 <b>→</b></span>
             </a>
-
+            <a class="path-button special-button" data-course-id="dongjak-employment-ai" href="special/dongjak-employment-ai/">
+              <span class="path-icon">AI</span>
+              <span class="path-copy">
+                <small>2026년 10월 28일 · 14:00~15:45</small>
+                <strong>생성형 AI를 활용한 취업지원 실무</strong>
+                <em>동작취업지원센터</em>
+              </span>
+              <span class="path-action">특강 열기 <b>→</b></span>
+            </a>
             <div class="path-button is-coming" aria-label="AI 번역으로 해외여행 준비하기, 준비 중">
               <span class="path-icon">03</span>
               <span class="path-copy">
