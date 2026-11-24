@@ -253,6 +253,10 @@
         {
           "source": "review.js",
           "output": "regular/yongsan-elementary-ai/review.js"
+        },
+        {
+          "source": "game-demo.png",
+          "output": "regular/yongsan-elementary-ai/game-demo.png"
         }
       ]
     }
